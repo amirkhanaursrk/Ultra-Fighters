@@ -46,8 +46,8 @@ void GameScene::setup() {
     MVP = new glm::mat4(projection * view);
 }
 
-void GameScene::setMVP(glm::mat4* MVP) {
-    this->MVP = MVP;
+void GameScene::setVPM(glm::mat4 VPM) {
+    log_msg(LOG_WARNING, "GameScene::setVPM was called. Nothing happened.\n");
 }
 
 void GameScene::render(float interp) {

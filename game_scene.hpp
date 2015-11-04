@@ -11,7 +11,7 @@ class GameScene: public GameObject, public KeyListener {
     public:
         GameScene(GLFWwindow* window);
         void setup() override;
-        void setMVP(glm::mat4* MVP) override;
+        void setVPM(glm::mat4 VPM) override;
         void render(float interp) override;
         void update(double step) override;
         void keyCallback(GLFWwindow* window, int key, int scancode, int action, int mods) override;
