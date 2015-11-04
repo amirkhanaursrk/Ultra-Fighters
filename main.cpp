@@ -47,6 +47,7 @@ int main(int argc, char* argv[]) {
         glfwPollEvents();
     }
     
+    log_msg(LOG_INFO, "Stopping program...\n");
     loop.stop();
     glfwTerminate();
     
