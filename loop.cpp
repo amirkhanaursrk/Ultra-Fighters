@@ -1,5 +1,6 @@
 #include <algorithm>
 #include <ctime>
+#include <logger.h>
 
 #include "loop.hpp"
 
@@ -51,6 +52,8 @@ void Loop::run() {
             oldTime += timeBetweenUpdates;
             updates++;
         }
+        
+        if (updates == maxUpdates) log_msg(LOG_WARNING, "Loop is overloaded!!!\n");
         
         float interp = std::min(1.0f, (newTime - oldTime) / (float) timeBetweenUpdates);
         listener->render(interp);
