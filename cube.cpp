@@ -5,8 +5,6 @@
 #include "cube.hpp"
 
 void Cube::setVPM(glm::mat4 VPM) {
-    log_msg(LOG_INFO, "Set VMP\n");
-    
     MVP = new glm::mat4(VPM);
 }
 
