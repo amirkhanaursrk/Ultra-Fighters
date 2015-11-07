@@ -7,7 +7,7 @@
 
 class GameObject : public LoopListener {
 public:
-    virtual void setMVP(glm::mat4* MVP) = 0;
+    virtual void setVPM(glm::mat4 VPM) = 0; // View Projection Matrix
 };
 
 #endif
