@@ -9,14 +9,13 @@ void Cube::setVPM(glm::mat4 VPM) {
 }
 
 void Cube::setup() {
-    //const char* objectPath = "Resources/cube.obj";
-    const char* objectPath = "Resources/suzanne.obj";
+    const char* objectPath = "Resources/cube.obj";
     float* vertices;
+    int length;
     loadWavefront1(objectPath, &vertices, &length);
     
-    //assert(length == 36 * 3);
+    assert(length == 36 * 3);
     
-    log_msg(LOG_DEBUG, "Coordinates: %d\n", length);
     log_msg(LOG_INFO, "Loaded object file.\n");
     
     GLuint vertexBuffer;
@@ -45,5 +44,5 @@ void Cube::render(float interp) {
     assert(MVPID != -1);
     glUseProgram(program);
     glUniformMatrix4fv(MVPID, 1, GL_FALSE, &(*MVP)[0][0]);
-    glDrawArrays(GL_TRIANGLES, 0, length / 3);
+    glDrawArrays(GL_TRIANGLES, 0, 36);
 }

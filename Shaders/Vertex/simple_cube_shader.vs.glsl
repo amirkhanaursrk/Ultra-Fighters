@@ -6,5 +6,5 @@ out vec2 pos;
 
 void main() {
     gl_Position = MVP * vec4(in_pos, 1.0);
-    pos = vec2(in_pos);
+    pos = in_pos.xy;
 }
