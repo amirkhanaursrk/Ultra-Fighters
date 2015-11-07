@@ -6,8 +6,6 @@
 
 GameScene::GameScene(GLFWwindow* window) {
     this->window = window;
-    objects = new std::vector<GameObject*>();
-    unsetupObjects = new std::vector<GameObject*>();
 }
 
 void GameScene::setup() {
@@ -17,49 +15,16 @@ void GameScene::setup() {
     glDepthFunc(GL_LESS);
 }
 
-void GameScene::setVPM(glm::mat4 VPM) {
-    for (int i = 0; i < objects->size(); i++) {
-        (*objects)[i]->setVPM(VPM);
-    }
-    
-    this->VPM = VPM;
-}
-
 void GameScene::render(float interp) {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     
-    for (int i = 0; i < objects->size(); i++) {
-        (*objects)[i]->render(interp);
-    }
+    ParentGameObject::render(interp);
     
     glfwSwapBuffers(window);
-}
-
-void GameScene::update(double step) {
-    if (unsetupObjects->size() != 0) {
-        for (int i = 0; i < unsetupObjects->size(); i++) {
-            GameObject* object = (*unsetupObjects)[i];
-            object->setup();
-            object->setVPM(VPM);
-            objects->push_back(object);
-        }
-    
-        unsetupObjects->clear();
-    }
-    
-    for (int i = 0; i < objects->size(); i++) {
-        (*objects)[i]->update(step);
-    }
 }
 
 void GameScene::keyCallback(GLFWwindow* window, int key, int scancode, int action, int mods) {
     if (action == GLFW_PRESS) {
         log_msg(LOG_INFO, "Pressed Key: %c\tRaw Key: %d\tScancode: %d\n", (char) key, key, scancode);
-    }
-}
-
-void GameScene::add(GameObject* object) {
-    if (object != NULL) {
-        unsetupObjects->push_back(object);
     }
 }

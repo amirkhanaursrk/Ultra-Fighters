@@ -41,12 +41,12 @@ int main(int argc, char* argv[]) {
     log_msg(LOG_INFO, "Started loop!\n");
     
     glm::mat4 projection = glm::perspective(glm::radians(60.0), 4.0 / 3.0, 0.1, 100.0);
-    glm::mat4 view = glm::lookAt(glm::vec3(0, 0, 0), glm::vec3(1, 2, 0), glm::vec3(0, 1, 0));
+    glm::mat4 view = glm::lookAt(glm::vec3(-3, 3, 0), glm::vec3(0, 0, 0), glm::vec3(0, 1, 0));
     glm::mat4 VPM = projection * view;
     
     GameScene scene = GameScene(window);
-    Cube* cube = new Cube();
-    scene.add(cube);
+    Cube cube;
+    scene.addChild(&cube);
     scene.setVPM(VPM);
     
     Loop loop = Loop(&scene);
