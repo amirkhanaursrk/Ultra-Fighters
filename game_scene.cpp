@@ -26,20 +26,16 @@ void GameScene::setVPM(glm::mat4 VPM) {
 }
 
 void GameScene::render(float interp) {
-    log_msg(LOG_INFO, "Rendering...\n");
-    
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     
     for (int i = 0; i < objects->size(); i++) {
-        (*objects)[i]->render(interp); // Seg fault
+        (*objects)[i]->render(interp);
     }
     
     glfwSwapBuffers(window);
 }
 
 void GameScene::update(double step) {
-    log_msg(LOG_INFO, "Updating...\n");
-    
     if (unsetupObjects->size() != 0) {
         for (int i = 0; i < unsetupObjects->size(); i++) {
             GameObject* object = (*unsetupObjects)[i];
