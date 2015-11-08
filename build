@@ -1,4 +1,5 @@
-gcc -c ~/Code/c/lib/myglutils.c ~/Code/c/lib/logger.c ~/Code/c/lib/path_helper.c -I ~/Code/c/include/ && \
-g++ -std=c++11 -Wall -pedantic main.cpp loop.cpp game_scene.cpp parent_game_object.cpp key_listener.cpp cube.cpp myglutils.o logger.o path_helper.o -o ultra_fighters \
--I /opt/local/include/ -I ~/Code/c/include/ -I ~/Code/c++/include/ -L /opt/local/lib/ -lglfw -lGLEW -framework OpenGL
-rm myglutils.o logger.o path_helper.o
+cd `dirname $0`
+gcc -c lib/myglutils.c lib/logger.c -I include/ && \
+g++ -std=c++11 -Wall -pedantic main.cpp loop.cpp game_scene.cpp parent_game_object.cpp key_listener.cpp cube.cpp myglutils.o logger.o -o ultra_fighters \
+-I /opt/local/include/ -I include/ -L /opt/local/lib/ -lglfw -lGLEW -framework OpenGL
+rm myglutils.o logger.o

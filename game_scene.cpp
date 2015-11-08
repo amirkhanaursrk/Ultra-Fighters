@@ -25,6 +25,11 @@ void GameScene::render(float interp) {
 
 void GameScene::keyCallback(GLFWwindow* window, int key, int scancode, int action, int mods) {
     if (action == GLFW_PRESS) {
-        log_msg(LOG_INFO, "Pressed Key: %c\tRaw Key: %d\tScancode: %d\n", (char) key, key, scancode);
+        if (key < 256) {
+            log_msg(LOG_INFO, "Pressed Key: %c\t\tRaw Key: %d\tScancode: %d\n", (char) key, key, scancode);
+        }
+        else {
+            log_msg(LOG_INFO, "Pressed Key (non-ASCII). \tRaw Key: %d\tScancode: %d\n", key, scancode);
+        }
     }
 }

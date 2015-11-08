@@ -1,9 +1,12 @@
 #version 410
 
-in vec2 pos;
-out vec4 color;
+uniform vec3 camPos;
+in vec3 pos;
+out vec3 color;
 
 void main() {
-    color = noise4(pos.x * pos.y);
-    color.z = 1.0;
+    float cnum = distance(camPos.xy, pos.xy);
+    cnum *= cnum;
+    cnum /= 2;
+    color = vec3(cnum, cnum, cnum);
 }
