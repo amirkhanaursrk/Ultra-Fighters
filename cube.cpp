@@ -9,7 +9,7 @@ void Cube::setVPM(glm::mat4 VPM) {
 }
 
 void Cube::setup() {
-    const char* objectPath = "Resources/suzanne.obj";
+    const char* objectPath = "Resources/Room.obj";
     float* vertices;
     loadWavefront1(objectPath, &vertices, &length);
     
@@ -45,7 +45,7 @@ void Cube::render(float interp) {
     
     GLuint camPosID = glGetUniformLocation(program, "camPos");
     assert(camPosID != -1);
-    glUniform3f(camPosID, 0, 1, 5);
+    glUniform3f(camPosID, 0, 0.5, 0);
     
     glDrawArrays(GL_TRIANGLES, 0, length / 3);
 }
