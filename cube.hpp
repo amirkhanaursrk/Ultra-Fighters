@@ -13,4 +13,5 @@ class Cube: public GameObject {
         glm::mat4* MVP;
         GLuint vao;
         GLuint program;
+        int length;
 };
