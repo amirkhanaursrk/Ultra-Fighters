@@ -7,7 +7,6 @@
 GameScene::GameScene(GLFWwindow* window) {
     this->window = window;
     objects = new std::vector<GameObject*>();
-    unsetupObjects = new std::vector<GameObject*>();
 }
 
 void GameScene::setup() {
@@ -33,11 +32,5 @@ void GameScene::keyCallback(GLFWwindow* window, int key, int scancode, int actio
         else {
             log_msg(LOG_INFO, "Pressed Key (non-ASCII). \tRaw Key: %d\tScancode: %d\n", key, scancode);
         }
-    }
-}
-
-void GameScene::add(GameObject* object) {
-    if (object != NULL) {
-        unsetupObjects->push_back(object);
     }
 }

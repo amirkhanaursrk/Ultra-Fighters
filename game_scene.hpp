@@ -14,21 +14,11 @@ class GameScene: public ParentGameObject, public KeyListener {
     
         GameScene(GLFWwindow* window);
         void setup() override;
-<<<<<<< HEAD
-        void setVPM(glm::mat4 VPM) override;
-=======
->>>>>>> SPC-Week-Branch-2
         void render(float interp) override;
         void keyCallback(GLFWwindow* window, int key, int scancode, int action, int mods) override;
-        void add(GameObject* object);
 
     private:
         GLFWwindow* window;
-<<<<<<< HEAD
-        glm::mat4 VPM;
-        std::vector<GameObject*>* unsetupObjects;
-=======
->>>>>>> SPC-Week-Branch-2
 };
 
 #endif

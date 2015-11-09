@@ -9,20 +9,10 @@ void Cube::setVPM(glm::mat4 VPM) {
 }
 
 void Cube::setup() {
-<<<<<<< HEAD
-    const char* objectPath = "Resources/cube.obj";
-    float* vertices;
-    int length;
-    loadWavefront1(objectPath, &vertices, &length);
-    
-    assert(length == 36 * 3);
-    
-=======
     const char* objectPath = "Resources/suzanne.obj";
     float* vertices;
     loadWavefront1(objectPath, &vertices, &length);
-    
->>>>>>> SPC-Week-Branch-2
+
     log_msg(LOG_INFO, "Loaded object file.\n");
     
     GLuint vertexBuffer;
