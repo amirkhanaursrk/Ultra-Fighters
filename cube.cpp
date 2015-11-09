@@ -12,7 +12,7 @@ void Cube::setup() {
     const char* objectPath = "Resources/Room.obj";
     float* vertices;
     loadWavefront1(objectPath, &vertices, &length);
-    
+
     log_msg(LOG_INFO, "Loaded object file.\n");
     
     GLuint vertexBuffer;
