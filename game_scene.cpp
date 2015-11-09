@@ -1,3 +1,5 @@
+#define GLM_FORCE_RADIANS
+#include <glm/gtx/rotate_vector.hpp>
 #include <logger.h>
 #include <myglutils.h>
 #include <vector>
@@ -6,60 +8,53 @@
 
 GameScene::GameScene(GLFWwindow* window) {
     this->window = window;
-    objects = new std::vector<GameObject*>();
-    unsetupObjects = new std::vector<GameObject*>();
 }
 
 void GameScene::setup() {
     glfwMakeContextCurrent(window);
-    glClearColor(0.5, 0.5, 0.5, 1.0);
+    glClearColor(0.3, 0.3, 0.8, 1.0);
     glEnable(GL_DEPTH_TEST);
     glDepthFunc(GL_LESS);
-}
-
-void GameScene::setVPM(glm::mat4 VPM) {
-    for (int i = 0; i < objects->size(); i++) {
-        (*objects)[i]->setVPM(VPM);
-    }
     
-    this->VPM = VPM;
+    updateVPM();
 }
 
 void GameScene::render(float interp) {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     
-    for (int i = 0; i < objects->size(); i++) {
-        (*objects)[i]->render(interp);
-    }
+    ParentGameObject::render(interp);
     
     glfwSwapBuffers(window);
 }
 
 void GameScene::update(double step) {
-    if (unsetupObjects->size() != 0) {
-        for (int i = 0; i < unsetupObjects->size(); i++) {
-            GameObject* object = (*unsetupObjects)[i];
-            object->setup();
-            object->setVPM(VPM);
-            objects->push_back(object);
-        }
-    
-        unsetupObjects->clear();
+    if (turnAmount != 0) {
+        camTarget = glm::rotateY(camTarget, turnAmount * (float) step);
+        
+        updateVPM();
     }
     
-    for (int i = 0; i < objects->size(); i++) {
-        (*objects)[i]->update(step);
-    }
+    log_msg(LOG_DEBUG, "Step: %lf\n", step);
+    
+    ParentGameObject::update(step);
 }
 
 void GameScene::keyCallback(GLFWwindow* window, int key, int scancode, int action, int mods) {
     if (action == GLFW_PRESS) {
-        log_msg(LOG_INFO, "Pressed Key: %c\tRaw Key: %d\tScancode: %d\n", (char) key, key, scancode);
+        if (key == GLFW_KEY_RIGHT) {
+            turnAmount = -0.5;
+        }
+        else if (key == GLFW_KEY_LEFT) {
+            turnAmount = 0.5;
+        }
+    }
+    else if (action == GLFW_RELEASE) {
+        turnAmount = 0.0;
     }
 }
 
-void GameScene::add(GameObject* object) {
-    if (object != NULL) {
-        unsetupObjects->push_back(object);
-    }
+void GameScene::updateVPM() {
+    glm::mat4 projection = glm::perspective(glm::radians(60.0), 4.0 / 3.0, 0.1, 100.0);
+    glm::mat4 view = glm::lookAt(camPos, camTarget, glm::vec3(0, 1, 0));
+    setVPM(projection * view);
 }

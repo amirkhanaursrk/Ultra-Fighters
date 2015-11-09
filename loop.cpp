@@ -47,7 +47,7 @@ void Loop::run() {
 
         int updates = 0;
         while (newTime - oldTime >= timeBetweenUpdates && updates < maxUpdates) {
-            listener->update(timeBetweenUpdates / 1000.0);
+            listener->update((double) timeBetweenUpdates / CLOCKS_PER_SEC);
 
             oldTime += timeBetweenUpdates;
             updates++;

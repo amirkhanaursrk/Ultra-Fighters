@@ -40,14 +40,9 @@ int main(int argc, char* argv[]) {
     log_msg(LOG_INFO, "GLFW Version: %d.%d.%d\n", GLFW_VERSION_MAJOR, GLFW_VERSION_MINOR, GLFW_VERSION_REVISION);
     log_msg(LOG_INFO, "Started loop!\n");
     
-    glm::mat4 projection = glm::perspective(glm::radians(60.0), 4.0 / 3.0, 0.1, 100.0);
-    glm::mat4 view = glm::lookAt(glm::vec3(0, 0, 8), glm::vec3(0, 0, 0), glm::vec3(0, 1, 0));
-    glm::mat4 VPM = projection * view;
-    
     GameScene scene = GameScene(window);
-    Cube* cube = new Cube();
-    scene.add(cube);
-    scene.setVPM(VPM);
+    Cube cube;
+    scene.addChild(&cube);
     
     Loop loop = Loop(&scene);
     loop.start();
