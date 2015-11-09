@@ -34,8 +34,6 @@ void GameScene::update(double step) {
         updateVPM();
     }
     
-    log_msg(LOG_DEBUG, "Step: %lf\n", step);
-    
     ParentGameObject::update(step);
 }
 
