@@ -5,25 +5,30 @@
 #include <glm/mat4x4.hpp>
 #include <vector>
 
-#include "game_object.hpp"
+#include "parent_game_object.hpp"
 #include "key_listener.hpp"
 
-class GameScene: public GameObject, public KeyListener {
+class GameScene: public ParentGameObject, public KeyListener {
     public:
         std::vector<GameObject*>* objects;
     
         GameScene(GLFWwindow* window);
         void setup() override;
+<<<<<<< HEAD
         void setVPM(glm::mat4 VPM) override;
+=======
+>>>>>>> SPC-Week-Branch-2
         void render(float interp) override;
-        void update(double step) override;
         void keyCallback(GLFWwindow* window, int key, int scancode, int action, int mods) override;
         void add(GameObject* object);
 
     private:
         GLFWwindow* window;
+<<<<<<< HEAD
         glm::mat4 VPM;
         std::vector<GameObject*>* unsetupObjects;
+=======
+>>>>>>> SPC-Week-Branch-2
 };
 
 #endif

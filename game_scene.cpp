@@ -15,6 +15,7 @@ void GameScene::setup() {
     glClearColor(0.5, 0.5, 0.5, 1.0);
     glEnable(GL_DEPTH_TEST);
     glDepthFunc(GL_LESS);
+<<<<<<< HEAD
 }
 
 void GameScene::setVPM(glm::mat4 VPM) {
@@ -23,18 +24,25 @@ void GameScene::setVPM(glm::mat4 VPM) {
     }
     
     this->VPM = VPM;
+=======
+>>>>>>> SPC-Week-Branch-2
 }
 
 void GameScene::render(float interp) {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     
+<<<<<<< HEAD
     for (int i = 0; i < objects->size(); i++) {
         (*objects)[i]->render(interp);
     }
+=======
+    ParentGameObject::render(interp);
+>>>>>>> SPC-Week-Branch-2
     
     glfwSwapBuffers(window);
 }
 
+<<<<<<< HEAD
 void GameScene::update(double step) {
     if (unsetupObjects->size() != 0) {
         for (int i = 0; i < unsetupObjects->size(); i++) {
@@ -52,9 +60,16 @@ void GameScene::update(double step) {
     }
 }
 
+=======
+>>>>>>> SPC-Week-Branch-2
 void GameScene::keyCallback(GLFWwindow* window, int key, int scancode, int action, int mods) {
     if (action == GLFW_PRESS) {
-        log_msg(LOG_INFO, "Pressed Key: %c\tRaw Key: %d\tScancode: %d\n", (char) key, key, scancode);
+        if (key < 256) {
+            log_msg(LOG_INFO, "Pressed Key: %c\t\tRaw Key: %d\tScancode: %d\n", (char) key, key, scancode);
+        }
+        else {
+            log_msg(LOG_INFO, "Pressed Key (non-ASCII). \tRaw Key: %d\tScancode: %d\n", key, scancode);
+        }
     }
 }
 

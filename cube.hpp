@@ -13,4 +13,8 @@ class Cube: public GameObject {
         glm::mat4* MVP;
         GLuint vao;
         GLuint program;
+<<<<<<< HEAD
+=======
+        int length;
+>>>>>>> SPC-Week-Branch-2
 };
