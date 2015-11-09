@@ -42,13 +42,10 @@ void Cube::render(float interp) {
     GLuint MVPID = glGetUniformLocation(program, "MVP");
     assert(MVPID != -1);
     glUniformMatrix4fv(MVPID, 1, GL_FALSE, &(*MVP)[0][0]);
-<<<<<<< HEAD
-=======
-    
+
     GLuint camPosID = glGetUniformLocation(program, "camPos");
     assert(camPosID != -1);
     glUniform3f(camPosID, 0, 0.5, 0);
     
->>>>>>> Jeffs-Branch
     glDrawArrays(GL_TRIANGLES, 0, length / 3);
 }
