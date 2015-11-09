@@ -10,8 +10,6 @@
 
 class GameScene: public ParentGameObject, public KeyListener {
     public:
-        std::vector<GameObject*>* objects;
-    
         GameScene(GLFWwindow* window);
         void setup() override;
         void render(float interp) override;

@@ -6,7 +6,6 @@
 
 GameScene::GameScene(GLFWwindow* window) {
     this->window = window;
-    objects = new std::vector<GameObject*>();
 }
 
 void GameScene::setup() {
