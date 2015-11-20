@@ -2,9 +2,9 @@
 #include <glm/gtx/rotate_vector.hpp>
 #include <logger.h>
 #include <myglutils.h>
-#include <vector>
 
 #include "game_scene.hpp"
+#include "key_input_store.hpp"
 
 GameScene::GameScene(GLFWwindow* window) {
     this->window = window;
@@ -15,7 +15,7 @@ void GameScene::setup() {
     glClearColor(0.3, 0.3, 0.8, 1.0);
     glEnable(GL_DEPTH_TEST);
     glDepthFunc(GL_LESS);
-    
+
     updateVPM();
 }
 
@@ -28,6 +28,16 @@ void GameScene::render(float interp) {
 }
 
 void GameScene::update(double step) {
+    float turnAmount = 0.0;
+    
+    if (KeyInputStore::getInstance().getState(GLFW_KEY_RIGHT)) {
+        turnAmount -= 0.5;
+    }
+    
+    if (KeyInputStore::getInstance().getState(GLFW_KEY_LEFT)) {
+        turnAmount += 0.5;
+    }
+    
     if (turnAmount != 0) {
         camTarget = glm::rotateY(camTarget, turnAmount * (float) step);
         
@@ -35,20 +45,6 @@ void GameScene::update(double step) {
     }
     
     ParentGameObject::update(step);
-}
-
-void GameScene::keyCallback(GLFWwindow* window, int key, int scancode, int action, int mods) {
-    if (action == GLFW_PRESS) {
-        if (key == GLFW_KEY_RIGHT) {
-            turnAmount = -0.5;
-        }
-        else if (key == GLFW_KEY_LEFT) {
-            turnAmount = 0.5;
-        }
-    }
-    else if (action == GLFW_RELEASE) {
-        turnAmount = 0.0;
-    }
 }
 
 void GameScene::updateVPM() {

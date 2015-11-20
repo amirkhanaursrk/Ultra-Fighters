@@ -1,5 +1,4 @@
-#ifndef GAME_OBJECT_H
-#define GAME_OBJECT_H
+#pragma once
 
 #include <glm/mat4x4.hpp>
 
@@ -9,5 +8,3 @@ class GameObject : public LoopListener {
 public:
     virtual void setVPM(glm::mat4 VPM) = 0; // View Projection Matrix
 };
-
-#endif

@@ -1,5 +1,4 @@
-#ifndef LOOP_H
-#define LOOP_H
+#pragma once
 
 #include <thread>
 
@@ -29,5 +28,3 @@ private:
     
     void run();
 };
-
-#endif

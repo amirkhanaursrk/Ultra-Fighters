@@ -30,6 +30,8 @@ void Cube::setup() {
     program = getProgramFromFiles(vertexShaderPath, fragmentShaderPath);
 
     assert(program && vao);
+    
+    log_msg(LOG_INFO, "Finished setting up GameObject\n");
 }
 
 void Cube::update(double step) {

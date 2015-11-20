@@ -1,5 +1,4 @@
-#ifndef __MYGLUTILS__
-#define __MYGLUTILS__
+#pragma once
 
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
@@ -24,5 +23,4 @@ int loadWavefront1(const char* fileName, float** vertexBuffer, int* length);
 
 #ifdef __cplusplus
 }
-#endif
 #endif

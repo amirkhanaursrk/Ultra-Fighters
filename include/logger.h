@@ -1,5 +1,4 @@
-#ifndef LOGGER_H
-#define LOGGER_H
+#pragma once
 
 #include <stdio.h>
 
@@ -19,6 +18,4 @@ void log_msg(const int log_type, const char* message, ...) __printflike(2, 3);
 
 #ifdef __cplusplus
 }
-#endif
-
 #endif
