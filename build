@@ -1,7 +1,7 @@
 cd `dirname $0`
 gcc -std=c11 -Wall -pedantic -c lib/myglutils.c lib/logger.c -I include/  && \
 echo "Compiled C files!" &&
-g++ -std=c++11 -Wall -pedantic -g main.cpp loop.cpp game_scene.cpp parent_game_object.cpp cube.cpp key_input_store.cpp myglutils.o logger.o -o ultra_fighters \
+g++ -std=c++11 -Wall -pedantic -g main.cpp loop.cpp game_scene.cpp parent_game_object.cpp cube.cpp key_store.cpp myglutils.o logger.o -o ultra_fighters \
 -I include/ -L lib/ -lglfw -lGLEW -framework OpenGL &&
 echo "Finished compiling!"
 rm myglutils.o logger.o

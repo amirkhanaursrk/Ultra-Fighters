@@ -4,7 +4,7 @@
 #include <myglutils.h>
 
 #include "game_scene.hpp"
-#include "key_input_store.hpp"
+#include "key_store.hpp"
 
 GameScene::GameScene(GLFWwindow* window) {
     this->window = window;
@@ -30,11 +30,11 @@ void GameScene::render(float interp) {
 void GameScene::update(double step) {
     float turnAmount = 0.0;
     
-    if (KeyInputStore::getInstance().getState(GLFW_KEY_RIGHT)) {
+    if (getKeyAction(GLFW_KEY_RIGHT)) {
         turnAmount -= 0.5;
     }
     
-    if (KeyInputStore::getInstance().getState(GLFW_KEY_LEFT)) {
+    if (getKeyAction(GLFW_KEY_LEFT)) {
         turnAmount += 0.5;
     }
     

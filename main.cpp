@@ -5,7 +5,7 @@
 
 #include "cube.hpp" // Cube
 #include "game_scene.hpp" // GameScene
-#include "key_input_store.hpp"
+#include "key_store.hpp" // storeKeyCallback
 
 int main(int argc, char* argv[]) {
     if (!setupGLFW()) return 1;
@@ -25,7 +25,7 @@ int main(int argc, char* argv[]) {
     }
     
     glfwMakeContextCurrent(window);
-    glfwSetKeyCallback(window, KeyInputStore::keyCallback);
+    glfwSetKeyCallback(window, storeKeyCallback);
     
     if (!setupGLEW()) return 1;
     
