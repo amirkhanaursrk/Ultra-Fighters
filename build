@@ -1,7 +1,27 @@
+EXE=ultra_fighters
+CC=gcc
+CPPC=g++
+CFLAGS="-std=c11 -Wall -pedantic -c"
+CPPFLAGS="-std=c++11 -Wall -pedantic"
+C_FILES="lib/logger.c lib/myglutils.c lib/key_store.c"
+CPP_FILES="main.cpp loop.cpp game_scene.cpp parent_game_object.cpp cube.cpp player.cpp"
+INC="-I include/"
+LIBS="-L lib/ -lglfw -lGLEW -framework OpenGL"
+OBJECTS=($C_FILES)
+
+for (( i=0; i<${#OBJECTS[@]}; i++ )); do
+  OBJECTS[i]=$(basename ${OBJECTS[i]} .c).o
+done
+
+OBJECTS=${OBJECTS[@]}
+
+OLD_DIR="$(pwd)"
 cd `dirname $0`
-gcc -std=c11 -Wall -pedantic -c lib/myglutils.c lib/logger.c -I include/  && \
+echo "Compiling C files..."
+$CC $CFLAGS $C_FILES $INC &&
 echo "Compiled C files!" &&
-g++ -std=c++11 -Wall -pedantic  main.cpp loop.cpp game_scene.cpp parent_game_object.cpp cube.cpp key_store.cpp myglutils.o logger.o -o ultra_fighters \
--I include/ -L lib/ -lglfw -lGLEW -framework OpenGL &&
+echo "Compiling C++ files..." &&
+$CPPC $CPPFLAGS $CPP_FILES $OBJECTS -o $EXE $INC $LIBS &&
 echo "Finished compiling!"
-rm myglutils.o logger.o
+rm -f $OBJECTS
+cd "$OLD_DIR"

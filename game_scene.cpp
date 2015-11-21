@@ -4,7 +4,7 @@
 #include <myglutils.h>
 
 #include "game_scene.hpp"
-#include "key_store.hpp"
+#include <input/key_store.h>
 
 GameScene::GameScene(GLFWwindow* window) {
     this->window = window;

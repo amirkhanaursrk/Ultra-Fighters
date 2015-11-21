@@ -5,7 +5,10 @@
 
 #include "cube.hpp" // Cube
 #include "game_scene.hpp" // GameScene
-#include "key_store.hpp" // storeKeyCallback
+#include <input/key_store.h> // storeKeyCallback
+
+#include <glm/vec3.hpp> // TEMPORARY!!!
+#include <glm/gtx/string_cast.hpp> // TEMPORARY!!!
 
 int main(int argc, char* argv[]) {
     if (!setupGLFW()) return 1;
@@ -26,9 +29,9 @@ int main(int argc, char* argv[]) {
     
     glfwMakeContextCurrent(window);
     glfwSetKeyCallback(window, storeKeyCallback);
-    
+
     if (!setupGLEW()) return 1;
-    
+
     log_msg(LOG_INFO, "#####################################\n");
     log_msg(LOG_INFO, "Started Ultra Fighters!\n");
     log_msg(LOG_INFO, "OpenGL Vendor: %s\n", glGetString(GL_VENDOR));
@@ -39,6 +42,12 @@ int main(int argc, char* argv[]) {
     log_msg(LOG_INFO, "GLFW Version: %d.%d.%d\n", GLFW_VERSION_MAJOR, GLFW_VERSION_MINOR, GLFW_VERSION_REVISION);
     log_msg(LOG_INFO, "Started loop!\n");
     
+    glm::vec3 facing = glm::vec3(2, 3, 4);
+    glm::vec3 headsUp = glm::vec3(0, 1, 0);
+    glm::vec3 moveDir = facing - glm::dot(facing, headsUp) * headsUp;
+
+    log_msg(LOG_DEBUG, "Move dir: %s\n", glm::to_string(moveDir).c_str());
+
     GameScene scene(window);
     Cube cube;
     scene.addChild(&cube);
