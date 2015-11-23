@@ -6,7 +6,7 @@ CPPFLAGS="-std=c++11 -Wall -pedantic"
 C_FILES="lib/logger.c lib/myglutils.c lib/key_store.c"
 CPP_FILES="main.cpp loop.cpp game_scene.cpp parent_game_object.cpp cube.cpp player.cpp"
 INC="-I include/"
-LIBS="-L lib/ -lglfw -lGLEW -framework OpenGL"
+LIBS="lib/libglfw.dylib lib/libGLEW.dylib -framework OpenGL"
 OBJECTS=($C_FILES)
 
 for (( i=0; i<${#OBJECTS[@]}; i++ )); do
