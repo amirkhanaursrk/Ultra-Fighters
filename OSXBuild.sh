@@ -1,4 +1,4 @@
-EXE=ultra_fighters
+EXE=Ultra-Fighters
 CC=gcc
 CPPC=g++
 CFLAGS="-std=c11 -Wall -pedantic -c"

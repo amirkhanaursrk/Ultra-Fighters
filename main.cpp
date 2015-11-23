@@ -15,7 +15,7 @@ int main(int argc, char* argv[]) {
     setupApple();
 
     chdir(dirname(argv[0]));
-    set_log_file(fopen("ultra_fighters.log", "a"));
+    set_log_file(fopen("uf.log", "a"));
     setDebug(true);
     setBind(true);
     
