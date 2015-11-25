@@ -4,7 +4,7 @@ C_FLAGS=-std=c11 -Wall -pedantic
 CPP_FLAGS=-std=c++11 -Wall -pedantic
 INC=-Iinclude/
 LIBS=lib/libGLEW.a lib/libglfw3.a -framework OpenGL -framework CoreVideo -framework Cocoa -framework IOKit
-TARGET=Ultra-Fighters
+TARGET=Ultra-Fighters.osx
 SOURCES=main.cpp cube.cpp game_scene.cpp loop.cpp parent_game_object.cpp player.cpp lib/key_store.c lib/logger.c lib/myglutils.c
 OBJECTS=$(notdir $(addsuffix .o,$(basename $(SOURCES))))
 
