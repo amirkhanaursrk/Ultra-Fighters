@@ -7,9 +7,6 @@
 #include "game_scene.hpp" // GameScene
 #include <input/key_store.h> // storeKeyCallback
 
-#include <glm/vec3.hpp> // TEMPORARY!!!
-#include <glm/gtx/string_cast.hpp> // TEMPORARY!!!
-
 int main(int argc, char* argv[]) {
     if (!setupGLFW()) return 1;
     setupApple();

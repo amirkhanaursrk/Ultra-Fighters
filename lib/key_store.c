@@ -1,6 +1,5 @@
 #include <input/key_store.h>
 #include <stdlib.h>
-#include <logger.h>
 
 static int* actions = NULL;
 static int* mods = NULL;

@@ -2,11 +2,11 @@
 
 #define GLM_FORCE_RADIANS
 #include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtx/rotate_vector.hpp>
 #include <glm/gtx/transform.hpp>
 
+#include <math.h>
 #include <input/key_store.h>
-
-#include <logger.h> // TEMPORARY
 
 Player::Player(double x, double y, double z) {
     pos = glm::vec3(x, y, z);
@@ -24,7 +24,8 @@ void Player::setup() {}
 void Player::render(float interp) {}
 
 void Player::update(double step) {
-    double rotateSpeed = 0.1;
+    // Check for arrow keys
+    double rotateSpeed = 0.075;
 
     if (getKeyAction(GLFW_KEY_RIGHT)) {
         yaw -= rotateSpeed;
@@ -45,6 +46,35 @@ void Player::update(double step) {
         pitch += rotateSpeed;
         VPMhasChanged = true;
     }
+
+    // check for WASD
+    float moveSpeed = 1.0 / 8.0;
+    
+    if (getKeyAction(GLFW_KEY_W)) {
+        glm::vec3 movement = glm::rotate(out, (float) yaw, up);
+        pos += movement * moveSpeed;
+        VPMhasChanged = true;
+    }
+
+    if (getKeyAction(GLFW_KEY_S)) {
+        glm::vec3 movement = glm::rotate(out, (float) (yaw + M_PI), up);
+        pos += movement * moveSpeed;
+        VPMhasChanged = true;
+    }
+
+    if (getKeyAction(GLFW_KEY_A)) {
+        glm::vec3 movement = glm::rotate(out, (float) (yaw + M_PI / 2.0), up);
+        pos += movement * moveSpeed;
+        VPMhasChanged = true;
+    }
+
+    if (getKeyAction(GLFW_KEY_D)) {
+        glm::vec3 movement = glm::rotate(out, (float) (yaw - M_PI / 2.0), up);
+        pos += movement * moveSpeed;
+        VPMhasChanged = true;
+    }
+
+    // ...
 
     /*
     glm::vec3 facing = glm::vec3(2, 3, 4);
