@@ -1,17 +1,21 @@
+
+#include "wavefront_object.hpp"
+
 #include <glm/mat4x4.hpp>
 #include <logger.h>
 #include <myglutils.h>
 
-#include "cube.hpp"
+WavefrontObject::WavefrontObject(const char* path) {
+    this->path = path;
+}
 
-void Cube::setVPM(glm::mat4 VPM) {
+void WavefrontObject::setVPM(glm::mat4 VPM) {
     MVP = new glm::mat4(VPM);
 }
 
-void Cube::setup() {
-    const char* objectPath = "Resources/Room.obj";
+void WavefrontObject::setup() {
     float* vertices;
-    loadWavefront1(objectPath, &vertices, &length);
+    loadWavefront1(path, &vertices, &length);
 
     log_msg(LOG_INFO, "Loaded object file.\n");
     
@@ -34,10 +38,7 @@ void Cube::setup() {
     log_msg(LOG_INFO, "Finished setting up GameObject\n");
 }
 
-void Cube::update(double step) {
-}
-
-void Cube::render(float interp) {
+void WavefrontObject::render(float interp) {
     glBindVertexArray(vao);
     glUseProgram(program);
     
