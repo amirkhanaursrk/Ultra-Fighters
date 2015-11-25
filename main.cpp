@@ -3,7 +3,7 @@
 #include <myglutils.h> // GLFW, GLEW, and setup functions
 #include <unistd.h> // chdir
 
-#include "cube.hpp" // Cube
+#include "wavefront_object.hpp" // WavefrontObject
 #include "game_scene.hpp" // GameScene
 #include <input/key_store.h> // storeKeyCallback
 
@@ -40,8 +40,8 @@ int main(int argc, char* argv[]) {
     log_msg(LOG_INFO, "Started loop!\n");
     
     GameScene scene(window);
-    Cube cube;
-    scene.addChild(&cube);
+    WavefrontObject room("Resources/Room.obj");
+    scene.addChild(&room);
     
     Loop loop = Loop(&scene);
     loop.start();
