@@ -6,6 +6,8 @@
 
 #include <input/key_store.h>
 
+#include <logger.h> // TEMPORARY
+
 Player::Player(double x, double y, double z) {
     pos = glm::vec3(x, y, z);
     yaw = 0;
@@ -24,27 +26,33 @@ void Player::render(float interp) {}
 void Player::update(double step) {
     double rotateSpeed = 0.1;
 
-    if (getKeyAction(GLFW_KEY_RIGHT) == GLFW_PRESS) {
+    if (getKeyAction(GLFW_KEY_RIGHT)) {
         yaw -= rotateSpeed;
         VPMhasChanged = true;
     }
 
-    if (getKeyAction(GLFW_KEY_LEFT) == GLFW_PRESS) {
+    if (getKeyAction(GLFW_KEY_LEFT)) {
         yaw += rotateSpeed;
         VPMhasChanged = true;
     }
 
-
-    if (getKeyAction(GLFW_KEY_UP) == GLFW_PRESS) {
+    if (getKeyAction(GLFW_KEY_UP)) {
         pitch -= rotateSpeed;
         VPMhasChanged = true;
     }
 
-
-    if (getKeyAction(GLFW_KEY_DOWN) == GLFW_PRESS) {
+    if (getKeyAction(GLFW_KEY_DOWN)) {
         pitch += rotateSpeed;
         VPMhasChanged = true;
     }
+
+    /*
+    glm::vec3 facing = glm::vec3(2, 3, 4);
+    glm::vec3 headsUp = glm::vec3(0, 1, 0);
+    glm::vec3 moveDir = facing - glm::dot(facing, headsUp) * headsUp;
+
+    log_msg(LOG_DEBUG, "Move dir: %s\n", glm::to_string(moveDir).c_str());
+    */
 }
 
 glm::mat4 Player::getVPM() {

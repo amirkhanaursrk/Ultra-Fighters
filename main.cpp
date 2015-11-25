@@ -42,12 +42,6 @@ int main(int argc, char* argv[]) {
     log_msg(LOG_INFO, "GLFW Version: %d.%d.%d\n", GLFW_VERSION_MAJOR, GLFW_VERSION_MINOR, GLFW_VERSION_REVISION);
     log_msg(LOG_INFO, "Started loop!\n");
     
-    glm::vec3 facing = glm::vec3(2, 3, 4);
-    glm::vec3 headsUp = glm::vec3(0, 1, 0);
-    glm::vec3 moveDir = facing - glm::dot(facing, headsUp) * headsUp;
-
-    log_msg(LOG_DEBUG, "Move dir: %s\n", glm::to_string(moveDir).c_str());
-
     GameScene scene(window);
     Cube cube;
     scene.addChild(&cube);

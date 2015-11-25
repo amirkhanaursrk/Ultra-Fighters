@@ -1,0 +1,8 @@
+
+OS="$(uname)"
+
+if [ $OS == "Darwin" ]; then
+    make -f Makefile.osx clean
+else
+    echo OS $OS not recognized!
+fi

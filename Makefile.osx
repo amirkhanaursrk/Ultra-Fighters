@@ -1,0 +1,32 @@
+CC=gcc
+CPPC=g++
+C_FLAGS=-std=c11 -Wall -pedantic
+CPP_FLAGS=-std=c++11 -Wall -pedantic
+INC=-Iinclude/
+LIBS=lib/libGLEW.a lib/libglfw3.a -framework OpenGL -framework CoreVideo -framework Cocoa -framework IOKit
+TARGET=Ultra-Fighters
+SOURCES=main.cpp cube.cpp game_scene.cpp loop.cpp parent_game_object.cpp player.cpp lib/key_store.c lib/logger.c lib/myglutils.c
+OBJECTS=$(notdir $(addsuffix .o,$(basename $(SOURCES))))
+
+all: $(TARGET)
+
+$(TARGET): $(OBJECTS)
+	$(CPPC) $^ $(INC) $(LIBS) -o $(TARGET)
+
+%.o: %.cpp %.hpp
+	$(CPPC) $(CPP_FLAGS) $(INC) -c $<
+
+%.o: %.cpp
+	$(CPPC) $(CPP_FLAGS) $(INC) -c $<
+
+key_store.o: lib/key_store.c include/input/key_store.h
+	$(CC) $(C_FLAGS) $(INC) -c $<
+
+logger.o: lib/logger.c include/logger.h
+	$(CC) $(C_FLAGS) $(INC) -c $<
+
+myglutils.o: lib/myglutils.c include/myglutils.h
+	$(CC) $(C_FLAGS) $(INC) -c $<
+
+clean:
+	rm -f $(OBJECTS)
