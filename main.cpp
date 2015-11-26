@@ -11,8 +11,13 @@ int main(int argc, char* argv[]) {
     if (!setupGLFW()) return 1;
     setupApple();
 
+    #ifdef __APPLE__
+    chdir(dirname(dirname(argv[0])));
+    #else
     chdir(dirname(argv[0]));
-    set_log_file(fopen("uf.log", "a"));
+    #endif
+
+    set_log_file(fopen("Resources/uf.log", "a"));
     setDebug(true);
     setBind(true);
     
