@@ -10,6 +10,7 @@
 int main(int argc, char* argv[]) {
     if (!setupGLFW()) return 1;
     setupApple();
+    glfwWindowHint(GLFW_SAMPLES, 4);
 
     #ifdef __APPLE__
     chdir(dirname(dirname(argv[0])));
