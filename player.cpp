@@ -10,7 +10,7 @@
 
 Player::Player(double x, double y, double z) {
     pos = glm::vec3(x, y, z);
-    yaw = 0;
+    yaw = 3.14;
     pitch = 0;
     VPMhasChanged = true;
 }
@@ -25,7 +25,7 @@ void Player::render(float interp) {}
 
 void Player::update(double step) {
     // Check for arrow keys
-    double rotateSpeed = 0.075;
+    double rotateSpeed = 0.05;
 
     if (getKeyAction(GLFW_KEY_RIGHT)) {
         yaw -= rotateSpeed;
@@ -48,7 +48,7 @@ void Player::update(double step) {
     }
 
     // check for WASD
-    float moveSpeed = 1.0 / 8.0;
+    float moveSpeed = 1.0 / 15.0;
     
     if (getKeyAction(GLFW_KEY_W)) {
         glm::vec3 movement = glm::rotate(out, (float) yaw, up);

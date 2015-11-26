@@ -40,7 +40,7 @@ int main(int argc, char* argv[]) {
     log_msg(LOG_INFO, "Started loop!\n");
     
     GameScene scene(window);
-    WavefrontObject room("Resources/Room.obj");
+    WavefrontObject room("Resources/Room2.obj");
     scene.addChild(&room);
     
     Loop loop = Loop(&scene);
