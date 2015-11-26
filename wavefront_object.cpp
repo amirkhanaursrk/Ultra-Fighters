@@ -29,8 +29,8 @@ void WavefrontObject::setup() {
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, NULL);
     glEnableVertexAttribArray(0);
 
-    const char* vertexShaderPath = "Shaders/Vertex/simple_cube_shader.vs.glsl";
-    const char* fragmentShaderPath = "Shaders/Fragment/simple_cube_shader.fs.glsl";
+    const char* vertexShaderPath = "Resources/Shaders/Vertex/simple_cube_shader.vs.glsl";
+    const char* fragmentShaderPath = "Resources/Shaders/Fragment/simple_cube_shader.fs.glsl";
     program = getProgramFromFiles(vertexShaderPath, fragmentShaderPath);
 
     assert(program && vao);
