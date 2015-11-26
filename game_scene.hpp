@@ -14,5 +14,5 @@ class GameScene: public ParentGameObject {
 
     private:
         GLFWwindow* window;
-        Player player = Player(0.0, 0.5, 0.0);
+        Player player = Player(0.0, 1.5, 0.0);
 };
