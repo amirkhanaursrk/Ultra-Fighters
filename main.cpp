@@ -1,4 +1,7 @@
+#ifndef __APPLE__
 #include <libgen.h> // dirname
+#endif
+
 #include <logger.h> // log_msg
 #include <myglutils.h> // GLFW, GLEW, and setup functions
 #include <unistd.h> // chdir
@@ -7,16 +10,27 @@
 #include "game_scene.hpp" // GameScene
 #include <input/key_store.h> // storeKeyCallback
 
+#include <iostream> // @temp
+
 int main(int argc, char* argv[]) {
     if (!setupGLFW()) return 1;
     setupApple();
     glfwWindowHint(GLFW_SAMPLES, 4);
 
+    const char* newPath;
+
     #ifdef __APPLE__
-    chdir(dirname(dirname(argv[0])));
+    newPath = "..";
     #else
-    chdir(dirname(argv[0]));
+    newPath = dirname(argv[0]);
     #endif
+
+    int cwdError;
+    if ((cwdError = chdir(newPath)) != 0) {
+        perror(newPath);
+
+        return 1;
+    }
 
     set_log_file(fopen("Resources/uf.log", "a"));
     setDebug(true);
@@ -35,8 +49,12 @@ int main(int argc, char* argv[]) {
 
     if (!setupGLEW()) return 1;
 
+    char cwd[PATH_MAX];
+    getcwd(cwd, sizeof(cwd));
+
     log_msg(LOG_INFO, "#####################################\n");
     log_msg(LOG_INFO, "Started Ultra Fighters!\n");
+    log_msg(LOG_INFO, "Current Working Directory: %s\n", cwd);
     log_msg(LOG_INFO, "OpenGL Vendor: %s\n", glGetString(GL_VENDOR));
     log_msg(LOG_INFO, "OpenGL Renderer: %s\n", glGetString(GL_RENDERER));
     log_msg(LOG_INFO, "OpenGL Version: %s\n", glGetString(GL_VERSION));
