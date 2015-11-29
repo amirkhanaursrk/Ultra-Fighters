@@ -32,5 +32,6 @@ logger.o: lib/logger.c include/logger.h
 myglutils.o: lib/myglutils.c include/myglutils.h
 	$(CC) $(C_FLAGS) $(INC) -c $<
 
-clean: $(OBJECTS)
+.PHONY: clean
+clean:
 	rm -f $(OBJECTS)
