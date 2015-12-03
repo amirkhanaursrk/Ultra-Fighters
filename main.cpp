@@ -1,7 +1,7 @@
+#include <fstream> // ifstream, getline
 #ifndef __APPLE__
 #include <libgen.h> // dirname
 #endif
-
 #include <logger.h> // log_msg
 #include <myglutils.h> // GLFW, GLEW, and setup functions
 #include <unistd.h> // chdir
@@ -9,8 +9,6 @@
 #include "wavefront_object.hpp" // WavefrontObject
 #include "game_scene.hpp" // GameScene
 #include <input/key_store.h> // storeKeyCallback
-
-#include <iostream> // @temp
 
 int main(int argc, char* argv[]) {
     if (!setupGLFW()) return 1;
@@ -64,7 +62,11 @@ int main(int argc, char* argv[]) {
     log_msg(LOG_INFO, "Started loop!\n");
     
     GameScene scene(window);
-    WavefrontObject room("Resources/Room2.obj");
+
+    std::ifstream levelFile("Resources/levelname.txt");
+    std::string levelName;
+    std::getline(levelFile, levelName);
+    WavefrontObject room(levelName.c_str());
     scene.addChild(&room);
     
     Loop loop = Loop(&scene);

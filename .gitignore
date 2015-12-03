@@ -1,3 +1,4 @@
-*.o
+*.dSYM/
 *.log
-ultra_fighters.dSYM/
+*.o
+findtemps
