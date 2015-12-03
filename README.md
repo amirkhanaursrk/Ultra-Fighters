@@ -7,7 +7,7 @@ A 3D Super Fighters Remake
 
 ### Controls
 
-To move: WASD (Easy, right?)
+To move: WASD (Easy, right?) <br>
 To Look around: Arrow keys (All keyboard, huh?)
 
 
