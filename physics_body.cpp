@@ -1,7 +1,5 @@
 #include "physics_body.hpp"
 
-#include <logger.h> // @temp
-
 template <typename T>
 glm::vec3 PhysicsBody<T>::pos() {
     return glm::vec3(x, y, z);
@@ -35,11 +33,9 @@ void PhysicsBody<T>::update(T step) {
     Vy += Ay * step;
     Vz += Az * step;
 
-    log_msg(LOG_DEBUG, "Float: %f\n", Vy * step + Ay * Ay / (T) 2 * step);
-
-    x += Vx * step + Ax * Ax / (T) 2 * step;
-    y += Vy * step + Ay * Ay / (T) 2 * step;
-    z += Vz * step + Az * Az / (T) 2 * step;
+    x += Vx * step + Ax * step * step / (T) 2;
+    y += Vy * step + Ay * step * step / (T) 2;
+    z += Vz * step + Az * step * step / (T) 2;
 
     Ax = 0;
     Ay = 0;
@@ -47,4 +43,4 @@ void PhysicsBody<T>::update(T step) {
 }
 
 template struct PhysicsBody<float>;
-template struct PhysicsBody<double>;
+//template struct PhysicsBody<double>;

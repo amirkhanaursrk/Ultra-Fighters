@@ -1,7 +1,7 @@
 CC=gcc
 CPPC=g++
 C_FLAGS=-std=c11 -Wall -pedantic
-CPP_FLAGS=-std=c++1y -Wall -pedantic
+CPP_FLAGS=-std=c++1y -Wall -pedantic -mmacosx-version-min=10.9
 INC=-Iinclude/
 LIBS=lib/libGLEW.a lib/libglfw3.a -framework OpenGL -framework CoreVideo -framework Cocoa -framework IOKit
 APPPATH=Mac/Ultra-Fighters.app

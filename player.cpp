@@ -4,11 +4,9 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtx/rotate_vector.hpp>
 #include <glm/gtx/transform.hpp>
-#include <glm/gtx/string_cast.hpp> // @temp
 
 #include <math.h>
 #include <input/key_store.h>
-#include <logger.h> // @temp
 
 Player::Player(double x, double y, double z) {
     body.x = x;
@@ -29,7 +27,7 @@ void Player::render(float interp) {}
 
 void Player::update(double step) {
     // Check for arrow keys
-    float rotateSpeed = 1.25;
+    float rotateSpeed = 2.0;
 
     if (getKeyAction(GLFW_KEY_RIGHT)) {
         yaw -= rotateSpeed * (float) step;
@@ -51,8 +49,21 @@ void Player::update(double step) {
         VPMhasChanged = true;
     }
 
+    if (getKeyAction(GLFW_KEY_SPACE) && body.y <= 1.5) {
+        body.applyForceY(10000);
+    }
+
+    body.applyForceY(-9.8 * body.mass);
+    body.update(step);
+    VPMhasChanged = true;
+
+    if (body.y < 1.5) {
+        body.y = 1.5;
+        body.Vy = 0.0;
+    }
+
     // check for WASD
-    float moveSpeed = 2.0;
+    float moveSpeed = 5.0;
     
     if (getKeyAction(GLFW_KEY_W)) {
         glm::vec3 movement = glm::rotate(out, yaw, up);
