@@ -28,13 +28,14 @@ To move: WASD (Easy, right?)
 
 To Look around: Arrow keys (All keyboard, huh?)
 
+To jump: Spacebar (Classic)
 
 ### Todos
- - Add Physics
  - More comments and docs (ugh!)
  - Make Wavefront parser not dumb
- - Decrease minimum Mac OS X version (from Mac OS X El Capitan)
- - Decrease minimum GLSL version (from 4.1)
+ - Add MLG crosshair
+ - Add HUD
+ - Add quality level
 
 License
 ----
