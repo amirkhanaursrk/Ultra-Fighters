@@ -6,7 +6,7 @@
 #include <glm/gtx/transform.hpp>
 
 #include <math.h>
-#include <input/key_store.h>
+#include "key_store.h"
 
 Player::Player(double x, double y, double z) {
     body.x = x;

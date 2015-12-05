@@ -1,9 +1,9 @@
-
 #include "wavefront_object.hpp"
 
 #include <glm/mat4x4.hpp>
-#include <logger.h>
-#include <myglutils.h>
+
+#include "logger.h"
+#include "myglutils.h"
 
 WavefrontObject::WavefrontObject(const char* path) {
     this->path = path;

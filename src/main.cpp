@@ -2,13 +2,13 @@
 #ifndef __APPLE__
 #include <libgen.h> // dirname
 #endif
-#include <logger.h> // log_msg
-#include <myglutils.h> // GLFW, GLEW, and setup functions
 #include <unistd.h> // chdir
 
 #include "wavefront_object.hpp" // WavefrontObject
 #include "game_scene.hpp" // GameScene
-#include <input/key_store.h> // storeKeyCallback
+#include "logger.h" // log_msg
+#include "myglutils.h" // GLFW, GLEW, and setup functions
+#include "key_store.h" // storeKeyCallback
 
 int main(int argc, char* argv[]) {
     if (!setupGLFW()) return 1;

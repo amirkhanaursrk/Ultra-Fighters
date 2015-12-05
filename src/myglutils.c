@@ -1,10 +1,8 @@
-#include <myglutils.h>
+#include "logger.h"
+#include "myglutils.h"
 
-//#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-
-#include <logger.h>
 
 static void glfwErrorCallback(int error, const char* description);
 static int getIntsFromString(const char* stringPtr, int ints[]);

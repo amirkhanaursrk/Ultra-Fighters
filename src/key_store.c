@@ -1,4 +1,4 @@
-#include <input/key_store.h>
+#include "key_store.h"
 #include <stdlib.h>
 
 static int* actions = NULL;
