@@ -25,11 +25,11 @@ Step 3: Enjoy!
 
 ### Controls
 
-To move: WASD (Easy, right?)
+To move: WASD
 
-To Look around: Arrow keys (All keyboard, huh?)
+To Look around: Arrow keys
 
-To jump: Spacebar (Classic)
+To jump: Spacebar
 
 
 ### Todos
