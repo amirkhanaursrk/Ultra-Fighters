@@ -14,8 +14,8 @@ it'll be a struggle to get this to run on Windows.
 
 ### How to Run
 
-Step 1: If you are not using a Mac that runs OS X El Capitan or higher, either turn away now and cry, or fork this 
-repo and try to get it working on your system of choice, and tell me when you do it ;)
+Step 1: If you are not using a computer that runs OS X, either turn away now and cry, or fork this repo and try to 
+get it working on your system of choice, and tell me when you do it ;)
 
 Step 2: Just click "Download as ZIP", slide on over to the "bin/OSX" folder in that downloaded folder and open 
 "Ultra-Fighters.app"
