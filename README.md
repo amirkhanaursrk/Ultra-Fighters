@@ -6,10 +6,11 @@ A 3D Super Fighters Remake
 
 This game is just a prototype so far and its developing pretty slowly, but steadily. As this is my first time with 
 a 3D game, I'm learning at every turn so don't expect this to be the next Black Ops or whatever. 
-So far this program works only on Mac OS X (and El Capitan at that, but that'll be fixed shortly). I have a theory
-that with just a little effort on the building and compiling side of things that this would work on Linux as well.
-As for Windows, you're gonna have a bad time: I really hate windows and seeing as this program was made by a guy 
-that has 99% development time on Unix systems, it'll be a struggle to get this to run on Windows.
+So far this program works only on Mac OS X. I have a theory that with just a little effort on the building and 
+compiling side of things that this would work on Linux as well. As for Windows, you're gonna have a bad time: I 
+really hate windows and seeing as this program was made by a guy that has 99% development time on Unix systems, 
+it'll be a struggle to get this to run on Windows.
+
 
 ### How to Install
 
@@ -30,12 +31,14 @@ To Look around: Arrow keys (All keyboard, huh?)
 
 To jump: Spacebar (Classic)
 
+
 ### Todos
  - More comments and docs (ugh!)
  - Make Wavefront parser not dumb
  - Add MLG crosshair
  - Add HUD
  - Add quality level
+
 
 License
 ----
