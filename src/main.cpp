@@ -9,6 +9,7 @@
 #include "logger.h" // log_msg
 #include "myglutils.h" // GLFW, GLEW, and setup functions
 #include "key_store.h" // storeKeyCallback
+#include "wininfo.h" // window width and height
 
 int main(int argc, char* argv[]) {
     if (!setupGLFW()) return 1;
@@ -34,8 +35,9 @@ int main(int argc, char* argv[]) {
     setDebug(true);
     setBind(true);
     
-    GLFWwindow* window = glfwCreateWindow(640, 480, "Ultra Fighters", NULL, NULL);
-    
+    GLFWwindow* window = glfwCreateWindow(WINDOW_WIDTH, WINDOW_HEIGHT, "Ultra Fighters", glfwGetPrimaryMonitor(), NULL);
+    //GLFWwindow* window = glfwCreateWindow(WINDOW_WIDTH, WINDOW_HEIGHT, "Ultra Fighters", NULL, NULL);
+
     if (!window) {
         log_msg(LOG_ERROR, "GLFW3 window creation failed.\n");
         
@@ -44,6 +46,7 @@ int main(int argc, char* argv[]) {
     
     glfwMakeContextCurrent(window);
     glfwSetKeyCallback(window, storeKeyCallback);
+    glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
 
     if (!setupGLEW()) return 1;
 

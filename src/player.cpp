@@ -1,4 +1,6 @@
 #include "player.hpp"
+#include "key_store.h"
+#include "wininfo.h"
 
 #define GLM_FORCE_RADIANS
 #include <glm/gtc/matrix_transform.hpp>
@@ -6,7 +8,6 @@
 #include <glm/gtx/transform.hpp>
 
 #include <math.h>
-#include "key_store.h"
 
 Player::Player(double x, double y, double z) {
     body.x = x;
@@ -99,7 +100,7 @@ void Player::update(double step) {
 }
 
 glm::mat4 Player::getVPM() {
-    glm::mat4 projection = glm::perspective(glm::radians(60.0), 4.0 / 3.0, 0.1, 100.0);
+    glm::mat4 projection = glm::perspective(glm::radians(60.0), (double) ASPECT_RATIO, 0.1, 100.0);
     glm::mat4 rotMat1 = glm::rotate(yaw, up);
     glm::mat4 rotMat2 = glm::rotate(pitch, side);
     glm::mat4 rotMat = rotMat1 * rotMat2;

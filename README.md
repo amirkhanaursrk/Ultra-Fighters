@@ -31,6 +31,7 @@ To Look around: Arrow keys
 
 To jump: Spacebar
 
+To close: Escape
 
 ### Todos
  - More comments and docs (ugh!)
