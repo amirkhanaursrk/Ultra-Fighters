@@ -43,4 +43,3 @@ void PhysicsBody<T>::update(T step) {
 }
 
 template struct PhysicsBody<float>;
-//template struct PhysicsBody<double>;

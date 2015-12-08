@@ -1,10 +1,11 @@
-#include "game_object.hpp"
-
+#include "game_node.hpp"
 #include "myglutils.h"
 
-class WavefrontObject: public GameObject {
+class WavefrontObject: public GameNode {
     public:
         WavefrontObject(const char* path);
+
+        void setCamPos(glm::vec3 pos) override;
         void setVPM(glm::mat4 VPM) override;
         void setup() override;
         void update(double step) override {}

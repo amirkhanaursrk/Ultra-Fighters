@@ -5,7 +5,7 @@ A 3D Super Fighters Remake
 [The Original that Inspired Me](http://www.twoplayergames.org/play/592-Super_Fighters.html)
 
 This game is just a prototype so far and its developing pretty slowly, but steadily. As this is my first time with 
-a 3D game, I'm learning at every turn so don't expect this to be the next Black Ops or whatever. 
+a 3D game, I'm learning at every turn so don't expect this to be the next Black Ops or whatever (It's still cool). 
 So far this program works only on Mac OS X. I have a theory that with just a little effort on the building and 
 compiling side of things that this would work on Linux as well. As for Windows, you're gonna have a bad time: I 
 really hate windows and seeing as this program was made by a guy that has 99% development time on Unix systems, 
@@ -34,6 +34,7 @@ To jump: Spacebar
 To close: Escape
 
 ### Todos
+ - Port to Linux
  - More comments and docs (ugh!)
  - Make Wavefront parser not dumb
  - Add MLG crosshair

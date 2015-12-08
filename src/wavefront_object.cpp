@@ -9,6 +9,8 @@ WavefrontObject::WavefrontObject(const char* path) {
     this->path = path;
 }
 
+void WavefrontObject::setCamPos(glm::vec3 pos) {}
+
 void WavefrontObject::setVPM(glm::mat4 VPM) {
     MVP = new glm::mat4(VPM);
 }

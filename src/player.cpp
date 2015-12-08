@@ -1,5 +1,6 @@
 #include "player.hpp"
 #include "key_store.h"
+#include "mouse_store.h"
 #include "wininfo.h"
 
 #define GLM_FORCE_RADIANS
@@ -16,52 +17,68 @@ Player::Player(double x, double y, double z) {
     yaw = 3.14;
     pitch = 0;
     VPMhasChanged = true;
+    mouseX = 0;
+    mouseY = 0;
 }
 
 Player::Player() {
     Player::Player(0, 0, 0);
 }
 
-void Player::setVPM(glm::mat4 VPM) {}
-void Player::setup() {}
-void Player::render(float interp) {}
-
 void Player::update(double step) {
     // Check for arrow keys
-    float rotateSpeed = 2.0;
+    float rotateSpeed = 0.05;
 
-    if (getKeyAction(GLFW_KEY_RIGHT)) {
-        yaw -= rotateSpeed * (float) step;
+    double newMouseX;
+    double newMouseY;
+    getMousePos(&newMouseX, &newMouseY);
+
+    double xMouseDiff = newMouseX - mouseX;
+    double yMouseDiff = newMouseY - mouseY;
+
+    if (xMouseDiff != 0 || yMouseDiff != 0) {
+        yaw -= rotateSpeed * step * xMouseDiff;
+        pitch += rotateSpeed * step * yMouseDiff;
         VPMhasChanged = true;
     }
 
-    if (getKeyAction(GLFW_KEY_LEFT)) {
-        yaw += rotateSpeed * (float) step;
-        VPMhasChanged = true;
+    mouseX = newMouseX;
+    mouseY = newMouseY;
+
+    // keep the player from turning upside down
+    if (pitch > M_PI / 2) {
+        pitch = M_PI / 2;
     }
 
-    if (getKeyAction(GLFW_KEY_UP)) {
-        pitch -= rotateSpeed * (float) step;
-        VPMhasChanged = true;
+    if (pitch < -M_PI / 2) {
+        pitch = -M_PI / 2;
     }
+    // %%%%%%%%%%
 
-    if (getKeyAction(GLFW_KEY_DOWN)) {
-        pitch += rotateSpeed * (float) step;
-        VPMhasChanged = true;
-    }
-
+    // jump
     if (getKeyAction(GLFW_KEY_SPACE) && body.y <= 1.5) {
         body.applyForceY(10000);
+        VPMhasChanged = true;
+    }
+    // %%%%%%%%%%
+
+    // gravity
+    if (body.y > 1.5) {
+        body.applyForceY(-9.8 * body.mass);
+        VPMhasChanged = true;
+    }
+    // %%%%%%%%%%
+
+    if (VPMhasChanged) {
+        body.update(step);
     }
 
-    body.applyForceY(-9.8 * body.mass);
-    body.update(step);
-    VPMhasChanged = true;
-
+    // keep the player from falling through the floor
     if (body.y < 1.5) {
         body.y = 1.5;
         body.Vy = 0.0;
     }
+    // %%%%%%%%%%
 
     // check for WASD
     float moveSpeed = 5.0;
