@@ -1,19 +1,20 @@
 #pragma once
 
-#include "game_object.hpp"
+#include "game_node.hpp"
 #include "physics_body.hpp"
 
 #include <glm/glm.hpp>
 #include <glm/vec3.hpp>
 
-class Player: public GameObject {
+class Player: public GameNode {
     public:
         Player(double x, double y, double z); // Player at pos
         Player(); // Player at origin
 
-        void setVPM(glm::mat4 VPM) override;
-        void setup() override;
-        void render(float interp) override;
+        void setCamPos(glm::vec3 pos) override {}
+        void setVPM(glm::mat4 VPM) override {}
+        void setup() override {}
+        void render(float interp) override {}
         void update(double step) override;
 
         glm::mat4 getVPM(); // calculate and return VPM
@@ -27,4 +28,6 @@ class Player: public GameObject {
         float yaw; // rotation around up
         float pitch; // tilt "upwards" or "downwards"
         bool VPMhasChanged; // has the VPM changed since last fetched?
+        double mouseX;
+        double mouseY;
 };

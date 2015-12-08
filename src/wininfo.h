@@ -1,0 +1,5 @@
+#pragma once
+
+#define WINDOW_WIDTH  640
+#define WINDOW_HEIGHT 480
+#define ASPECT_RATIO  WINDOW_WIDTH / WINDOW_HEIGHT
