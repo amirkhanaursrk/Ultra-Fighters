@@ -27,7 +27,7 @@ Step 3: Enjoy!
 
 To move: WASD
 
-To Look around: Arrow keys
+To Look around: Use the mouse
 
 To jump: Spacebar
 
