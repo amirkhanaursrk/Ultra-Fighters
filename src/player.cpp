@@ -15,7 +15,7 @@ Player::Player(double x, double y, double z) {
     body.y = y;
     body.z = z;
     yaw = 3.14;
-    pitch = 0;
+    pitch = -M_PI / 4.0;
     VPMhasChanged = true;
     mouseX = 0;
     mouseY = 0;

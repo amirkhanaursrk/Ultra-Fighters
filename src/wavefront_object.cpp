@@ -17,7 +17,7 @@ void WavefrontObject::setVPM(glm::mat4 VPM) {
 
 void WavefrontObject::setup() {
     float* vertices;
-    loadWavefront1(path, &vertices, &length);
+    assert(loadWavefront1(path, &vertices, &length));
 
     log_msg(LOG_INFO, "Loaded object file.\n");
     
