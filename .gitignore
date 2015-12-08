@@ -1,4 +1,4 @@
 *.dSYM/
 *.log
 *.o
-findtemps
+findtemps.sh

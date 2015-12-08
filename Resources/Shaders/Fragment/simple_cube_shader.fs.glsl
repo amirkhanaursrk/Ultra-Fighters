@@ -6,5 +6,5 @@ out vec3 color;
 
 void main() {
     float colornum = 0.5 / sqrt(distance(camPos, pos));
-    color = vec3(0.0, colornum, colornum);
+    color = vec3(colornum, colornum, colornum);
 }
