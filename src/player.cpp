@@ -1,7 +1,9 @@
+#include "game_scene.hpp"
 #include "player.hpp"
-#include "key_store.h"
-#include "mouse_store.h"
+#include "logger.h" // @temp
 #include "wininfo.h"
+
+#include <GLFW/glfw3.h>
 
 #define GLM_FORCE_RADIANS
 #include <glm/gtc/matrix_transform.hpp>
@@ -15,14 +17,16 @@ Player::Player(double x, double y, double z) {
     body.y = y;
     body.z = z;
     yaw = 3.14;
-    pitch = -M_PI / 4.0;
+    pitch = 0.0;
     VPMhasChanged = true;
-    mouseX = 0;
-    mouseY = 0;
 }
 
 Player::Player() {
     Player::Player(0, 0, 0);
+}
+
+void Player::setup() {
+    glfwGetCursorPos(scene->getWindow(), &mouseX, &mouseY);
 }
 
 void Player::update(double step) {
@@ -31,7 +35,7 @@ void Player::update(double step) {
 
     double newMouseX;
     double newMouseY;
-    getMousePos(&newMouseX, &newMouseY);
+    glfwGetCursorPos(scene->getWindow(), &newMouseX, &newMouseY);
 
     double xMouseDiff = newMouseX - mouseX;
     double yMouseDiff = newMouseY - mouseY;
@@ -56,7 +60,7 @@ void Player::update(double step) {
     // %%%%%%%%%%
 
     // jump
-    if (getKeyAction(GLFW_KEY_SPACE) && body.y <= 1.5) {
+    if (glfwGetKey(scene->getWindow(), GLFW_KEY_SPACE) && body.y <= 1.5) {
         body.applyForceY(10000);
         VPMhasChanged = true;
     }
@@ -83,7 +87,7 @@ void Player::update(double step) {
     // check for WASD
     float moveSpeed = 5.0;
     
-    if (getKeyAction(GLFW_KEY_W)) {
+    if (glfwGetKey(scene->getWindow(), GLFW_KEY_W)) {
         glm::vec3 movement = glm::rotate(out, yaw, up);
         body.x += movement.x * moveSpeed * (float) step;
         body.y += movement.y * moveSpeed * (float) step;
@@ -91,7 +95,7 @@ void Player::update(double step) {
         VPMhasChanged = true;
     }
 
-    if (getKeyAction(GLFW_KEY_S)) {
+    if (glfwGetKey(scene->getWindow(), GLFW_KEY_S)) {
         glm::vec3 movement = glm::rotate(out, yaw + (float) M_PI, up);
         body.x += movement.x * moveSpeed * (float) step;
         body.y += movement.y * moveSpeed * (float) step;
@@ -99,7 +103,7 @@ void Player::update(double step) {
         VPMhasChanged = true;
     }
 
-    if (getKeyAction(GLFW_KEY_A)) {
+    if (glfwGetKey(scene->getWindow(), GLFW_KEY_A)) {
         glm::vec3 movement = glm::rotate(out, yaw + (float) M_PI / 2.0f, up);
         body.x += movement.x * moveSpeed * (float) step;
         body.y += movement.y * moveSpeed * (float) step;
@@ -107,7 +111,7 @@ void Player::update(double step) {
         VPMhasChanged = true;
     }
 
-    if (getKeyAction(GLFW_KEY_D)) {
+    if (glfwGetKey(scene->getWindow(), GLFW_KEY_D)) {
         glm::vec3 movement = glm::rotate(out, yaw - (float) M_PI / 2.0f, up);
         body.x += movement.x * moveSpeed * (float) step;
         body.y += movement.y * moveSpeed * (float) step;

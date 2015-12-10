@@ -6,13 +6,17 @@
 #include <glm/vec3.hpp>
 #include <vector>
 
+class GameScene;
+
 class GameNode: public LoopListener {
 public:
     GameNode* parent = NULL;
+    GameScene* scene = NULL;
     std::vector<GameNode*> children;
 
     virtual void setCamPos(glm::vec3 pos) = 0;
     virtual void setVPM(glm::mat4 VPM) = 0;
+
     void addChild(GameNode* child);
     bool isSetup();
     void setSetup(bool didSetup);

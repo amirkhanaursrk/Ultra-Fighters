@@ -37,7 +37,7 @@ void WavefrontObject::setup() {
 
     assert(program && vao);
     
-    log_msg(LOG_INFO, "Finished setting up WavefrontObject\n");
+    //log_msg(LOG_INFO, "Finished setting up WavefrontObject %p\n", this);
 }
 
 void WavefrontObject::render(float interp) {

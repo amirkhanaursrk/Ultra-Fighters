@@ -2,6 +2,7 @@
 
 void GameNode::addChild(GameNode* child) {
     child->parent = this;
+    child->scene = scene;
     children.push_back(child);
 }
 
