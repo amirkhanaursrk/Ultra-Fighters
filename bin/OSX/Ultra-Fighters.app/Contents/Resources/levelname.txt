@@ -1,1 +1,1 @@
-Resources/Levels/Sun.obj
+Resources/Levels/flat.obj

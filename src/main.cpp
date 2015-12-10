@@ -7,8 +7,6 @@
 #include "hud.hpp"
 #include "wavefront_object.hpp" // WavefrontObject
 #include "game_scene.hpp" // GameScene
-#include "key_store.h" // storeKeyCallback
-#include "mouse_store.h" // mousePosStoreCallback
 #include "logger.h" // log_msg
 #include "myglutils.h" // GLFW, GLEW, and setup functions
 #include "wininfo.h" // window width and height
@@ -47,8 +45,6 @@ int main(int argc, char* argv[]) {
     }
     
     glfwMakeContextCurrent(window);
-    glfwSetKeyCallback(window, storeKeyCallback);
-    glfwSetCursorPosCallback(window, mousePosStoreCallback);
     glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
 
     if (!setupGLEW()) return 1;

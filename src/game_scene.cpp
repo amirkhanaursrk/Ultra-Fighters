@@ -1,3 +1,4 @@
+#include "logger.h" // @temp
 #include "myglutils.h"
 #include "game_scene.hpp"
 
@@ -5,7 +6,12 @@
 
 GameScene::GameScene(GLFWwindow* window) {
     this->window = window;
+    this->scene = this;
     addChild(&player);
+}
+
+GLFWwindow* GameScene::getWindow() {
+    return window;
 }
 
 static void rsetCamPos(GameNode* node, glm::vec3 pos) {
@@ -72,6 +78,7 @@ void GameScene::render(float interp) {
 }
 
 static void rupdate(GameNode* node, double step) {
+    //printf("(%p)\n", node);
     if (!node->isSetup()) {
         node->setup();
         node->setSetup(true);
@@ -86,6 +93,6 @@ static void rupdate(GameNode* node, double step) {
     }
 }
 
-void GameScene::update(double step) {    
+void GameScene::update(double step) {
     rupdate(this, step);
 }

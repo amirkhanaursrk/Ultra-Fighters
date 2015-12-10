@@ -37,9 +37,10 @@ To close: Escape
  - Port to Linux
  - More comments and docs (ugh!)
  - Make Wavefront parser not dumb
- - Add MLG crosshair
- - Add HUD
- - Add quality level
+ - Add quality level(s)
+ - Add projectiles
+ - Add enemies
+ - Add collision detection/resolution
 
 
 License
