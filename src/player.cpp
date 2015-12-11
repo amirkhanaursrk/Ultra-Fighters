@@ -120,6 +120,10 @@ void Player::update(double step) {
     }
 }
 
+glm::vec3 Player::getPos() {
+    return body.pos();
+}
+
 glm::mat4 Player::getVPM() {
     glm::mat4 projection = glm::perspective(glm::radians(60.0), (double) ASPECT_RATIO, 0.1, 100.0);
     glm::mat4 rotMat1 = glm::rotate(yaw, up);

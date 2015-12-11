@@ -17,6 +17,7 @@ class Player: public GameNode {
         void render(float interp) override {}
         void update(double step) override;
 
+        glm::vec3 getPos();
         glm::mat4 getVPM(); // calculate and return VPM
         bool VPMchanged(); // getter for VPMhasChanged
 

@@ -50,3 +50,6 @@ MIT
 
 
 **Free Software, Hell Yeah!**
+
+
+See LICENSE.txt for more info.
