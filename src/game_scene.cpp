@@ -94,5 +94,7 @@ static void rupdate(GameNode* node, double step) {
 }
 
 void GameScene::update(double step) {
+    setCamPos(player.getPos());
+    
     rupdate(this, step);
 }
