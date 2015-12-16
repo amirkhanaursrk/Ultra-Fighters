@@ -11,15 +11,12 @@ class Player: public GameNode {
         Player(double x, double y, double z); // Player at pos
         Player(); // Player at origin
 
-        void setCamPos(glm::vec3 pos) override {}
-        void setVPM(glm::mat4 VPM) override {}
         void setup() override;
-        void render(float interp) override {}
+        void render(float interp) override;
         void update(double step) override;
 
         glm::vec3 getPos();
         glm::mat4 getVPM(); // calculate and return VPM
-        bool VPMchanged(); // getter for VPMhasChanged
 
     private:
         PBody body = { 80 };
@@ -28,7 +25,6 @@ class Player: public GameNode {
         const glm::vec3 side = glm::cross(up, out); // Left or Right, doesn't matter as long as it's consistent
         float yaw; // rotation around up
         float pitch; // tilt "upwards" or "downwards"
-        bool VPMhasChanged; // has the VPM changed since last fetched?
         double mouseX;
         double mouseY;
 };

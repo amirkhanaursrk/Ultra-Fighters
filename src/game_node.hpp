@@ -14,10 +14,8 @@ public:
     GameScene* scene = NULL;
     std::vector<GameNode*> children;
 
-    virtual void setCamPos(glm::vec3 pos) = 0;
-    virtual void setVPM(glm::mat4 VPM) = 0;
-
     void addChild(GameNode* child);
+    void removeChild(GameNode* child);
     bool isSetup();
     void setSetup(bool didSetup);
 

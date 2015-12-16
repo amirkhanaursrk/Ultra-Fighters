@@ -2,7 +2,6 @@
 
 #include <GLFW/glfw3.h>
 
-#include "player.hpp"
 #include "game_node.hpp"
 
 class GameScene: public GameNode {
@@ -12,9 +11,9 @@ class GameScene: public GameNode {
         GameScene(GLFWwindow* window);
 
         GLFWwindow* getWindow();
+        glm::vec3 getPlayerPos();
+        glm::mat4 getVPM();
 
-        void setCamPos(glm::vec3 pos) override;
-        void setVPM(glm::mat4 VPM) override;
         void setup() override;
         void render(float interp) override;
         void update(double step) override;

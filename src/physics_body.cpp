@@ -6,6 +6,11 @@ glm::vec3 PhysicsBody<T>::pos() {
 }
 
 template <typename T>
+glm::vec3 PhysicsBody<T>::vel() {
+    return glm::vec3(Vx, Vy, Vz);
+}
+
+template <typename T>
 void PhysicsBody<T>::applyForce(T Nx, T Ny, T Nz) {
     Ax += Nx / mass;
     Ay += Ny / mass;

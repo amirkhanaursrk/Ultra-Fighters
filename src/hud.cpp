@@ -1,5 +1,5 @@
 #include "hud.hpp"
-#include "logger.h" // @temp?
+#include "logger.h"
 #include "wininfo.h"
 
 void HUD::setup() {
@@ -24,8 +24,8 @@ void HUD::setup() {
     glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 0, NULL);
     glEnableVertexAttribArray(0);
 
-    const char* vsPath = "Resources/Shaders/Vertex/hud.vs.glsl";
-    const char* fsPath = "Resources/Shaders/Fragment/hud.fs.glsl";
+    const char* vsPath = "Shaders/Vertex/hud.vs.glsl";
+    const char* fsPath = "Shaders/Fragment/hud.fs.glsl";
     program = getProgramFromFiles(vsPath, fsPath);
 
     assert(vao && program);
@@ -38,3 +38,5 @@ void HUD::render(float interp) {
     glUseProgram(program);
     glDrawArrays(GL_LINES, 0, vertices);
 }
+
+void HUD::update(double step) {}
