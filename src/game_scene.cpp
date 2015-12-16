@@ -1,8 +1,8 @@
-#include "logger.h" // @temp
 #include "myglutils.h"
+#include "player.hpp"
 #include "game_scene.hpp"
 
-// The 'r' in front on the static functions stands for recursive
+// The 'r' in front of the static functions stands for recursive
 
 GameScene::GameScene(GLFWwindow* window) {
     this->window = window;
@@ -14,32 +14,12 @@ GLFWwindow* GameScene::getWindow() {
     return window;
 }
 
-static void rsetCamPos(GameNode* node, glm::vec3 pos) {
-    if (node->parent != NULL) {
-        node->setCamPos(pos);
-    }
-
-    for (GameNode* child : node->children) {
-        rsetCamPos(child, pos);
-    }
+glm::vec3 GameScene::getPlayerPos() {
+    return player.getPos();
 }
 
-void GameScene::setCamPos(glm::vec3 pos) {
-    rsetCamPos(this, pos);
-}
-
-static void rsetVPM(GameNode* node, glm::mat4 VPM) {
-    if (node->parent != NULL) {
-        node->setVPM(VPM);
-    }
-
-    for (GameNode* child : node->children) {
-        rsetVPM(child, VPM);
-    }
-}
-
-void GameScene::setVPM(glm::mat4 VPM) {
-    rsetVPM(this, VPM);
+glm::mat4 GameScene::getVPM() {
+    return player.getVPM();
 }
 
 void GameScene::setup() {
@@ -68,17 +48,12 @@ static void rrender(GameNode* node, float interp) {
 void GameScene::render(float interp) {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     
-    if (player.VPMchanged()) {
-        setVPM(player.getVPM());
-    }
-
     rrender(this, interp);
 
     glfwSwapBuffers(window);
 }
 
 static void rupdate(GameNode* node, double step) {
-    //printf("(%p)\n", node);
     if (!node->isSetup()) {
         node->setup();
         node->setSetup(true);
@@ -94,7 +69,5 @@ static void rupdate(GameNode* node, double step) {
 }
 
 void GameScene::update(double step) {
-    setCamPos(player.getPos());
-    
     rupdate(this, step);
 }

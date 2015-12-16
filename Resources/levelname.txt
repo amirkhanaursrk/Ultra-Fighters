@@ -1,1 +1,1 @@
-Resources/Levels/Room2.obj
+Levels/Room2.obj

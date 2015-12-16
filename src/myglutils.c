@@ -239,10 +239,11 @@ int loadWavefront1(const char* fileName, float** vertexBuffer, int* length) {
     FILE* file = fopen(fileName, "r");
     if (file == NULL) {
         log_msg(LOG_WARNING, "Cannot open file '%s'.\n", fileName);
-        
+        perror(fileName);
+
         return 0;
     }
-    
+
     int vertices = 0;
     int faces = 0;
     char* line = NULL;
@@ -257,7 +258,6 @@ int loadWavefront1(const char* fileName, float** vertexBuffer, int* length) {
         }
     }
     
-    //free(line);
     fseek(file, 0, SEEK_SET);
     
     float coordsRaw[vertices * 3];
@@ -288,7 +288,7 @@ int loadWavefront1(const char* fileName, float** vertexBuffer, int* length) {
     
     free(line);
     fclose(file);
-    
+
     *length = faces * 9;
     *vertexBuffer = (float*) malloc(faces * 9 * sizeof(float));
     
@@ -303,6 +303,127 @@ int loadWavefront1(const char* fileName, float** vertexBuffer, int* length) {
     }
     
     return 1;
+}
+
+// free result when done
+float* getTriangulatedRect(float width, float height, float depth) {
+    float* data = (float*) malloc(TRI_RECT_SIZE);
+
+    const float w = width / 2.0;
+    const float h = height / 2.0;
+    const float d = depth / 2.0;
+
+    // there's probably a better way to do this!
+    data[0] = -w;
+    data[1] = -h;
+    data[2] = d;
+    data[3] = w;
+    data[4] = -h;
+    data[5] = d;
+    data[6] = -w;
+    data[7] = h;
+    data[8] = d;
+    data[9] = -w;
+    data[10] = h;
+    data[11] = d;
+    data[12] = w;
+    data[13] = -h;
+    data[14] = d;
+    data[15] = w;
+    data[16] = h;
+    data[17] = d;
+    data[18] = w;
+    data[19] = -h;
+    data[20] = d;
+    data[21] = w;
+    data[22] = -h;
+    data[23] = -d;
+    data[24] = w;
+    data[25] = h;
+    data[26] = d;
+    data[27] = w;
+    data[28] = h;
+    data[29] = d;
+    data[30] = w;
+    data[31] = -h;
+    data[32] = -d;
+    data[33] = w;
+    data[34] = h;
+    data[35] = -d;
+    data[36] = w;
+    data[37] = -h;
+    data[38] = -d;
+    data[39] = -w;
+    data[40] = -h;
+    data[41] = -d;
+    data[42] = w;
+    data[43] = h;
+    data[44] = -d;
+    data[45] = w;
+    data[46] = h;
+    data[47] = -d;
+    data[48] = -w;
+    data[49] = -h;
+    data[50] = -d;
+    data[51] = -w;
+    data[52] = h;
+    data[53] = -d;
+    data[54] = -w;
+    data[55] = -h;
+    data[56] = -d;
+    data[57] = -w;
+    data[58] = -h;
+    data[59] = d;
+    data[60] = -w;
+    data[61] = h;
+    data[62] = -d;
+    data[63] = -w;
+    data[64] = h;
+    data[65] = -d;
+    data[66] = -w;
+    data[67] = -h;
+    data[68] = d;
+    data[69] = -w;
+    data[70] = h;
+    data[71] = d;
+    data[72] = -w;
+    data[73] = h;
+    data[74] = d;
+    data[75] = w;
+    data[76] = h;
+    data[77] = d;
+    data[78] = -w;
+    data[79] = h;
+    data[80] = -d;
+    data[81] = -w;
+    data[82] = h;
+    data[83] = -d;
+    data[84] = w;
+    data[85] = h;
+    data[86] = d;
+    data[87] = w;
+    data[88] = h;
+    data[89] = -d;
+    data[90] = -w;
+    data[91] = -h;
+    data[92] = -d;
+    data[93] = w;
+    data[94] = -h;
+    data[95] = -d;
+    data[96] = -w;
+    data[97] = -h;
+    data[98] = d;
+    data[99] = -w;
+    data[100] = -h;
+    data[101] = d;
+    data[102] = w;
+    data[103] = -h;
+    data[104] = -d;
+    data[105] = w;
+    data[106] = -h;
+    data[107] = d;
+
+    return data;
 }
 
 // STATIC HELPER FUNCTIONS

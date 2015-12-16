@@ -16,6 +16,7 @@ struct PhysicsBody {
     T Az;
 
     glm::vec3 pos();
+    glm::vec3 vel();
     void applyForce(T Nx, T Ny, T Nz);
     void applyForceX(T Nx);
     void applyForceY(T Ny);

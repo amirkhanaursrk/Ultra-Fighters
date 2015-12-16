@@ -1,6 +1,5 @@
-#include "game_scene.hpp"
 #include "player.hpp"
-#include "logger.h" // @temp
+#include "game_scene.hpp"
 #include "wininfo.h"
 
 #include <GLFW/glfw3.h>
@@ -18,7 +17,6 @@ Player::Player(double x, double y, double z) {
     body.z = z;
     yaw = 3.14;
     pitch = 0.0;
-    VPMhasChanged = true;
 }
 
 Player::Player() {
@@ -28,6 +26,8 @@ Player::Player() {
 void Player::setup() {
     glfwGetCursorPos(scene->getWindow(), &mouseX, &mouseY);
 }
+
+void Player::render(float interp) {}
 
 void Player::update(double step) {
     // Check for arrow keys
@@ -43,7 +43,6 @@ void Player::update(double step) {
     if (xMouseDiff != 0 || yMouseDiff != 0) {
         yaw -= rotateSpeed * step * xMouseDiff;
         pitch += rotateSpeed * step * yMouseDiff;
-        VPMhasChanged = true;
     }
 
     mouseX = newMouseX;
@@ -62,20 +61,16 @@ void Player::update(double step) {
     // jump
     if (glfwGetKey(scene->getWindow(), GLFW_KEY_SPACE) && body.y <= 1.5) {
         body.applyForceY(10000);
-        VPMhasChanged = true;
     }
     // %%%%%%%%%%
 
     // gravity
     if (body.y > 1.5) {
         body.applyForceY(-9.8 * body.mass);
-        VPMhasChanged = true;
     }
     // %%%%%%%%%%
 
-    if (VPMhasChanged) {
-        body.update(step);
-    }
+    body.update(step);
 
     // keep the player from falling through the floor
     if (body.y < 1.5) {
@@ -92,7 +87,6 @@ void Player::update(double step) {
         body.x += movement.x * moveSpeed * (float) step;
         body.y += movement.y * moveSpeed * (float) step;
         body.z += movement.z * moveSpeed * (float) step;
-        VPMhasChanged = true;
     }
 
     if (glfwGetKey(scene->getWindow(), GLFW_KEY_S)) {
@@ -100,7 +94,6 @@ void Player::update(double step) {
         body.x += movement.x * moveSpeed * (float) step;
         body.y += movement.y * moveSpeed * (float) step;
         body.z += movement.z * moveSpeed * (float) step;
-        VPMhasChanged = true;
     }
 
     if (glfwGetKey(scene->getWindow(), GLFW_KEY_A)) {
@@ -108,7 +101,6 @@ void Player::update(double step) {
         body.x += movement.x * moveSpeed * (float) step;
         body.y += movement.y * moveSpeed * (float) step;
         body.z += movement.z * moveSpeed * (float) step;
-        VPMhasChanged = true;
     }
 
     if (glfwGetKey(scene->getWindow(), GLFW_KEY_D)) {
@@ -116,7 +108,6 @@ void Player::update(double step) {
         body.x += movement.x * moveSpeed * (float) step;
         body.y += movement.y * moveSpeed * (float) step;
         body.z += movement.z * moveSpeed * (float) step;
-        VPMhasChanged = true;
     }
 }
 
@@ -133,11 +124,6 @@ glm::mat4 Player::getVPM() {
     glm::vec3 headsUp = glm::vec3(rotMat * glm::vec4(up, 1.0));
     glm::mat4 view = glm::lookAt(body.pos(), target, headsUp);
     glm::mat4 VPM = projection * view;
-    VPMhasChanged = false;
 
     return VPM;
-}
-
-bool Player::VPMchanged() {
-    return VPMhasChanged;
 }

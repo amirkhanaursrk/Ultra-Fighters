@@ -6,6 +6,11 @@ void GameNode::addChild(GameNode* child) {
     children.push_back(child);
 }
 
+void GameNode::removeChild(GameNode* child) {
+    children.erase(std::remove(children.begin(), children.end(), child), children.end());
+    child->parent = NULL;
+}
+
 bool GameNode::isSetup() {
     return didSetup;
 }

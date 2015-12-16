@@ -6,24 +6,25 @@
 
 #include "hud.hpp"
 #include "wavefront_object.hpp" // WavefrontObject
+#include "player.hpp" // @temp
 #include "game_scene.hpp" // GameScene
 #include "logger.h" // log_msg
 #include "myglutils.h" // GLFW, GLEW, and setup functions
 #include "wininfo.h" // window width and height
-#include "time.h" // @temp
+#include <time.h> // @temp
 
 int main(int argc, char* argv[]) {
     if (!setupGLFW()) return 1;
     setupApple();
     glfwWindowHint(GLFW_SAMPLES, 4);
 
-    const char* newPath;
-
-    #ifdef __APPLE__
-    newPath = "..";
-    #else
-    newPath = dirname(argv[0]);
-    #endif
+    #ifndef __APPLE__
+    const char* exePath = dirname(argv[0]);
+    const char* resPath = "/Resources/";
+    const int newPathLen = strlen(exePath) + strlen(resPath);
+    char newPath[newPathLen + 1];
+    strcpy(newPath, exePath);
+    strcat(newPath, resPath);
 
     int cwdError;
     if ((cwdError = chdir(newPath)) != 0) {
@@ -31,13 +32,17 @@ int main(int argc, char* argv[]) {
 
         return 1;
     }
+    #endif
 
-    set_log_file(fopen("Resources/uf.log", "a"));
+    set_log_file(fopen("../Logs/uf.log", "a"));
+    
+    #ifdef DEBUG
     setDebug(true);
     setBind(true);
-    
+    GLFWwindow* window = glfwCreateWindow(WINDOW_WIDTH, WINDOW_HEIGHT, "Ultra Fighters", NULL, NULL);
+    #else
     GLFWwindow* window = glfwCreateWindow(WINDOW_WIDTH, WINDOW_HEIGHT, "Ultra Fighters", glfwGetPrimaryMonitor(), NULL);
-    //GLFWwindow* window = glfwCreateWindow(WINDOW_WIDTH, WINDOW_HEIGHT, "Ultra Fighters", NULL, NULL);
+    #endif
 
     if (!window) {
         log_msg(LOG_ERROR, "GLFW3 window creation failed.\n");
@@ -66,7 +71,7 @@ int main(int argc, char* argv[]) {
     
     GameScene scene(window);
 
-    std::ifstream levelFile("Resources/levelname.txt");
+    std::ifstream levelFile("levelname.txt");
     std::string levelName;
     std::getline(levelFile, levelName);
     WavefrontObject room(levelName.c_str());

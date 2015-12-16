@@ -3,3 +3,5 @@
 *.o
 findtemps.sh
 customgitupdate.sh
+constructMakefile.py
+Makefile
