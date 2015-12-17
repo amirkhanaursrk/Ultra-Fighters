@@ -1,7 +1,6 @@
 *.dSYM/
 *.log
 *.o
-findtemps.sh
-customgitupdate.sh
-constructMakefile.py
+*.sh
+*.py
 Makefile
