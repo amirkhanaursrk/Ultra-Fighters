@@ -23,8 +23,10 @@ Player::Player() {
     Player::Player(0, 0, 0);
 }
 
-void Player::setup() {
+bool Player::setup() {
     glfwGetCursorPos(scene->getWindow(), &mouseX, &mouseY);
+
+    return true;
 }
 
 void Player::render(float interp) {}

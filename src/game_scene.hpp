@@ -14,10 +14,11 @@ class GameScene: public GameNode {
         glm::vec3 getPlayerPos();
         glm::mat4 getVPM();
 
-        void setup() override;
+        bool setup() override;
         void render(float interp) override;
         void update(double step) override;
 
     private:
         GLFWwindow* window;
+        bool isSetup = false;
 };

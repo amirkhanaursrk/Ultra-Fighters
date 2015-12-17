@@ -4,7 +4,6 @@
 
 class LoopListener {
 public:
-    virtual void setup() = 0;
     virtual void render(float interp) = 0;
     virtual void update(double step) = 0;
 };

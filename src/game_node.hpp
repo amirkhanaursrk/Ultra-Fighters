@@ -9,16 +9,14 @@
 class GameScene;
 
 class GameNode: public LoopListener {
-public:
-    GameNode* parent = NULL;
-    GameScene* scene = NULL;
-    std::vector<GameNode*> children;
+    public:
+        GameNode* parent = NULL;
+        GameScene* scene = NULL;
+        std::vector<GameNode*> children;
+        std::vector<GameNode*> newChildren;
 
-    void addChild(GameNode* child);
-    void removeChild(GameNode* child);
-    bool isSetup();
-    void setSetup(bool didSetup);
+        virtual bool setup() = 0;
 
-protected:
-    bool didSetup = false;
+        void addChild(GameNode* child);
+        void removeChild(GameNode* child);
 };

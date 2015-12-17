@@ -1,4 +1,6 @@
+#include "logger.h"
 #include "myglutils.h"
+#include "miscutils.hpp"
 #include "player.hpp"
 #include "game_scene.hpp"
 
@@ -22,20 +24,19 @@ glm::mat4 GameScene::getVPM() {
     return player.getVPM();
 }
 
-void GameScene::setup() {
+bool GameScene::setup() {
     glfwMakeContextCurrent(window);
     
     glClearColor(0.3, 0.3, 0.8, 1.0);
 
     glEnable(GL_DEPTH_TEST);
     glDepthFunc(GL_LESS);
+
+    isSetup = true;
+    return true;
 }
 
 static void rrender(GameNode* node, float interp) {
-    if (!node->isSetup()) {
-        return;
-    }
-
     if (node->parent != NULL) {
         node->render(interp);
     }
@@ -46,6 +47,8 @@ static void rrender(GameNode* node, float interp) {
 }
 
 void GameScene::render(float interp) {
+    if (!isSetup) return;
+
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     
     rrender(this, interp);
@@ -54,10 +57,16 @@ void GameScene::render(float interp) {
 }
 
 static void rupdate(GameNode* node, double step) {
-    if (!node->isSetup()) {
-        node->setup();
-        node->setSetup(true);
+    for (GameNode* newChild: node->newChildren) {
+        if (newChild->setup()) {
+            node->children.push_back(newChild);
+        }
+        else {
+            log_msg(LOG_WARNING, "Child %p failed setup. (parent=%p)\n", newChild, node);
+        }
     }
+
+    node->newChildren.clear();
 
     if (node->parent != NULL) {
         node->update(step);
@@ -69,5 +78,7 @@ static void rupdate(GameNode* node, double step) {
 }
 
 void GameScene::update(double step) {
+    if (!isSetup) setup();
+
     rupdate(this, step);
 }

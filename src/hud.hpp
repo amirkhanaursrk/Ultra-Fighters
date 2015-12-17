@@ -3,7 +3,7 @@
 
 class HUD: public GameNode {
 public:
-    void setup() override;
+    bool setup() override;
     void render(float interp) override;
     void update(double step) override;
 

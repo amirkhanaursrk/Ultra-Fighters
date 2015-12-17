@@ -11,7 +11,7 @@ class Player: public GameNode {
         Player(double x, double y, double z); // Player at pos
         Player(); // Player at origin
 
-        void setup() override;
+        bool setup() override;
         void render(float interp) override;
         void update(double step) override;
 
