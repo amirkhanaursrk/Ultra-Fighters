@@ -40,8 +40,6 @@ void Loop::setMaxUpdates(int maxUpdates) {
 void Loop::run() {
     std::clock_t oldTime = std::clock();
 
-    listener->setup();
-
     while (running) {
         std::clock_t newTime = std::clock();
 

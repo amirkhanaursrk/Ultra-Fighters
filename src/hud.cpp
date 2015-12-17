@@ -2,7 +2,7 @@
 #include "logger.h"
 #include "wininfo.h"
 
-void HUD::setup() {
+bool HUD::setup() {
     const GLfloat ar = (float) ASPECT_RATIO;
     const GLfloat rad = 0.04;
     const GLfloat pointData[] = {
@@ -28,8 +28,13 @@ void HUD::setup() {
     const char* fsPath = "Shaders/Fragment/hud.fs.glsl";
     program = getProgramFromFiles(vsPath, fsPath);
 
-    assert(vao && program);
+    if (!vao || !program) {
+        return false;
+    }
+
     log_msg(LOG_INFO, "Finished setting up HUD.\n");
+
+    return true;
 }
 
 void HUD::render(float interp) {

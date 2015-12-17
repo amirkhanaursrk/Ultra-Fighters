@@ -11,7 +11,7 @@ WavefrontObject::WavefrontObject(const char* path) {
     this->path = path;
 }
 
-void WavefrontObject::setup() {
+bool WavefrontObject::setup() {
     float* vertices;
     assert(loadWavefront1(path, &vertices, &length));
     
@@ -29,9 +29,13 @@ void WavefrontObject::setup() {
     const char* fragmentShaderPath = "Shaders/Fragment/simple_cube_shader.fs.glsl";
     program = getProgramFromFiles(vertexShaderPath, fragmentShaderPath);
 
-    assert(program && vao);
+    if (!vao || !program) {
+        return false;
+    }
     
     log_msg(LOG_INFO, "Finished setting up WavefrontObject %p\n", this);
+
+    return true;
 }
 
 void WavefrontObject::render(float interp) {

@@ -1,20 +1,15 @@
 #include "game_node.hpp"
+#include "miscutils.hpp"
 
 void GameNode::addChild(GameNode* child) {
     child->parent = this;
     child->scene = scene;
-    children.push_back(child);
+    newChildren.push_back(child);
 }
 
 void GameNode::removeChild(GameNode* child) {
-    children.erase(std::remove(children.begin(), children.end(), child), children.end());
+    ezremove(children, child);
+    ezremove(newChildren, child);
     child->parent = NULL;
-}
-
-bool GameNode::isSetup() {
-    return didSetup;
-}
-
-void GameNode::setSetup(bool didSetup) {
-    this->didSetup = didSetup;
+    child->scene = NULL;
 }

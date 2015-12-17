@@ -5,7 +5,7 @@ class WavefrontObject: public GameNode {
     public:
         WavefrontObject(const char* path);
 
-        void setup() override;
+        bool setup() override;
         void update(double step) override {}
         void render(float interp) override;
 
