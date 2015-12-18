@@ -47,8 +47,6 @@ void WavefrontObject::render(float interp) {
 
     GLuint camPosID = glGetUniformLocation(program, "camPos");
     assert(camPosID != -1);
-    /*glm::vec3 playerPos = scene->getPlayerPos();
-    glUniform3f(camPosID, playerPos.x, playerPos.y, playerPos.z);*/
     glUniform3f(camPosID, 0, 0, 0);
 
     glDrawArrays(GL_TRIANGLES, 0, length / 3);

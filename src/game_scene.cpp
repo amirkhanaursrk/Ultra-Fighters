@@ -31,6 +31,8 @@ bool GameScene::setup() {
     glEnable(GL_DEPTH_TEST);
     glDepthFunc(GL_LESS);
 
+    glfwSetCursorPos(window, 0, 0);
+
     isSetup = true;
     return true;
 }
