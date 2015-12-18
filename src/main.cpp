@@ -1,17 +1,17 @@
-#include <fstream> // ifstream, getline
 #ifndef __APPLE__
 #include <libgen.h> // dirname
-#endif
 #include <unistd.h> // chdir
+#endif
 
-#include "hud.hpp"
+#include <fstream> // ifstream, getline
+
+#include "hud.hpp" // HUD
 #include "wavefront_object.hpp" // WavefrontObject
-#include "player.hpp" // @temp
 #include "game_scene.hpp" // GameScene
 #include "logger.h" // log_msg
 #include "myglutils.h" // GLFW, GLEW, and setup functions
 #include "wininfo.h" // window width and height
-#include <time.h> // @temp
+//#include <time.h> // @temp
 
 int main(int argc, char* argv[]) {
     if (!setupGLFW()) return 1;

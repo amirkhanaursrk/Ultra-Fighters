@@ -1,7 +1,6 @@
 #include "logger.h"
 #include "myglutils.h"
 #include "miscutils.hpp"
-#include "player.hpp"
 #include "game_scene.hpp"
 
 // The 'r' in front of the static functions stands for recursive

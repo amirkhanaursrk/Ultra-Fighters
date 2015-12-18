@@ -1,5 +1,4 @@
 #include "wavefront_object.hpp"
-#include "player.hpp"
 #include "game_scene.hpp"
 
 #include <glm/mat4x4.hpp>

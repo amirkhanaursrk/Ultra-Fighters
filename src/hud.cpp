@@ -32,7 +32,7 @@ bool HUD::setup() {
         return false;
     }
 
-    log_msg(LOG_INFO, "Finished setting up HUD.\n");
+    log_msg(LOG_INFO, "Finished setting up HUD\n");
 
     return true;
 }
