@@ -34,6 +34,7 @@ To jump: Spacebar
 To close: Escape
 
 ### Todos
+ - Clean up GameNode inclusions
  - Port to Linux
  - More comments and docs (ugh!)
  - Make Wavefront parser not dumb

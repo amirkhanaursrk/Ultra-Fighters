@@ -3,6 +3,7 @@
 #include <GLFW/glfw3.h>
 
 #include "game_node.hpp"
+#include "player.hpp"
 
 class GameScene: public GameNode {
     public:
