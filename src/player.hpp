@@ -27,4 +27,5 @@ class Player: public GameNode {
         float pitch; // tilt "upwards" or "downwards"
         double mouseX;
         double mouseY;
+        bool shotThisClick = false;
 };

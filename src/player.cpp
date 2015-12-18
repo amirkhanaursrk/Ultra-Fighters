@@ -1,3 +1,4 @@
+#include "projectile.hpp"
 #include "player.hpp"
 #include "game_scene.hpp"
 #include "wininfo.h"
@@ -110,6 +111,15 @@ void Player::update(double step) {
         body.x += movement.x * moveSpeed * (float) step;
         body.y += movement.y * moveSpeed * (float) step;
         body.z += movement.z * moveSpeed * (float) step;
+    }
+
+    if (glfwGetMouseButton(scene->getWindow(), GLFW_MOUSE_BUTTON_LEFT) && !shotThisClick) {
+        addChild(new Projectile(body.x, body.y, body.z));
+
+        shotThisClick = true;
+    }
+    else if (!glfwGetMouseButton(scene->getWindow(), GLFW_MOUSE_BUTTON_LEFT)) {
+        shotThisClick = false;
     }
 }
 

@@ -91,6 +91,13 @@ GLchar* programError(GLuint program) {
 
 GLuint getProgram(const char* vertexShader, const char* fragmentShader) {
     GLuint vs = glCreateShader(GL_VERTEX_SHADER);
+
+    if (!vs) {
+        log_msg(LOG_WARNING, "Error creating vertex shader");
+
+        return 0;
+    }
+
     glShaderSource(vs, 1, &vertexShader, NULL);
     glCompileShader(vs);
 
@@ -104,6 +111,15 @@ GLuint getProgram(const char* vertexShader, const char* fragmentShader) {
     }
 
     GLuint fs = glCreateShader(GL_FRAGMENT_SHADER);
+
+    if (!fs) {
+        log_msg(LOG_WARNING, "Error creating fragment shader");
+
+        glDeleteShader(vs);
+        
+        return 0;
+    }
+
     glShaderSource(fs, 1, &fragmentShader, NULL);
     glCompileShader(fs);
 
@@ -117,6 +133,16 @@ GLuint getProgram(const char* vertexShader, const char* fragmentShader) {
     }
 
     GLuint program = glCreateProgram();
+
+    if (!program) {
+        log_msg(LOG_WARNING, "Error creating program");
+
+        glDeleteShader(vs);
+        glDeleteShader(fs);
+
+        return 0;
+    }
+
     glAttachShader(program, vs);
     glAttachShader(program, fs);
     glLinkProgram(program);
