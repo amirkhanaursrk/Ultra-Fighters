@@ -33,6 +33,9 @@ To jump: Spacebar
 
 To close: Escape
 
+To shoot: left click
+
+
 ### Todos
  - Clean up GameNode inclusions
  - Port to Linux
