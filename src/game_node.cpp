@@ -10,6 +10,5 @@ void GameNode::addChild(GameNode* child) {
 void GameNode::removeChild(GameNode* child) {
     ezremove(children, child);
     ezremove(newChildren, child);
-    child->parent = NULL;
-    child->scene = NULL;
+    oldChildren.push_back(child);
 }

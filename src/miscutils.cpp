@@ -8,5 +8,5 @@ void ezremove(std::vector<T>& v, T val) {
     v.pop_back();
 }
 
-class GameNode;
+#include "game_node.hpp"
 template void ezremove<GameNode*>(std::vector<GameNode*>& v, GameNode* val);
