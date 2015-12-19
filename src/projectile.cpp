@@ -51,9 +51,11 @@ void Projectile::render(float interp) {
     glBindVertexArray(vao);
     glUseProgram(program);
 
-    const glm::vec3 i = glm::vec3(1, 0, 0);
-    glm::vec3 v = glm::cross(i, body.vel());
-    float a = acos(glm::dot(i, body.vel()) / (glm::length(i) * glm::length(body.vel())));
+    //const glm::vec3 i = glm::vec3(1, 0, 0);
+    //glm::vec3 v = glm::cross(i, body.vel());
+    glm::vec3 v = glm::vec3(0, -body.Vz, body.Vy);
+    //float a = acos(glm::dot(body.vel(), i) / (glm::length(i) * glm::length(body.vel())));
+    float a = acos(body.Vx / glm::length(body.vel()));
     glm::mat4 rotmat = glm::rotate(a, v);
 
     glm::mat4 trans = glm::translate(body.pos());
