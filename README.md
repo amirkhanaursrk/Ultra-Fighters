@@ -39,7 +39,6 @@ To close: Escape
  - More comments and docs (ugh!)
  - Make Wavefront parser not dumb
  - Add quality level(s)
- - Add projectiles
  - Add enemies
  - Add collision detection/resolution
 
