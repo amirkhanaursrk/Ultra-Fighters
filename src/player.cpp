@@ -2,6 +2,7 @@
 #include "player.hpp"
 #include "game_scene.hpp"
 #include "wininfo.h"
+#include "logger.h" // @temp
 
 #include <GLFW/glfw3.h>
 
@@ -114,7 +115,10 @@ void Player::update(double step) {
     }
 
     if (glfwGetMouseButton(scene->getWindow(), GLFW_MOUSE_BUTTON_LEFT) && !shotThisClick) {
-        addChild(new Projectile(body.x, body.y, body.z));
+        glm::vec3 facingDir = glm::rotate(out, yaw, up);
+        facingDir = glm::rotate(facingDir, pitch, glm::rotate(side, yaw, up));
+        glm::vec3 projVel = glm::normalize(facingDir) * 20.0f;
+        addChild(new Projectile({1.0, body.x, body.y, body.z, projVel.x, projVel.y, projVel.z}));
 
         shotThisClick = true;
     }

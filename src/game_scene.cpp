@@ -58,7 +58,7 @@ void GameScene::render(float interp) {
 }
 
 static void rupdate(GameNode* node, double step) {
-    for (GameNode* newChild: node->newChildren) {
+    for (GameNode* newChild : node->newChildren) {
         if (newChild->setup()) {
             node->children.push_back(newChild);
         }
@@ -67,7 +67,12 @@ static void rupdate(GameNode* node, double step) {
         }
     }
 
+    for (GameNode* oldChild : node->oldChildren) {
+        delete oldChild;
+    }
+
     node->newChildren.clear();
+    node->oldChildren.clear();
 
     if (node->parent != NULL) {
         node->update(step);

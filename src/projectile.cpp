@@ -2,23 +2,26 @@
 #include "game_scene.hpp"
 #include "logger.h"
 
+#define GLM_FORCE_RADIANS
+#include <glm/gtx/vector_angle.hpp>
+
 GLuint Projectile::vao = -1;
 GLuint Projectile::program = -1;
 
-Projectile::Projectile(float x, float y, float z) {
-    pos.x = x;
-    pos.y = y;
-    pos.z = z;
+Projectile::Projectile(PBody body) {
+    this->body = body;
 }
 
 bool Projectile::setup() {
     if (vao == -1 || program == -1) {
-        const float* cube_points = getTriangulatedRect(0.1, 0.2, 0.3);
+        const float* cube_points = getTriangulatedRect(1.0, 0.1, 0.1);
 
         GLuint vbo;
         glGenBuffers(1, &vbo);
         glBindBuffer(GL_ARRAY_BUFFER, vbo);
         glBufferData(GL_ARRAY_BUFFER, TRI_RECT_SIZE, cube_points, GL_STATIC_DRAW);
+
+        free((void*) cube_points);
 
         glGenVertexArrays(1, &vao);
         glBindVertexArray(vao);
@@ -35,9 +38,11 @@ bool Projectile::setup() {
 
             return false;
         }
+
+        log_msg(LOG_INFO, "Did OpenGL setup calls for projectile\n");
     }
 
-    log_msg(LOG_INFO, "New projectile at (%f, %f, %f) was created!\n", pos.x, pos.y, pos.z);
+    //log_msg(LOG_INFO, "New projectile at (%f, %f, %f) was created!\n", body.x, body.y, body.z);
 
     return true;
 }
@@ -46,23 +51,30 @@ void Projectile::render(float interp) {
     glBindVertexArray(vao);
     glUseProgram(program);
 
-    GLint VPMID = glGetUniformLocation(program, "MVP");
-    if (VPMID == -1) {
-        log_msg(LOG_WARNING, "Getting the VPMID for the projectile shader failed.\n");
+    const glm::vec3 i = glm::vec3(1, 0, 0);
+    glm::vec3 v = glm::cross(i, body.vel());
+    float a = acos(glm::dot(i, body.vel()) / (glm::length(i) * glm::length(body.vel())));
+    glm::mat4 rotmat = glm::rotate(a, v);
+
+    glm::mat4 trans = glm::translate(body.pos());
+    glm::mat4 MVP = scene->getVPM() * trans * rotmat;
+
+    GLint MVPID = glGetUniformLocation(program, "MVP");
+    if (MVPID == -1) {
+        log_msg(LOG_WARNING, "Getting the MVPID for the projectile shader failed.\n");
 
         return;
     }
-    glUniformMatrix4fv(VPMID, 1, GL_FALSE, &scene->getVPM()[0][0]);
-
-    GLint posID = glGetUniformLocation(program, "pos");
-    if (posID == -1) {
-        log_msg(LOG_WARNING, "Getting the posID for the projectile shader failed.\n");
-
-        return;
-    }
-    glUniform3f(posID, pos.x, pos.y, pos.z);
+    glUniformMatrix4fv(MVPID, 1, GL_FALSE, &MVP[0][0]);
 
     glDrawArrays(GL_TRIANGLES, 0, TRI_RECT_VERTS);
 }
 
-void Projectile::update(double step) {}
+void Projectile::update(double step) {
+    body.update(step);
+
+    timeAlive += step;
+    if (timeAlive >= 20) {
+        parent->removeChild(this);
+    }
+}
