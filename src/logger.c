@@ -71,7 +71,7 @@ void log_msg(const int log_type, const char* message, ...) {
     va_end(arg_ptr);
     
     va_start(arg_ptr, message);
-    if (bind) {
+    if (bind && log_file != stdout && log_file != stderr) {
         if (log_type == LOG_ERROR) {
             vfprintf(stderr, message, arg_ptr);
         }
