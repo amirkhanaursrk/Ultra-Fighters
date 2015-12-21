@@ -11,7 +11,6 @@
 #include "logger.h" // log_msg
 #include "myglutils.h" // GLFW, GLEW, and setup functions
 #include "wininfo.h" // window width and height
-//#include <time.h> // @temp
 
 int main(int argc, char* argv[]) {
     if (!setupGLFW()) return 1;
