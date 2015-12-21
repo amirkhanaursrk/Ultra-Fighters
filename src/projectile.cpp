@@ -32,12 +32,8 @@ bool Projectile::setup() {
         const char* fsPath = "Shaders/Fragment/proj.fs.glsl";
         program = getProgramFromFiles(vsPath, fsPath);
 
-        if (!program) {
-
-            return false;
-        }
-
-        log_msg(LOG_INFO, "Did OpenGL setup calls for projectile\n");
+        log_msg("Projectile did static setup succesfully: %d\n", program);
+        return program;
     }
 
     return true;
