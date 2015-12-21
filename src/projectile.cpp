@@ -32,7 +32,7 @@ bool Projectile::setup() {
         const char* fsPath = "Shaders/Fragment/proj.fs.glsl";
         program = getProgramFromFiles(vsPath, fsPath);
 
-        log_msg("Projectile did static setup succesfully: %d\n", program);
+        log_msg(LOG_INFO, "Projectile did static setup succesfully: %d\n", !!program);
         return program;
     }
 
