@@ -14,7 +14,6 @@
 
 int main(int argc, char* argv[]) {
     if (!setupGLFW()) return 1;
-    setupApple();
     glfwWindowHint(GLFW_SAMPLES, 4);
 
     #ifndef __APPLE__
@@ -31,6 +30,8 @@ int main(int argc, char* argv[]) {
 
         return 1;
     }
+    #else
+    setupApple();
     #endif
 
     set_log_file(fopen("../Logs/uf.log", "a"));
