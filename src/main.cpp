@@ -20,8 +20,8 @@ int main(int argc, char* argv[]) {
     #ifndef __APPLE__
     const char* exePath = dirname(argv[0]);
     const char* resPath = "/Resources/";
-    const int newPathLen = strlen(exePath) + strlen(resPath);
-    char newPath[newPathLen + 1];
+    const int newPathLen = strlen(exePath) + strlen(resPath) + 1;
+    char newPath[newPathLen];
     strcpy(newPath, exePath);
     strcat(newPath, resPath);
 
