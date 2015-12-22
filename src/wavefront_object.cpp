@@ -32,7 +32,7 @@ bool WavefrontObject::setup() {
         return false;
     }
     
-    log_msg(LOG_INFO, "Finished setting up WavefrontObject %p\n", this);
+    log_msg(LOG_INFO, "Finished setting up WavefrontObject\n");
 
     return true;
 }

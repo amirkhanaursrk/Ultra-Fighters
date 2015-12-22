@@ -25,7 +25,8 @@ glm::mat4 GameScene::getVPM() {
 
 bool GameScene::setup() {
     glfwMakeContextCurrent(window);
-    
+    assert(setupGLEW());
+
     glClearColor(0.3, 0.3, 0.8, 1.0);
 
     glEnable(GL_DEPTH_TEST);
