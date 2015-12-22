@@ -8,6 +8,10 @@ static void glfwErrorCallback(int error, const char* description);
 static int getIntsFromString(const char* stringPtr, int ints[]);
 static int getFloatsFromString(const char* stringPtr, float floats[]);
 
+#ifdef __WIN32__
+#include "getline.h"
+#endif
+
 int setupGLFW() {
     glfwSetErrorCallback(glfwErrorCallback);
 
