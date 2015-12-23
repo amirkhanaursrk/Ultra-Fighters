@@ -28,7 +28,7 @@ Step 3: Enjoy!
 Step 1: Click 'Download ZIP'
 
 Step 2: Go on over to the "bin/Win32" folder in that downloaded folder and open "Ultra-Fighters.exe". You can drag the executable around
-whereever you want, but make sure to keep the Resources folder in the same folder as the exe.
+wherever you want, but make sure to keep the Resources folder in the same folder as the exe.
 
 Step 3: Enjoy!
 
@@ -37,7 +37,7 @@ Step 3: Enjoy!
 Step 1: Click 'Download ZIP'
 
 Step 2: Go on over to the "bin/Win64" folder in that downloaded folder and open "Ultra-Fighters.exe". You can drag the executable around
-whereever you want, but make sure to keep the Resources folder in the same folder as the exe. 
+wherever you want, but make sure to keep the Resources folder in the same folder as the exe. 
 
 Step 3: Enjoy!
 
