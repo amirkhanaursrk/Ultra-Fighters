@@ -38,41 +38,41 @@ if __name__ == '__main__':
     objects = [s.split('.')[0] + '.o' for s in sources]
     lib_flags = '../../lib/Win64/glew32s.lib ../../lib/Win64/glew32.lib ../../lib/Win64/libglfw3.a -lopengl32 -lglu32 -lgdi32 -static'
 
-    makefile.write('TARGET=' + target + '\r\n')
-    makefile.write('C_FLAGS=-Wall -pedantic -I../../include/ -DDEBUG=' + str(int(DEBUG)) + '\r\n')
-    makefile.write('COMPILE_C=gcc $(C_FLAGS) -std=c11 -c $<\r\n')
-    makefile.write('COMPILE_CPP=g++ $(C_FLAGS) -std=c++1y -c $<\r\n')
-    makefile.write('OBJECTS=' + ' '.join(objects) + '\r\n')
-    makefile.write('RES_SOURCE=' + res_source + '\r\n')
-    makefile.write('RES_DEST=' + res_dest + '\r\n')
-    makefile.write('LIB_FLAGS=' + lib_flags + '\r\n')
-    makefile.write('\r\n')
+    makefile.write('TARGET=' + target + '\n')
+    makefile.write('C_FLAGS=-Wall -pedantic -I../../include/ -m64 -DDEBUG=' + str(int(DEBUG)) + '\n')
+    makefile.write('COMPILE_C=gcc $(C_FLAGS) -std=c11 -c $<\n')
+    makefile.write('COMPILE_CPP=g++ $(C_FLAGS) -std=c++1y -c $<\n')
+    makefile.write('OBJECTS=' + ' '.join(objects) + '\n')
+    makefile.write('RES_SOURCE=' + res_source + '\n')
+    makefile.write('RES_DEST=' + res_dest + '\n')
+    makefile.write('LIB_FLAGS=' + lib_flags + '\n')
+    makefile.write('\n')
 
-    makefile.write('all: $(TARGET) $(RES_DEST)\r\n')
-    makefile.write('\r\n')
+    makefile.write('all: $(TARGET) $(RES_DEST)\n')
+    makefile.write('\n')
 
-    makefile.write('$(TARGET): $(OBJECTS)\r\n')
-    makefile.write('\tg++ -std=c++1y -Wall -pedantic $^ -o $@ $(LIB_FLAGS)\r\n')
-    makefile.write('\r\n')
+    makefile.write('$(TARGET): $(OBJECTS)\n')
+    makefile.write('\tg++ -m64 $^ -o $@ $(LIB_FLAGS)\n')
+    makefile.write('\n')
 
     src_folder = proj_root + '/src/'
     for i, o in enumerate(objects):
         source = src_folder + sources[i]
-        makefile.write(o + ': ' + source + ' ' + ' '.join(getDependencies(source)) + '\r\n')
+        makefile.write(o + ': ' + source + ' ' + ' '.join(getDependencies(source)) + '\n')
 
         if source.endswith('.c'):
-            makefile.write('\t$(COMPILE_C)\r\n\r\n')
+            makefile.write('\t$(COMPILE_C)\n\n')
         else:
-            makefile.write('\t$(COMPILE_CPP)\r\n\r\n')
+            makefile.write('\t$(COMPILE_CPP)\n\n')
 
-    makefile.write('.PHONY: $(RES_DEST) clean\r\n')
-    makefile.write('\r\n')
+    makefile.write('.PHONY: $(RES_DEST) clean\n')
+    makefile.write('\n')
 
-    makefile.write('$(RES_DEST):\r\n')
-    makefile.write('\trobocopy $(RES_SOURCE) $(RES_DEST) /MIR > nul\r\n')
-    makefile.write('\r\n')
+    makefile.write('$(RES_DEST):\n')
+    makefile.write('\trobocopy $(RES_SOURCE) $(RES_DEST) /MIR > nul\n')
+    makefile.write('\n')
 
-    makefile.write('clean:\r\n')
-    makefile.write('\tDEL $(OBJECTS) /Q\r\n')
+    makefile.write('clean:\n')
+    makefile.write('\tDEL $(OBJECTS) /Q\n')
 
     makefile.close()

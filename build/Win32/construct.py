@@ -3,7 +3,7 @@ from os.path import dirname
 
 DEBUG = True
 
-""" THIS IS THE MAKEFILE CONSTRUCTOR FOR >>> OS X <<<"""
+""" THIS IS THE MAKEFILE CONSTRUCTOR FOR >>> Win64 <<<"""
 """ This file makes ./Makefile.make """
 """ Call this ONLY when a new file is added to the ../../src/ folder """
 
@@ -26,21 +26,20 @@ def getDependencies(fileName, depth=0):
 
 if __name__ == '__main__':
     if '/' in __file__:
-        chdir(dirname(__file__)) # we are in the '.../Ultra\ Fighters/build/OSX/' folder
+        chdir(dirname(__file__)) # we are in the '.../Ultra\ Fighters/build/Win64/' folder
 
     makefile = open('Makefile.make', 'w')
 
     proj_root = '../..'
-    target = proj_root + '/bin/OSX/Ultra-Fighters.app/Contents/MacOS/Ultra-Fighters.osx'
+    target = proj_root + '/bin/Win32/Ultra-Fighters.exe'
     res_source = proj_root + '/Resources'
-    res_dest = proj_root + '/bin/OSX/Ultra-Fighters.app/Contents/Resources'
+    res_dest = proj_root + '/bin/Win32/Resources'
     sources = [f for f in listdir(proj_root + '/src') if '.h' not in f];
-    sources.remove('getline.c') # getline.c is for windows only
     objects = [s.split('.')[0] + '.o' for s in sources]
-    lib_flags = '../../lib/OSX/libGLEW.a ../../lib/OSX/libglfw3.a -framework OpenGL -framework CoreVideo -framework Cocoa -framework IOKit'
+    lib_flags = '../../lib/Win32/glew32s.lib ../../lib/Win32/glew32.lib ../../lib/Win32/libglfw3.a -lopengl32 -lglu32 -lgdi32 -static'
 
     makefile.write('TARGET=' + target + '\n')
-    makefile.write('C_FLAGS=-Wall -pedantic -I../../include/ -DDEBUG=' + str(int(DEBUG)) + '\n')
+    makefile.write('C_FLAGS=-Wall -pedantic -I../../include/ -m32 -DDEBUG=' + str(int(DEBUG)) + '\n')
     makefile.write('COMPILE_C=gcc $(C_FLAGS) -std=c11 -c $<\n')
     makefile.write('COMPILE_CPP=g++ $(C_FLAGS) -std=c++1y -c $<\n')
     makefile.write('OBJECTS=' + ' '.join(objects) + '\n')
@@ -53,7 +52,7 @@ if __name__ == '__main__':
     makefile.write('\n')
 
     makefile.write('$(TARGET): $(OBJECTS)\n')
-    makefile.write('\tg++ $^ -o $@ $(LIB_FLAGS)\n')
+    makefile.write('\tg++ -m32 $^ -o $@ $(LIB_FLAGS)\n')
     makefile.write('\n')
 
     src_folder = proj_root + '/src/'
@@ -70,11 +69,10 @@ if __name__ == '__main__':
     makefile.write('\n')
 
     makefile.write('$(RES_DEST):\n')
-    makefile.write('\trm -rf $@\n')
-    makefile.write('\tcp -R $(RES_SOURCE) $@\n')
+    makefile.write('\trobocopy $(RES_SOURCE) $(RES_DEST) /MIR > nul\n')
     makefile.write('\n')
 
     makefile.write('clean:\n')
-    makefile.write('\trm -f $(OBJECTS)\n')
+    makefile.write('\tDEL $(OBJECTS) /Q\n')
 
     makefile.close()

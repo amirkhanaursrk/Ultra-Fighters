@@ -10,7 +10,7 @@ LIB_FLAGS=../../lib/OSX/libGLEW.a ../../lib/OSX/libglfw3.a -framework OpenGL -fr
 all: $(TARGET) $(RES_DEST)
 
 $(TARGET): $(OBJECTS)
-	g++ -std=c++1y -Wall -pedantic $^ -o $@ $(LIB_FLAGS)
+	g++ $^ -o $@ $(LIB_FLAGS)
 
 game_node.o: ../../src/game_node.cpp ../../src/game_node.hpp ../../src/miscutils.hpp ../../src/logger.h ../../src/loop.hpp
 	$(COMPILE_CPP)
