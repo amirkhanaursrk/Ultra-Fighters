@@ -10,10 +10,11 @@ So far this program works doesn't work on Linux (Sorry!). I have a theory that w
 compiling side of things that this would work on Linux as well though.
 
 
-### How to Run
-
-OS X
+How to Run
 ----
+
+### OS X
+
 
 Step 1: Click 'Download as ZIP'
 
@@ -22,8 +23,7 @@ Step 2: Go on over to the "bin/OSX" folder in that downloaded folder and open "U
 Step 3: Enjoy!
 
 
-Windows (64 bit)
-----
+### Windows (64 bit)
 
 Step 1: Click 'Download as ZIP'
 
@@ -33,7 +33,8 @@ where ever you want, but make sure to keep the Resources folder in the same fold
 Step 3: Enjoy!
 
 
-### Controls
+Controls
+----
 
 To move: WASD
 
@@ -46,7 +47,8 @@ To close: Escape
 To shoot: left click
 
 
-### Todos
+Todos
+----
  - Clean up GameNode inclusions
  - Port to Linux
  - More comments and docs (ugh!)
