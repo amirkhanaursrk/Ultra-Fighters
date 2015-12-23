@@ -1,5 +1,7 @@
 #include "miscutils.hpp"
 
+#include <algorithm> // std::find
+
 template <typename T>
 void ezremove(std::vector<T>& v, T val) {
     int pos = std::find(v.begin(), v.end(), val) - v.begin();

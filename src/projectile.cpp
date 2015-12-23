@@ -5,15 +5,15 @@
 #define GLM_FORCE_RADIANS
 #include <glm/gtx/vector_angle.hpp>
 
-GLuint Projectile::vao = -1;
-GLuint Projectile::program = -1;
+GLuint Projectile::vao;
+GLuint Projectile::program = 0;
 
 Projectile::Projectile(PBody body) {
     this->body = body;
 }
 
 bool Projectile::setup() {
-    if (vao == -1 || program == -1) {
+    if (!program) {
         const float* cube_points = getTriangulatedRect(1.0, 0.1, 0.1);
 
         GLuint vbo;
@@ -32,17 +32,9 @@ bool Projectile::setup() {
         const char* fsPath = "Shaders/Fragment/proj.fs.glsl";
         program = getProgramFromFiles(vsPath, fsPath);
 
-        if (!program) {
-            vao = -1;
-            program = -1;
-
-            return false;
-        }
-
-        log_msg(LOG_INFO, "Did OpenGL setup calls for projectile\n");
+        log_msg(LOG_INFO, "Projectile did static setup succesfully: %d\n", !!program);
+        return program;
     }
-
-    //log_msg(LOG_INFO, "New projectile at (%f, %f, %f) was created!\n", body.x, body.y, body.z);
 
     return true;
 }

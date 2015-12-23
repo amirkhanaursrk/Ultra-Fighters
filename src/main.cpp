@@ -11,18 +11,17 @@
 #include "logger.h" // log_msg
 #include "myglutils.h" // GLFW, GLEW, and setup functions
 #include "wininfo.h" // window width and height
-//#include <time.h> // @temp
 
 int main(int argc, char* argv[]) {
     if (!setupGLFW()) return 1;
-    setupApple();
     glfwWindowHint(GLFW_SAMPLES, 4);
+    setupCoreGL();
 
     #ifndef __APPLE__
     const char* exePath = dirname(argv[0]);
     const char* resPath = "/Resources/";
-    const int newPathLen = strlen(exePath) + strlen(resPath);
-    char newPath[newPathLen + 1];
+    const int newPathLen = strlen(exePath) + strlen(resPath) + 1;
+    char newPath[newPathLen];
     strcpy(newPath, exePath);
     strcat(newPath, resPath);
 
@@ -50,10 +49,7 @@ int main(int argc, char* argv[]) {
         return 1;
     }
     
-    glfwMakeContextCurrent(window);
     glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
-
-    if (!setupGLEW()) return 1;
 
     char cwd[PATH_MAX];
     getcwd(cwd, sizeof(cwd));
@@ -61,12 +57,6 @@ int main(int argc, char* argv[]) {
     log_msg(LOG_INFO, "#####################################\n");
     log_msg(LOG_INFO, "Started Ultra Fighters!\n");
     log_msg(LOG_INFO, "Current Working Directory: %s\n", cwd);
-    log_msg(LOG_INFO, "OpenGL Vendor: %s\n", glGetString(GL_VENDOR));
-    log_msg(LOG_INFO, "OpenGL Renderer: %s\n", glGetString(GL_RENDERER));
-    log_msg(LOG_INFO, "OpenGL Version: %s\n", glGetString(GL_VERSION));
-    log_msg(LOG_INFO, "GLSL Version: %s\n", glGetString(GL_SHADING_LANGUAGE_VERSION));
-    log_msg(LOG_INFO, "GLEW Version: %s\n", glewGetString(GLEW_VERSION));
-    log_msg(LOG_INFO, "GLFW Version: %d.%d.%d\n", GLFW_VERSION_MAJOR, GLFW_VERSION_MINOR, GLFW_VERSION_REVISION);
     log_msg(LOG_INFO, "Started loop!\n");
     
     GameScene scene(window);

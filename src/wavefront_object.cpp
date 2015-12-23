@@ -32,7 +32,7 @@ bool WavefrontObject::setup() {
         return false;
     }
     
-    log_msg(LOG_INFO, "Finished setting up WavefrontObject %p\n", this);
+    log_msg(LOG_INFO, "Finished setting up WavefrontObject\n");
 
     return true;
 }
@@ -41,11 +41,11 @@ void WavefrontObject::render(float interp) {
     glBindVertexArray(vao);
     glUseProgram(program);
     
-    GLuint VPMID = glGetUniformLocation(program, "MVP");
+    GLint VPMID = glGetUniformLocation(program, "MVP");
     assert(VPMID != -1);
     glUniformMatrix4fv(VPMID, 1, GL_FALSE, &scene->getVPM()[0][0]);
 
-    GLuint camPosID = glGetUniformLocation(program, "camPos");
+    GLint camPosID = glGetUniformLocation(program, "camPos");
     assert(camPosID != -1);
     glUniform3f(camPosID, 0, 0, 0);
 

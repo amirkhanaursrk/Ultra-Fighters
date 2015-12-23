@@ -1,5 +1,9 @@
 #pragma once
 
+#if defined(__WIN32__) && !defined(GLEW_STATIC)
+#define GLEW_STATIC
+#endif
+
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
 
@@ -9,10 +13,7 @@ extern "C" {
 
 int setupGLFW();
 int setupGLEW();
-
-#ifdef __APPLE__
-void setupApple();
-#endif
+void setupCoreGL();
 
 #define TRI_RECT_SIZE (108 * sizeof(float))
 #define TRI_RECT_VERTS 36

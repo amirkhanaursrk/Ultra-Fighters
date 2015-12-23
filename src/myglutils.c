@@ -8,6 +8,10 @@ static void glfwErrorCallback(int error, const char* description);
 static int getIntsFromString(const char* stringPtr, int ints[]);
 static int getFloatsFromString(const char* stringPtr, float floats[]);
 
+#ifdef __WIN32__
+#include "getline.h"
+#endif
+
 int setupGLFW() {
     glfwSetErrorCallback(glfwErrorCallback);
 
@@ -25,7 +29,7 @@ int setupGLEW() {
     GLenum glewErr;
 
     if ((glewErr = glewInit()) != GLEW_OK) {
-        log_msg(LOG_ERROR, "%s\n", glewGetString(glewErr));
+        log_msg(LOG_ERROR, "%s\n", glewGetErrorString(glewErr));
         log_msg(LOG_ERROR, "GLEW initialization failed.\n");
 
         return 0;
@@ -34,7 +38,7 @@ int setupGLEW() {
     return 1;
 }
 
-void setupApple() {
+void setupCoreGL() {
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
     glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
