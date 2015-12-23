@@ -35,13 +35,17 @@ int main(int argc, char* argv[]) {
 
     set_log_file(fopen("../Logs/uf.log", "a"));
     
-    #ifdef DEBUG
-    setDebug(true);
-    setBind(true);
-    GLFWwindow* window = glfwCreateWindow(WINDOW_WIDTH, WINDOW_HEIGHT, "Ultra Fighters", NULL, NULL);
-    #else
-    GLFWwindow* window = glfwCreateWindow(WINDOW_WIDTH, WINDOW_HEIGHT, "Ultra Fighters", glfwGetPrimaryMonitor(), NULL);
-    #endif
+    setDebug(DEBUG);
+    setBind(DEBUG);
+
+    GLFWwindow* window;
+    
+    if (DEBUG) {
+        window = glfwCreateWindow(WINDOW_WIDTH, WINDOW_HEIGHT, "Ultra Fighters", NULL, NULL);
+    }
+    else {
+        window = glfwCreateWindow(WINDOW_WIDTH, WINDOW_HEIGHT, "Ultra Fighters", glfwGetPrimaryMonitor(), NULL);
+    }
 
     if (!window) {
         log_msg(LOG_ERROR, "GLFW3 window creation failed.\n");
