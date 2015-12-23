@@ -14,7 +14,12 @@ extern "C" {
 void set_log_file(FILE* file);
 void setDebug(int shouldDebug);
 void setBind(int shouldBind);
+
+#ifndef __WIN32__ // Windows doesn't have the __printflike attribute
 void log_msg(const int log_type, const char* message, ...) __printflike(2, 3);
+#else
+void log_msg(const int log_type, const char* message, ...);
+#endif
 
 #ifdef __cplusplus
 }

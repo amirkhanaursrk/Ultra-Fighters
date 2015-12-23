@@ -13,10 +13,7 @@ extern "C" {
 
 int setupGLFW();
 int setupGLEW();
-
-#ifdef __APPLE__
-void setupApple();
-#endif
+void setupCoreGL();
 
 #define TRI_RECT_SIZE (108 * sizeof(float))
 #define TRI_RECT_VERTS 36

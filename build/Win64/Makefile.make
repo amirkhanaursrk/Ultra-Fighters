@@ -53,6 +53,7 @@ wavefront_object.o: ../../src/wavefront_object.cpp ../../src/myglutils.h ../../s
 .PHONY: $(RES_DEST) clean
 
 $(RES_DEST):
+	DEL $(RES_DEST) /S /Q
 	robocopy $(RES_SOURCE) $(RES_DEST) /E
 
 clean:

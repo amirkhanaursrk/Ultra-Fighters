@@ -34,6 +34,13 @@ bool GameScene::setup() {
 
     glfwSetCursorPos(window, 0, 0);
 
+    log_msg(LOG_INFO, "OpenGL Vendor: %s\n", glGetString(GL_VENDOR));
+    log_msg(LOG_INFO, "OpenGL Renderer: %s\n", glGetString(GL_RENDERER));
+    log_msg(LOG_INFO, "OpenGL Version: %s\n", glGetString(GL_VERSION));
+    log_msg(LOG_INFO, "GLSL Version: %s\n", glGetString(GL_SHADING_LANGUAGE_VERSION));
+    log_msg(LOG_INFO, "GLEW Version: %s\n", glewGetString(GLEW_VERSION));
+    log_msg(LOG_INFO, "GLFW Version: %d.%d.%d\n", GLFW_VERSION_MAJOR, GLFW_VERSION_MINOR, GLFW_VERSION_REVISION);
+
     isSetup = true;
     return true;
 }

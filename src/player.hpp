@@ -9,7 +9,7 @@
 class Player: public GameNode {
     public:
         Player(double x, double y, double z); // Player at pos
-        Player(); // Player at origin
+        Player() : Player(0, 0, 0) {} // Player at origin
 
         bool setup() override;
         void render(float interp) override;

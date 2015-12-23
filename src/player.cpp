@@ -13,16 +13,16 @@
 
 #include <math.h>
 
+#ifdef __WIN32__
+#include "miscutils.hpp"
+#endif
+
 Player::Player(double x, double y, double z) {
     body.x = x;
     body.y = y;
     body.z = z;
     yaw = 3.14;
     pitch = 0.0;
-}
-
-Player::Player() {
-    Player::Player(0, 0, 0);
 }
 
 bool Player::setup() {
