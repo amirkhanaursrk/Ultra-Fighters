@@ -2,6 +2,7 @@ from os import chdir, listdir
 from os.path import dirname
 
 DEBUG = True
+FULLSCREEN = True
 
 """ THIS IS THE MAKEFILE CONSTRUCTOR FOR >>> Win64 <<<"""
 """ This file makes ./Makefile.make """
@@ -39,7 +40,7 @@ if __name__ == '__main__':
     lib_flags = '../../lib/Win32/glew32s.lib ../../lib/Win32/glew32.lib ../../lib/Win32/libglfw3.a -lopengl32 -lglu32 -lgdi32 -static'
 
     makefile.write('TARGET=' + target + '\n')
-    makefile.write('C_FLAGS=-Wall -pedantic -I../../include/ -m32 -DDEBUG=' + str(int(DEBUG)) + '\n')
+    makefile.write('C_FLAGS=-Wall -pedantic -I../../include/ -m32 -DDEBUG=' + str(int(DEBUG)) + (' -DFULLSCREEN' if FULLSCREEN else '') + '\n')
     makefile.write('COMPILE_C=gcc $(C_FLAGS) -std=c11 -c $<\n')
     makefile.write('COMPILE_CPP=g++ $(C_FLAGS) -std=c++1y -c $<\n')
     makefile.write('OBJECTS=' + ' '.join(objects) + '\n')

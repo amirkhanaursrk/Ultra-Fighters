@@ -2,6 +2,7 @@ from os import chdir, listdir
 from os.path import dirname
 
 DEBUG = True
+FULLSCREEN = False
 
 """ THIS IS THE MAKEFILE CONSTRUCTOR FOR >>> OS X <<<"""
 """ This file makes ./Makefile.make """
@@ -40,7 +41,7 @@ if __name__ == '__main__':
     lib_flags = '../../lib/OSX/libGLEW.a ../../lib/OSX/libglfw3.a -framework OpenGL -framework CoreVideo -framework Cocoa -framework IOKit'
 
     makefile.write('TARGET=' + target + '\n')
-    makefile.write('C_FLAGS=-Wall -pedantic -I../../include/ -DDEBUG=' + str(int(DEBUG)) + '\n')
+    makefile.write('C_FLAGS=-Wall -pedantic -I../../include/ -DDEBUG=' + str(int(DEBUG)) + (' -DFULLSCREEN' if FULLSCREEN else '') + '\n')
     makefile.write('COMPILE_C=gcc $(C_FLAGS) -std=c11 -c $<\n')
     makefile.write('COMPILE_CPP=g++ $(C_FLAGS) -std=c++1y -c $<\n')
     makefile.write('OBJECTS=' + ' '.join(objects) + '\n')

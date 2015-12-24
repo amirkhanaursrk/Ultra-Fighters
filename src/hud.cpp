@@ -1,9 +1,13 @@
 #include "hud.hpp"
 #include "logger.h"
-#include "wininfo.h"
+#include "game_scene.hpp"
 
 bool HUD::setup() {
-    const GLfloat ar = (float) ASPECT_RATIO;
+    int width, height;
+    glfwGetWindowSize(scene->getWindow(), &width, &height);
+
+    float ar = (float) width / height;
+
     const GLfloat rad = 0.04;
     const GLfloat pointData[] = {
         -rad / ar, 0.0f,

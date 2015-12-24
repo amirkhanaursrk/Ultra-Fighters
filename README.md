@@ -73,7 +73,7 @@ License
 MIT
 
 
-**Free Software, Hell Yeah!**
+**Free Software, Oh Yeah!**
 
 
 See LICENSE.txt for more info.
