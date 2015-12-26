@@ -5,7 +5,7 @@ DEBUG = True
 FULLSCREEN = True
 
 """ THIS IS THE GENERAL MAKEFILE CONSTRUCTOR """
-""" USe this ONLY when a new file is added to the ../../src/ folder """
+""" Use this ONLY when a new file is added to the ../../src/ folder """
 
 def getDependencies(fileName, depth=0):
     if (depth >= 10):
