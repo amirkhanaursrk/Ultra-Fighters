@@ -1,79 +1,25 @@
-from os import chdir, listdir
-from os.path import dirname
+import sys
+import os
 
-DEBUG = True
-FULLSCREEN = True
+from genconst import constructMakefile
 
-""" THIS IS THE MAKEFILE CONSTRUCTOR FOR >>> Win64 <<<"""
-""" This file makes ./Makefile.make """
-""" Call this ONLY when a new file is added to the ../../src/ folder """
-
-def getDependencies(fileName, depth=0):
-    if (depth >= 10):
-        print('Too deep, maybe there are circular dependencies?')
-        return []
-
-    f = open(fileName)
-    deps = []
-    base_folder = dirname(fileName) + '/'
-
-    for line in f:
-        if line.strip().startswith('#include "'):
-            dep = base_folder + line.split('"')[1]
-            deps.append(dep)
-            deps += getDependencies(dep, depth + 1)
-
-    return set(deps)
+""" This file makes the Makefile for the 'Win32' platform """ 
+""" This file imports ../genconst.py for most of its functionality """
+""" To use this file as a main script, you cannot do relative imports and
+therefore must have ../genconst in your PYTHONPATH """
+""" Since the author was lazy I just made a soft link in this directoy to
+../genconst.py """
 
 if __name__ == '__main__':
     if '/' in __file__:
-        chdir(dirname(__file__)) # we are in the '.../Ultra\ Fighters/build/Win64/' folder
+        os.chdir(os.path.dirname(__file__))
 
     makefile = open('Makefile.make', 'w')
+    target = '/bin/Win32/Ultra-Fighters.exe'
+    res_dest = '/bin/Win32/Resources'
+    c_flags = '-m32'
+    link_flags = '../../lib/Win32/glew32s.lib ../../lib/Win32/glew32.lib ../../lib/Win32/libglfw3.a -lopengl32 -lglu32 -lgdi32 -static'
+    copy_cmd = 'robocopy $(RES_SOURCE) $(RES_DEST) /MIR > nul'
+    clean_cmd = 'DEL $(OBJECTS) /Q'
 
-    proj_root = '../..'
-    target = proj_root + '/bin/Win32/Ultra-Fighters.exe'
-    res_source = proj_root + '/Resources'
-    res_dest = proj_root + '/bin/Win32/Resources'
-    sources = [f for f in listdir(proj_root + '/src') if '.h' not in f];
-    objects = [s.split('.')[0] + '.o' for s in sources]
-    lib_flags = '../../lib/Win32/glew32s.lib ../../lib/Win32/glew32.lib ../../lib/Win32/libglfw3.a -lopengl32 -lglu32 -lgdi32 -static'
-
-    makefile.write('TARGET=' + target + '\n')
-    makefile.write('C_FLAGS=-Wall -pedantic -I../../include/ -m32 -DDEBUG=' + str(int(DEBUG)) + (' -DFULLSCREEN' if FULLSCREEN else '') + '\n')
-    makefile.write('COMPILE_C=gcc $(C_FLAGS) -std=c11 -c $<\n')
-    makefile.write('COMPILE_CPP=g++ $(C_FLAGS) -std=c++1y -c $<\n')
-    makefile.write('OBJECTS=' + ' '.join(objects) + '\n')
-    makefile.write('RES_SOURCE=' + res_source + '\n')
-    makefile.write('RES_DEST=' + res_dest + '\n')
-    makefile.write('LIB_FLAGS=' + lib_flags + '\n')
-    makefile.write('\n')
-
-    makefile.write('all: $(TARGET) $(RES_DEST)\n')
-    makefile.write('\n')
-
-    makefile.write('$(TARGET): $(OBJECTS)\n')
-    makefile.write('\tg++ -m32 $^ -o $@ $(LIB_FLAGS)\n')
-    makefile.write('\n')
-
-    src_folder = proj_root + '/src/'
-    for i, o in enumerate(objects):
-        source = src_folder + sources[i]
-        makefile.write(o + ': ' + source + ' ' + ' '.join(getDependencies(source)) + '\n')
-
-        if source.endswith('.c'):
-            makefile.write('\t$(COMPILE_C)\n\n')
-        else:
-            makefile.write('\t$(COMPILE_CPP)\n\n')
-
-    makefile.write('.PHONY: $(RES_DEST) clean\n')
-    makefile.write('\n')
-
-    makefile.write('$(RES_DEST):\n')
-    makefile.write('\trobocopy $(RES_SOURCE) $(RES_DEST) /MIR > nul\n')
-    makefile.write('\n')
-
-    makefile.write('clean:\n')
-    makefile.write('\tDEL $(OBJECTS) /Q\n')
-
-    makefile.close()
+    constructMakefile(makefile, target, res_dest, c_flags, link_flags, copy_cmd, clean_cmd, exclude=[])
