@@ -1,8 +1,6 @@
 #include "projectile.hpp"
 #include "player.hpp"
 #include "game_scene.hpp"
-#include "wininfo.h"
-#include "logger.h" // @temp
 
 #include <GLFW/glfw3.h>
 
@@ -132,7 +130,11 @@ glm::vec3 Player::getPos() {
 }
 
 glm::mat4 Player::getVPM() {
-    glm::mat4 projection = glm::perspective(glm::radians(60.0), (double) ASPECT_RATIO, 0.1, 100.0);
+    int width, height;
+    glfwGetWindowSize(scene->getWindow(), &width, &height);
+    double aspectRatio = (double) width / height;
+
+    glm::mat4 projection = glm::perspective(glm::radians(60.0), aspectRatio, 0.1, 100.0);
     glm::mat4 rotMat1 = glm::rotate(yaw, up);
     glm::mat4 rotMat2 = glm::rotate(pitch, side);
     glm::mat4 rotMat = rotMat1 * rotMat2;

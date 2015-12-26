@@ -10,7 +10,6 @@
 #include "game_scene.hpp" // GameScene
 #include "logger.h" // log_msg
 #include "myglutils.h" // GLFW, GLEW, and setup functions
-#include "wininfo.h" // window width and height
 
 int main(int argc, char* argv[]) {
     if (!setupGLFW()) return 1;
@@ -37,15 +36,20 @@ int main(int argc, char* argv[]) {
     
     setDebug(DEBUG);
     setBind(DEBUG);
-
-    GLFWwindow* window;
-    
-    if (DEBUG) {
-        window = glfwCreateWindow(WINDOW_WIDTH, WINDOW_HEIGHT, "Ultra Fighters", NULL, NULL);
-    }
-    else {
-        window = glfwCreateWindow(WINDOW_WIDTH, WINDOW_HEIGHT, "Ultra Fighters", glfwGetPrimaryMonitor(), NULL);
-    }
+ 
+    #ifdef FULLSCREEN
+    GLFWmonitor* monitor = glfwGetPrimaryMonitor();
+    const GLFWvidmode* vidmode = glfwGetVideoMode(monitor);
+    int width = vidmode->width;
+    int height = vidmode->height;
+    const char* title =  "Ultra Fighters";
+    GLFWwindow* window = glfwCreateWindow(width, height, title, monitor, NULL);
+    #else
+    int width = 640;
+    int height = 480;
+    const char* title =  "Ultra Fighters";
+    GLFWwindow* window = glfwCreateWindow(width, height, title, NULL, NULL);
+    #endif
 
     if (!window) {
         log_msg(LOG_ERROR, "GLFW3 window creation failed.\n");
@@ -77,7 +81,7 @@ int main(int argc, char* argv[]) {
     Loop loop = Loop(&scene);
     loop.start();
     
-    while (glfwGetKey(window, GLFW_KEY_ESCAPE) != GLFW_PRESS && !glfwWindowShouldClose(window)) {
+    while (!glfwGetKey(window, GLFW_KEY_ESCAPE) && !glfwWindowShouldClose(window)) {
         glfwPollEvents();
     }
     
