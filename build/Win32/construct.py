@@ -18,7 +18,7 @@ if __name__ == '__main__':
     target = '/bin/Win32/Ultra-Fighters.exe'
     res_dest = '/bin/Win32/Resources'
     c_flags = '-m32'
-    link_flags = '../../lib/Win32/glew32s.lib ../../lib/Win32/glew32.lib ../../lib/Win32/libglfw3.a -lopengl32 -lglu32 -lgdi32 -static'
+    link_flags = '../../lib/Win32/glew32s.lib ../../lib/Win32/glew32.lib ../../lib/Win32/libglfw3.a -lopengl32 -lglu32 -lgdi32 -m32 -static'
     copy_cmd = 'robocopy $(RES_SOURCE) $(RES_DEST) /MIR > nul'
     clean_cmd = 'DEL $(OBJECTS) /Q'
 

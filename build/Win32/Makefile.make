@@ -5,7 +5,7 @@ COMPILE_CPP=g++ -std=c++1y $(C_FLAGS) -c $<
 OBJECTS=game_node.o game_scene.o getline.o hud.o logger.o loop.o main.o miscutils.o myglutils.o physics_body.o player.o projectile.o wavefront_object.o
 RES_SOURCE=../../Resources
 RES_DEST=../../bin/Win32/Resources
-LIB_FLAGS=../../lib/Win32/glew32s.lib ../../lib/Win32/glew32.lib ../../lib/Win32/libglfw3.a -lopengl32 -lglu32 -lgdi32 -static
+LIB_FLAGS=../../lib/Win32/glew32s.lib ../../lib/Win32/glew32.lib ../../lib/Win32/libglfw3.a -lopengl32 -lglu32 -lgdi32 -m32 -static
 
 all: $(TARGET) $(RES_DEST)
 
