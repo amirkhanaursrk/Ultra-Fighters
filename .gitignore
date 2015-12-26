@@ -3,6 +3,7 @@
 *.log
 *.o
 *.sh
+*.pyc
 
 Makefile
 constructall
