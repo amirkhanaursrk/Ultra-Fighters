@@ -12,43 +12,43 @@ all: $(TARGET) $(RES_DEST)
 $(TARGET): $(OBJECTS)
 	g++ $^ -o $@ $(LIB_FLAGS)
 
-game_node.o: ../../src/game_node.cpp ../../src/loop.hpp ../../src/game_node.hpp ../../src/logger.h ../../src/miscutils.hpp
+game_node.o: ../../src/game_node.cpp ../../src/game_node.hpp ../../src/logger.h ../../src/loop.hpp ../../src/miscutils.hpp
 	$(COMPILE_CPP)
 
-game_scene.o: ../../src/game_scene.cpp ../../src/physics_body.hpp ../../src/logger.h ../../src/player.hpp ../../src/loop.hpp ../../src/miscutils.hpp ../../src/game_scene.hpp ../../src/game_node.hpp ../../src/myglutils.h
+game_scene.o: ../../src/game_scene.cpp ../../src/game_node.hpp ../../src/game_scene.hpp ../../src/logger.h ../../src/loop.hpp ../../src/miscutils.hpp ../../src/myglutils.h ../../src/physics_body.hpp ../../src/player.hpp
 	$(COMPILE_CPP)
 
 getline.o: ../../src/getline.c ../../src/getline.h
 	$(COMPILE_C)
 
-hud.o: ../../src/hud.cpp ../../src/physics_body.hpp ../../src/logger.h ../../src/player.hpp ../../src/loop.hpp ../../src/game_scene.hpp ../../src/game_node.hpp ../../src/hud.hpp ../../src/myglutils.h
+hud.o: ../../src/hud.cpp ../../src/game_node.hpp ../../src/game_scene.hpp ../../src/hud.hpp ../../src/logger.h ../../src/loop.hpp ../../src/myglutils.h ../../src/physics_body.hpp ../../src/player.hpp
 	$(COMPILE_CPP)
 
 logger.o: ../../src/logger.c ../../src/logger.h
 	$(COMPILE_C)
 
-loop.o: ../../src/loop.cpp ../../src/loop.hpp ../../src/logger.h
+loop.o: ../../src/loop.cpp ../../src/logger.h ../../src/loop.hpp
 	$(COMPILE_CPP)
 
-main.o: ../../src/main.cpp ../../src/physics_body.hpp ../../src/wavefront_object.hpp ../../src/logger.h ../../src/player.hpp ../../src/loop.hpp ../../src/game_node.hpp ../../src/game_scene.hpp ../../src/hud.hpp ../../src/myglutils.h
+main.o: ../../src/main.cpp ../../src/game_node.hpp ../../src/game_scene.hpp ../../src/hud.hpp ../../src/logger.h ../../src/loop.hpp ../../src/myglutils.h ../../src/physics_body.hpp ../../src/player.hpp ../../src/wavefront_object.hpp
 	$(COMPILE_CPP)
 
-miscutils.o: ../../src/miscutils.cpp ../../src/loop.hpp ../../src/miscutils.hpp ../../src/game_node.hpp ../../src/logger.h
+miscutils.o: ../../src/miscutils.cpp ../../src/game_node.hpp ../../src/logger.h ../../src/loop.hpp ../../src/miscutils.hpp
 	$(COMPILE_CPP)
 
-myglutils.o: ../../src/myglutils.c ../../src/getline.h ../../src/myglutils.h ../../src/logger.h
+myglutils.o: ../../src/myglutils.c ../../src/getline.h ../../src/logger.h ../../src/myglutils.h
 	$(COMPILE_C)
 
 physics_body.o: ../../src/physics_body.cpp ../../src/physics_body.hpp
 	$(COMPILE_CPP)
 
-player.o: ../../src/player.cpp ../../src/physics_body.hpp ../../src/logger.h ../../src/player.hpp ../../src/loop.hpp ../../src/game_node.hpp ../../src/game_scene.hpp ../../src/miscutils.hpp ../../src/projectile.hpp ../../src/myglutils.h
+player.o: ../../src/player.cpp ../../src/game_node.hpp ../../src/game_scene.hpp ../../src/logger.h ../../src/loop.hpp ../../src/miscutils.hpp ../../src/myglutils.h ../../src/physics_body.hpp ../../src/player.hpp ../../src/projectile.hpp
 	$(COMPILE_CPP)
 
-projectile.o: ../../src/projectile.cpp ../../src/physics_body.hpp ../../src/logger.h ../../src/player.hpp ../../src/loop.hpp ../../src/game_node.hpp ../../src/game_scene.hpp ../../src/projectile.hpp ../../src/myglutils.h
+projectile.o: ../../src/projectile.cpp ../../src/game_node.hpp ../../src/game_scene.hpp ../../src/logger.h ../../src/loop.hpp ../../src/myglutils.h ../../src/physics_body.hpp ../../src/player.hpp ../../src/projectile.hpp
 	$(COMPILE_CPP)
 
-wavefront_object.o: ../../src/wavefront_object.cpp ../../src/physics_body.hpp ../../src/wavefront_object.hpp ../../src/logger.h ../../src/player.hpp ../../src/loop.hpp ../../src/game_scene.hpp ../../src/game_node.hpp ../../src/myglutils.h
+wavefront_object.o: ../../src/wavefront_object.cpp ../../src/game_node.hpp ../../src/game_scene.hpp ../../src/logger.h ../../src/loop.hpp ../../src/myglutils.h ../../src/physics_body.hpp ../../src/player.hpp ../../src/wavefront_object.hpp
 	$(COMPILE_CPP)
 
 .PHONY: $(RES_DEST) clean

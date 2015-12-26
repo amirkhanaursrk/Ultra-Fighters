@@ -22,7 +22,7 @@ def getDependencies(fileName, depth=0):
             deps.append(dep)
             deps += getDependencies(dep, depth + 1)
 
-    return set(deps)
+    return sorted(set(deps)) # Sorted so that the Makefiles are more consistent
 
 def constructMakefile(makefile, target, res_dest, c_flags, link_flags, copy_cmd, clean_cmd, exclude=['getline.c']):
     proj_root = '../..'

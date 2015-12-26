@@ -5,6 +5,7 @@
 *.sh
 
 Makefile
+constructall
 build/OSX/genconst.py
 build/Win32/genconst.py
 build/Win64/genconst.py
