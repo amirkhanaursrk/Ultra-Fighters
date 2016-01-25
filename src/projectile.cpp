@@ -9,6 +9,7 @@ GLuint Projectile::vao;
 GLuint Projectile::program = 0;
 
 Projectile::Projectile(PBody body) {
+    name = "Projectile";
     this->body = body;
 }
 
@@ -58,7 +59,9 @@ void Projectile::render(float interp) {
     }
     glUniformMatrix4fv(MVPID, 1, GL_FALSE, &MVP[0][0]);
 
+    glEnable(GL_CULL_FACE);
     glDrawArrays(GL_TRIANGLES, 0, TRI_RECT_VERTS);
+    glDisable(GL_CULL_FACE);
 }
 
 void Projectile::update(double step) {

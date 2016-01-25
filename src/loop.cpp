@@ -7,11 +7,16 @@
 Loop::Loop(LoopListener* listener) {
     this->listener = listener;
     running = false;
+    paused = false;
     timeBetweenUpdates = CLOCKS_PER_SEC / 30.0;
     maxUpdates = 10;
 }
 
 void Loop::start() {
+    if (running) {
+        stop();
+    }
+
     running = true;
     runThread = new std::thread(&Loop::run, this);
 }
@@ -23,6 +28,18 @@ void Loop::stop() {
 
 bool Loop::isRunning() {
     return running;
+}
+
+void Loop::play() {
+    paused = false;
+}
+
+void Loop::pause() {
+    paused = true;
+}
+
+bool Loop::isPaused() {
+    return paused;
 }
 
 LoopListener* Loop::getListener() {
@@ -45,13 +62,17 @@ void Loop::run() {
 
         int updates = 0;
         while (newTime - oldTime >= timeBetweenUpdates && updates < maxUpdates) {
-            listener->update((double) timeBetweenUpdates / CLOCKS_PER_SEC);
+            if (!paused) {
+                listener->update((double) timeBetweenUpdates / CLOCKS_PER_SEC);
+            }
 
             oldTime += timeBetweenUpdates;
             updates++;
         }
 
-        if (updates == maxUpdates) log_msg(LOG_WARNING, "Loop is overloaded!!!\n");
+        if (updates == maxUpdates) {
+            log_msg(LOG_WARNING, "Loop is overloaded!!!\n");
+        }
 
         float interp = std::min(1.0f, (float) (newTime - oldTime) / (float) timeBetweenUpdates);
         listener->render(interp);

@@ -2,6 +2,10 @@
 #include "logger.h"
 #include "game_scene.hpp"
 
+HUD::HUD() {
+    name = "HUD";
+}
+
 bool HUD::setup() {
     int width, height;
     glfwGetWindowSize(scene->getWindow(), &width, &height);

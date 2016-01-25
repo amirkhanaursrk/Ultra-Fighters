@@ -6,6 +6,7 @@
 // The 'r' in front of the static functions stands for recursive
 
 GameScene::GameScene(GLFWwindow* window) {
+    name = "GameScene";
     this->window = window;
     this->scene = this;
     addChild(&player);

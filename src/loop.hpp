@@ -14,12 +14,16 @@ public:
     void start();
     void stop();
     bool isRunning();
+    void play();
+    void pause();
+    bool isPaused();
     LoopListener* getListener();
     void setLoopSpeed(int updatesPerSecond);
     void setMaxUpdates(int maxUpdates);
     
 private:
     bool running;
+    bool paused;
     std::thread* runThread;
     LoopListener* listener;
     double timeBetweenUpdates;

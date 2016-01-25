@@ -7,6 +7,7 @@
 #include "myglutils.h"
 
 WavefrontObject::WavefrontObject(const char* path) {
+    name = "WavefrontObject";
     this->path = path;
 }
 
