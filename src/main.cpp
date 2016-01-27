@@ -11,6 +11,8 @@
 #include "logger.h" // log_msg
 #include "myglutils.h" // GLFW, GLEW, and setup functions
 
+#include "aabb_test_node.hpp" // @temp
+
 int main(int argc, char* argv[]) {
     if (!setupGLFW()) return 1;
     glfwWindowHint(GLFW_SAMPLES, 4);
@@ -77,6 +79,9 @@ int main(int argc, char* argv[]) {
 
     HUD hud;
     scene.addChild(&hud);
+
+    AABBTestNode atn; // @temp
+    scene.addChild(&atn); // @temp
 
     Loop loop = Loop(&scene);
     loop.start();
