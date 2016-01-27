@@ -3,7 +3,7 @@
 
 #include <cmath>
 
-// constructors
+// Constructors
 
 AABB::AABB(glm::vec3 p1, glm::vec3 p2) {
     for (int i = 0; i < 3; i++) {
@@ -24,12 +24,12 @@ AABB::AABB(glm::vec3 center, float w, float h, float d) {
     max = center + halfSize;
 }
 
-AABB::AABB(const AABB &rect) {
-    min = rect.getMin();
-    max = rect.getMax();
+AABB::AABB(const AABB& copy) {
+    min = copy.getMin();
+    max = copy.getMax();
 }
 
-// public methods
+// Public Methods
 
 glm::vec3 AABB::getMin() const {
     return min;

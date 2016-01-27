@@ -1,4 +1,5 @@
 #include "intersect.hpp"
+#include "miscutils.hpp"
 
 #include <cmath>
 
@@ -13,7 +14,7 @@ inline bool intersects(const AABB &rectA, const AABB &rectB) {
 }
 
 inline bool intersects(const AABB &rect, const Sphere &sphere) {
-    float r2 = sphere.getRadius() * sphere.getRadius();
+    float r2 = SQR(sphere.getRadius());
     int dmin = 0;
 
     glm::vec3 c = sphere.center;
@@ -21,8 +22,8 @@ inline bool intersects(const AABB &rect, const Sphere &sphere) {
     glm::vec3 boxMax = rect.getMax();
     
     for (int i = 0; i < 3; i++) {
-        if (c[i] < boxMin[i]) dmin += std::pow(c[i] - boxMin[i], 2);
-        else if (c[i] > boxMax[i]) dmin += std::pow(c[i] - boxMax[i], 2);   
+        if (c[i] < boxMin[i]) dmin += SQR(c[i] - boxMin[i]);
+        else if (c[i] > boxMax[i]) dmin += SQR(c[i] - boxMax[i]);
     }
 
     return dmin <= r2;

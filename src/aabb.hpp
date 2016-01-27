@@ -2,6 +2,7 @@
 
 #include <glm/vec3.hpp>
 
+// A class for an Axis Aligned Bounding Box, or AABB for short
 class AABB {
     public:
         // construct smallest rectangle that contains these points
@@ -9,7 +10,7 @@ class AABB {
         // construct rectangle at center with size
         AABB(glm::vec3 center, float w, float h, float d);
         // copy rectangle
-        AABB(const AABB &rect);
+        AABB(const AABB& copy);
 
         glm::vec3 getMin() const;
         glm::vec3 getMax() const;

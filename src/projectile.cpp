@@ -15,14 +15,14 @@ Projectile::Projectile(PBody body) {
 
 bool Projectile::setup() {
     if (!program) {
-        const float* cube_points = getTriangulatedRect(1.0, 0.1, 0.1);
+        float* cube_points = getTriangulatedRect(1.0, 0.1, 0.1);
 
         GLuint vbo;
         glGenBuffers(1, &vbo);
         glBindBuffer(GL_ARRAY_BUFFER, vbo);
         glBufferData(GL_ARRAY_BUFFER, TRI_RECT_SIZE, cube_points, GL_STATIC_DRAW);
 
-        free((void*) cube_points);
+        free(cube_points);
 
         glGenVertexArrays(1, &vao);
         glBindVertexArray(vao);
