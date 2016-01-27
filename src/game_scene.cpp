@@ -72,7 +72,7 @@ static void rupdate(GameNode* node, double step) {
             node->children.push_back(newChild);
         }
         else {
-            log_msg(LOG_WARNING, "Child %p failed setup. (parent=%p)\n", newChild, node);
+            log_msg(LOG_WARNING, "Node %s failed setup. (parent=%s)\n", newChild->name, node->name);
         }
     }
 
