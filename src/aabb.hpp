@@ -15,6 +15,8 @@ class AABB {
         glm::vec3 getMin() const;
         glm::vec3 getMax() const;
 
+        void centerAt(glm::vec3 center);
+
     private:
         glm::vec3 min;
         glm::vec3 max;

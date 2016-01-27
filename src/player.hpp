@@ -6,6 +6,7 @@
 #include <glm/glm.hpp>
 #include <glm/vec3.hpp>
 
+// @todo: make player 1.8 meters tall and eyes at 1.7 meters
 class Player: public GameNode {
     public:
         Player(double x, double y, double z); // Player at pos

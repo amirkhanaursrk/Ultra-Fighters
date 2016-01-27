@@ -38,3 +38,9 @@ glm::vec3 AABB::getMin() const {
 glm::vec3 AABB::getMax() const{
     return max;
 }
+
+void AABB::centerAt(glm::vec3 center) {
+    glm::vec3 halfSize = (max - min) / 2.0f;
+    min = center - halfSize;
+    max = center + halfSize;
+}
