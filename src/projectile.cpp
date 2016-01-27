@@ -29,8 +29,8 @@ bool Projectile::setup() {
         glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, NULL);
         glEnableVertexAttribArray(0);
 
-        const char* vsPath = "Shaders/Vertex/proj.vs.glsl";
-        const char* fsPath = "Shaders/Fragment/proj.fs.glsl";
+        const char* vsPath = "Shaders/Vertex/generic.vs.glsl";
+        const char* fsPath = "Shaders/Fragment/generic.fs.glsl";
         program = getProgramFromFiles(vsPath, fsPath);
 
         log_msg(LOG_INFO, "Projectile did static setup succesfully: %d\n", !!program);
