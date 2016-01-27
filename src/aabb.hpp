@@ -9,6 +9,8 @@ class AABB {
         AABB(glm::vec3 p1, glm::vec3 p2);
         // construct rectangle at center with size
         AABB(glm::vec3 center, float w, float h, float d);
+        // construct empty rectangle
+        AABB(): AABB(glm::vec3(0, 0, 0), glm::vec3(0, 0, 0)) {}
         // copy rectangle
         AABB(const AABB& copy);
 

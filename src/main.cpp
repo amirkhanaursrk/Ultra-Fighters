@@ -80,7 +80,7 @@ int main(int argc, char* argv[]) {
     HUD hud;
     scene.addChild(&hud);
 
-    AABBTestNode atn; // @temp
+    AABBTestNode atn(glm::vec3(-3.0, 1.5, 2.5)); // @temp
     scene.addChild(&atn); // @temp
 
     Loop loop = Loop(&scene);

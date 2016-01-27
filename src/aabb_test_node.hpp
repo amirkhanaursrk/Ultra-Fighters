@@ -1,5 +1,6 @@
 #pragma once
 
+#include "aabb.hpp"
 #include "game_node.hpp"
 #include "game_scene.hpp"
 #include "myglutils.h"
@@ -20,4 +21,5 @@ class AABBTestNode: public GameNode {
         GLuint program;
 
         glm::vec3 pos;
+        AABB frame;
 };
