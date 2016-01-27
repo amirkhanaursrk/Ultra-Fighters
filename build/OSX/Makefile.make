@@ -24,7 +24,7 @@ game_scene.o: ../../src/game_scene.cpp ../../src/game_node.hpp ../../src/game_sc
 hud.o: ../../src/hud.cpp ../../src/game_node.hpp ../../src/game_scene.hpp ../../src/hud.hpp ../../src/logger.h ../../src/loop.hpp ../../src/myglutils.h ../../src/physics_body.hpp ../../src/player.hpp
 	$(COMPILE_CPP)
 
-intersect.o: ../../src/intersect.cpp ../../src/aabb.hpp ../../src/intersect.hpp ../../src/sphere.hpp
+intersect.o: ../../src/intersect.cpp ../../src/aabb.hpp ../../src/intersect.hpp ../../src/miscutils.hpp ../../src/sphere.hpp
 	$(COMPILE_CPP)
 
 logger.o: ../../src/logger.c ../../src/logger.h
