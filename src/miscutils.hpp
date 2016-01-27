@@ -9,7 +9,3 @@
 
 template <typename T>
 void ezremove(std::vector<T>& v, T val);
-
-float* getBoundingRects(float* verts, size_t len);
-
-float getTriangleY(const float* triPtr, float x, float z);

@@ -5,7 +5,7 @@
   <key>CFBundleGetInfoString</key>
   <string>Ultra-Fighters</string>
   <key>CFBundleExecutable</key>
-  <string>Ultra-Fighters.osx</string>
+  <string>Ultra-Fighters_osx</string>
   <key>CFBundleIdentifier</key>
   <string>com.your-company-name.www</string>
   <key>CFBundleName</key>
