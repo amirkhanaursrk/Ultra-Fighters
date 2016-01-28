@@ -12,7 +12,7 @@ class AABB {
         // construct empty rectangle
         AABB(): AABB(glm::vec3(0, 0, 0), glm::vec3(0, 0, 0)) {}
         // copy rectangle
-        AABB(const AABB& copy);
+        AABB(const AABB &copy);
 
         glm::vec3 getMin() const;
         glm::vec3 getMax() const;

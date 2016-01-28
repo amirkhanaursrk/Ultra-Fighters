@@ -2,7 +2,7 @@ TARGET=../../bin/OSX/Ultra-Fighters.app/Contents/MacOS/Ultra-Fighters_osx
 C_FLAGS=-Wall -Werror -pedantic -I../../include/ -DDEBUG=1 -DFULLSCREEN 
 COMPILE_C=gcc -std=c11 $(C_FLAGS) -c $<
 COMPILE_CPP=g++ -std=c++1y $(C_FLAGS) -c $<
-OBJECTS=aabb.o aabb_test_node.o game_node.o game_scene.o hud.o logger.o loop.o main.o miscutils.o myglutils.o physics_body.o player.o projectile.o sphere.o wavefront_object.o
+OBJECTS=aabb.o aabb_test_node.o game_node.o game_scene.o hud.o logger.o loop.o main.o miscutils.o myglutils.o physics_body.o player.o projectile.o set_uniform.o sphere.o wavefront_object.o
 RES_SOURCE=../../Resources
 RES_DEST=../../bin/OSX/Ultra-Fighters.app/Contents/Resources/
 LIB_FLAGS=../../lib/OSX/libGLEW.a ../../lib/OSX/libglfw3.a -framework OpenGL -framework CoreVideo -framework Cocoa -framework IOKit
@@ -15,7 +15,7 @@ $(TARGET): $(OBJECTS)
 aabb.o: ../../src/aabb.cpp ../../src/aabb.hpp ../../src/intersect.hpp ../../src/miscutils.hpp ../../src/sphere.hpp
 	$(COMPILE_CPP)
 
-aabb_test_node.o: ../../src/aabb_test_node.cpp ../../src/aabb.hpp ../../src/aabb_test_node.hpp ../../src/game_node.hpp ../../src/game_scene.hpp ../../src/intersect.hpp ../../src/logger.h ../../src/loop.hpp ../../src/miscutils.hpp ../../src/myglutils.h ../../src/physics_body.hpp ../../src/player.hpp ../../src/sphere.hpp
+aabb_test_node.o: ../../src/aabb_test_node.cpp ../../src/aabb.hpp ../../src/aabb_test_node.hpp ../../src/game_node.hpp ../../src/game_scene.hpp ../../src/intersect.hpp ../../src/logger.h ../../src/loop.hpp ../../src/miscutils.hpp ../../src/myglutils.h ../../src/physics_body.hpp ../../src/player.hpp ../../src/set_uniform.hpp ../../src/sphere.hpp
 	$(COMPILE_CPP)
 
 game_node.o: ../../src/game_node.cpp ../../src/game_node.hpp ../../src/logger.h ../../src/loop.hpp ../../src/miscutils.hpp
@@ -49,6 +49,9 @@ player.o: ../../src/player.cpp ../../src/game_node.hpp ../../src/game_scene.hpp 
 	$(COMPILE_CPP)
 
 projectile.o: ../../src/projectile.cpp ../../src/game_node.hpp ../../src/game_scene.hpp ../../src/logger.h ../../src/loop.hpp ../../src/myglutils.h ../../src/physics_body.hpp ../../src/player.hpp ../../src/projectile.hpp
+	$(COMPILE_CPP)
+
+set_uniform.o: ../../src/set_uniform.cpp ../../src/logger.h ../../src/myglutils.h ../../src/set_uniform.hpp
 	$(COMPILE_CPP)
 
 sphere.o: ../../src/sphere.cpp ../../src/sphere.hpp

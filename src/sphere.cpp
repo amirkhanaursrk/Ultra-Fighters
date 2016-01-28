@@ -9,7 +9,7 @@ Sphere::Sphere(glm::vec3 center, float radius) {
 	this->radius = radius;
 }
 
-Sphere::Sphere(const Sphere& copy) {
+Sphere::Sphere(const Sphere &copy) {
     this->center = copy.center;
     this->radius = copy.getRadius();
 }

@@ -1,6 +1,7 @@
 #include "aabb_test_node.hpp"
 #include "logger.h"
 #include "intersect.hpp"
+#include "set_uniform.hpp"
 
 #include <glm/mat4x4.hpp>
 #include <glm/gtx/transform.hpp>
@@ -41,32 +42,19 @@ void AABBTestNode::render(float interp) {
     glm::mat4 trans = glm::translate(pos);
     glm::mat4 MVP = scene->getVPM() * trans;
 
-    GLint MVPID = glGetUniformLocation(program, "MVP");
-    if (MVPID == -1) {
-        log_msg(LOG_WARNING, "Getting the MVPID for the AABBTestNode shader failed.\n");
-
-        return;
-    }
-    glUniformMatrix4fv(MVPID, 1, GL_FALSE, &MVP[0][0]);
-
-    GLint colorID = glGetUniformLocation(program, "uColor");
-    if (colorID == -1) {
-        log_msg(LOG_WARNING, "Getting the colorID for the AABBTestNode shader failed.\n");
-
-        return;
-    }
-    glUniform3f(colorID, 0.7, 0, 1);
+    setUniform(program, "MVP", MAT4, 1, &MVP[0][0]);
+    setUniform(program, "uColor", 0.7f, 0.0f, 1.0f);
 
     glDrawArrays(GL_TRIANGLES, 0, TRI_RECT_VERTS);
 
     // if collide with player, draw small rect at top of screen
 
-    AABB playerBox(this->scene->getPlayerPos(), 1, 1, 1);
+    AABB playerBox(this->scene->getPlayerPos(), 0.5, 0.5, 0.5);
     if (intersects(this->frame, playerBox)) {
-        float infPts[] = { // 0.9, -0.9
-            0.8, -0.7, 0.0,
-            0.7, -0.9, 0.0,
-            0.9, -0.9, 0.0,
+        float infPts[] = {
+            0.8, -0.7, -1.0,
+            0.7, -0.9, -1.0,
+            0.9, -0.9, -1.0,
         };
 
         GLuint infoVBO;
@@ -81,21 +69,9 @@ void AABBTestNode::render(float interp) {
         glEnableVertexAttribArray(0);
 
         MVP = glm::mat4(1);
-        MVPID = glGetUniformLocation(program, "MVP");
-        if (MVPID == -1) {
-            log_msg(LOG_WARNING, "Getting the MVPID for the AABBTestNode shader failed.\n");
 
-            return;
-        }
-        glUniformMatrix4fv(MVPID, 1, GL_FALSE, &MVP[0][0]);
-
-        colorID = glGetUniformLocation(program, "uColor");
-        if (colorID == -1) {
-            log_msg(LOG_WARNING, "Getting the colorID for the AABBTestNode shader failed. (2nd time)\n");
-
-            return;
-        }
-        glUniform3f(colorID, 0, 0, 1);
+        setUniform(program, "MVP", MAT4, 1, &MVP[0][0]);
+        setUniform(program, "uColor", 0.0f, 0.0f, 1.0f);
 
         glDrawArrays(GL_TRIANGLES, 0, 3);
     }

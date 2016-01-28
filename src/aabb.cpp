@@ -24,7 +24,7 @@ AABB::AABB(glm::vec3 center, float w, float h, float d) {
     max = center + halfSize;
 }
 
-AABB::AABB(const AABB& copy) {
+AABB::AABB(const AABB &copy) {
     min = copy.getMin();
     max = copy.getMax();
 }
