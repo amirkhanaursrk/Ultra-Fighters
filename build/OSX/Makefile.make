@@ -2,7 +2,7 @@ TARGET=../../bin/OSX/Ultra-Fighters.app/Contents/MacOS/Ultra-Fighters_osx
 C_FLAGS=-Wall -Werror -pedantic -I../../include/ -DDEBUG=1 -DFULLSCREEN 
 COMPILE_C=gcc -std=c11 $(C_FLAGS) -c $<
 COMPILE_CPP=g++ -std=c++1y $(C_FLAGS) -c $<
-OBJECTS=aabb.o aabb_test_node.o game_node.o game_scene.o hud.o logger.o loop.o main.o miscutils.o myglutils.o physics_body.o player.o projectile.o set_uniform.o sphere.o wavefront_object.o
+OBJECTS=aabb.o aabb_test_node.o game_node.o game_scene.o hud.o logger.o loop.o main.o miscutils.o myglutils.o physics_body.o player.o projectile.o set_uniform.o sphere.o triangle.o wavefront_object.o
 RES_SOURCE=../../Resources
 RES_DEST=../../bin/OSX/Ultra-Fighters.app/Contents/Resources/
 LIB_FLAGS=../../lib/OSX/libGLEW.a ../../lib/OSX/libglfw3.a -framework OpenGL -framework CoreVideo -framework Cocoa -framework IOKit
@@ -55,6 +55,9 @@ set_uniform.o: ../../src/set_uniform.cpp ../../src/logger.h ../../src/myglutils.
 	$(COMPILE_CPP)
 
 sphere.o: ../../src/sphere.cpp ../../src/sphere.hpp
+	$(COMPILE_CPP)
+
+triangle.o: ../../src/triangle.cpp ../../src/triangle.hpp
 	$(COMPILE_CPP)
 
 wavefront_object.o: ../../src/wavefront_object.cpp ../../src/game_node.hpp ../../src/game_scene.hpp ../../src/logger.h ../../src/loop.hpp ../../src/myglutils.h ../../src/physics_body.hpp ../../src/player.hpp ../../src/wavefront_object.hpp
