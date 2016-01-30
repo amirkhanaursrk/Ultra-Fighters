@@ -22,7 +22,7 @@ Third Note: On step 3, if the "make" command is not on your system, replace "mak
 ### Steps:
  1. Open Shell
  2. "cd" into "bin" folder in the project folder
- 3. Type "make Make<System>.make", and replace <System> with either OSX, Win32, or Win64 depending on your system.
+ 3. Type "make Make[System].make", and replace [System] with either OSX, Win32, or Win64 depending on your system.
  4. If there were no problems, the new executable file should be in the "bin" folder
 
 
