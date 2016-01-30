@@ -17,7 +17,8 @@ template void ezremove<GameNode*>(std::vector<GameNode*>& v, GameNode* val);
 
 float* flatten(const std::vector<Triangle> tris, size_t* n) {
     const size_t tri_size = 9;
-    float* vertexData = (float*) malloc(tris.size() * tri_size * sizeof(float));
+    const size_t buff_size = tris.size() * tri_size * sizeof(float);
+    float* vertexData = (float*) malloc(buff_size);
 
     for (int i = 0; i < tris.size(); i++) {
         Triangle t = tris[i];
@@ -33,7 +34,7 @@ float* flatten(const std::vector<Triangle> tris, size_t* n) {
         vertexData[i * tri_size + 8] = t.p3.z;
     }
 
-    *n = tris.size() * tri_size;
+    *n = buff_size;
     return vertexData;
 }
 
@@ -65,7 +66,7 @@ void loadOctahedron(std::vector<Triangle> &v) {
 }
 
 void subdivide(std::vector<Triangle> &tris) {
-    std::vector<Triangle> newTris(tris.size() * 4);
+    std::vector<Triangle> newTris;
     float l = glm::length(tris[0].p1);
 
     for (int i = 0; i < tris.size(); i++) {
