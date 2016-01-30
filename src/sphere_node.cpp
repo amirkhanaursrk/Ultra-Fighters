@@ -25,18 +25,13 @@ bool SphereNode::setup() {
     std::vector<Triangle> sphereVertices;
     loadOctahedron(sphereVertices);
 
-    log_msg(LOG_INFO, "octahedron size: %lu\n", sphereVertices.size());
-
     for (int i = 0; i < recLevel; i++) {
         subdivide(sphereVertices);
-        log_msg(LOG_INFO, "subdivided! newSize: %lu\n", sphereVertices.size());
     }
 
     size_t buff_size;
     float* flatVerts = flatten(sphereVertices, &buff_size);
     numVertices = buff_size / sizeof(float);
-
-    log_msg(LOG_INFO, "numVertices: %d\n", numVertices);
 
     GLuint vbo;
     glGenBuffers(1, &vbo);
@@ -69,6 +64,4 @@ void SphereNode::render(float interp) {
     glEnable(GL_CULL_FACE);
     glDrawArrays(GL_TRIANGLES, 0, numVertices);
     glDisable(GL_CULL_FACE);
-
-    //log_msg(LOG_INFO, "%s has rendered! numVertices: %d\n", name, numVertices);
 }
