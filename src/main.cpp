@@ -11,8 +11,7 @@
 #include "logger.h" // log_msg
 #include "myglutils.h" // GLFW, GLEW, and setup functions
 
-#include "aabb_test_node.hpp" // @temp
-#include "sphere_node.hpp" // @temp?
+#include "sphere_node.hpp" // @temp
 
 int main(int argc, char* argv[]) {
     if (!setupGLFW()) return 1;
@@ -81,10 +80,7 @@ int main(int argc, char* argv[]) {
     HUD hud;
     scene.addChild(&hud);
 
-    AABBTestNode atn(glm::vec3(-3.0, 1.5, 2.5)); // @temp
-    scene.addChild(&atn); // @temp
-
-    SphereNode snode(glm::vec3(-2, 3, 4), 0.75); // @temp
+    SphereNode snode(glm::vec3(-2, 2, 4), 0.75); // @temp
     scene.addChild(&snode); // @temp
 
     Loop loop = Loop(&scene);
