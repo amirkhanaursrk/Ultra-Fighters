@@ -9,27 +9,28 @@ GLuint Projectile::vao;
 GLuint Projectile::program = 0;
 
 Projectile::Projectile(PBody body) {
+    name = "Projectile";
     this->body = body;
 }
 
 bool Projectile::setup() {
     if (!program) {
-        const float* cube_points = getTriangulatedRect(1.0, 0.1, 0.1);
+        float* cube_points = getTriangulatedRect(1.0, 0.1, 0.1);
 
         GLuint vbo;
         glGenBuffers(1, &vbo);
         glBindBuffer(GL_ARRAY_BUFFER, vbo);
         glBufferData(GL_ARRAY_BUFFER, TRI_RECT_SIZE, cube_points, GL_STATIC_DRAW);
 
-        free((void*) cube_points);
+        free(cube_points);
 
         glGenVertexArrays(1, &vao);
         glBindVertexArray(vao);
         glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, NULL);
         glEnableVertexAttribArray(0);
 
-        const char* vsPath = "Shaders/Vertex/proj.vs.glsl";
-        const char* fsPath = "Shaders/Fragment/proj.fs.glsl";
+        const char* vsPath = "Shaders/Vertex/generic.vs.glsl";
+        const char* fsPath = "Shaders/Fragment/generic.fs.glsl";
         program = getProgramFromFiles(vsPath, fsPath);
 
         log_msg(LOG_INFO, "Projectile did static setup succesfully: %d\n", !!program);
@@ -58,7 +59,9 @@ void Projectile::render(float interp) {
     }
     glUniformMatrix4fv(MVPID, 1, GL_FALSE, &MVP[0][0]);
 
+    glEnable(GL_CULL_FACE);
     glDrawArrays(GL_TRIANGLES, 0, TRI_RECT_VERTS);
+    glDisable(GL_CULL_FACE);
 }
 
 void Projectile::update(double step) {

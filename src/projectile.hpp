@@ -7,7 +7,7 @@
 #include <glm/vec3.hpp>
 
 class Projectile: public GameNode {
-	public:
+    public:
         Projectile(PBody body);
         
         bool setup() override;

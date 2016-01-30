@@ -1,11 +1,11 @@
 #include "logger.h"
-#include "myglutils.h"
 #include "miscutils.hpp"
 #include "game_scene.hpp"
 
 // The 'r' in front of the static functions stands for recursive
 
 GameScene::GameScene(GLFWwindow* window) {
+    name = "GameScene";
     this->window = window;
     this->scene = this;
     addChild(&player);
@@ -71,7 +71,7 @@ static void rupdate(GameNode* node, double step) {
             node->children.push_back(newChild);
         }
         else {
-            log_msg(LOG_WARNING, "Child %p failed setup. (parent=%p)\n", newChild, node);
+            log_msg(LOG_WARNING, "Node %s failed setup. (parent=%s)\n", newChild->name, node->name);
         }
     }
 

@@ -16,6 +16,7 @@
 #endif
 
 Player::Player(double x, double y, double z) {
+    name = "Player";
     body.x = x;
     body.y = y;
     body.z = z;

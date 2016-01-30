@@ -1,8 +1,7 @@
 #pragma once
 
-#include <GLFW/glfw3.h>
-
 #include "game_node.hpp"
+#include "myglutils.h"
 #include "player.hpp"
 
 class GameScene: public GameNode {

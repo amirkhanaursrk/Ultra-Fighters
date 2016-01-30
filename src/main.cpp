@@ -11,6 +11,8 @@
 #include "logger.h" // log_msg
 #include "myglutils.h" // GLFW, GLEW, and setup functions
 
+#include "sphere_node.hpp" // @temp
+
 int main(int argc, char* argv[]) {
     if (!setupGLFW()) return 1;
     glfwWindowHint(GLFW_SAMPLES, 4);
@@ -77,6 +79,9 @@ int main(int argc, char* argv[]) {
 
     HUD hud;
     scene.addChild(&hud);
+
+    SphereNode snode(glm::vec3(-2, 2, 4), 0.75); // @temp
+    scene.addChild(&snode); // @temp
 
     Loop loop = Loop(&scene);
     loop.start();
