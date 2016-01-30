@@ -15,7 +15,7 @@ if __name__ == '__main__':
         os.chdir(os.path.dirname(__file__))
 
     makefile = open('Makefile.make', 'w')
-    target = '/bin/Win64/Ultra-Fighters.exe'
+    target = '/bin/Ultra-Fighters32.exe'
     res_dest = '/bin/Win64/Resources'
     c_flags = '-m64'
     link_flags = '../../lib/Win64/glew32s.lib ../../lib/Win64/glew32.lib ../../lib/Win64/libglfw3.a -lopengl32 -lglu32 -lgdi32 -m64 -static'
