@@ -15,8 +15,8 @@ if __name__ == '__main__':
         os.chdir(os.path.dirname(__file__))
 
     makefile = open('Makefile.make', 'w')
-    target = '/bin/OSX/Ultra-Fighters.app/Contents/MacOS/Ultra-Fighters_osx'
-    res_dest = '/bin/OSX/Ultra-Fighters.app/Contents/Resources/'
+    target = '/bin/Ultra-Fighters.app/Contents/MacOS/Ultra-Fighters_osx'
+    res_dest = '/bin/Ultra-Fighters.app/Contents/Resources/'
     c_flags = ''
     link_flags = '../../lib/OSX/libGLEW.a ../../lib/OSX/libglfw3.a -framework OpenGL -framework CoreVideo -framework Cocoa -framework IOKit'
     copy_cmd = 'rm -rf $(RES_DEST)\n\tcp -R $(RES_SOURCE) $@'

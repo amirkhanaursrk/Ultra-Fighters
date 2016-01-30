@@ -1,10 +1,10 @@
-TARGET=../../bin/OSX/Ultra-Fighters.app/Contents/MacOS/Ultra-Fighters_osx
+TARGET=../../bin/Ultra-Fighters.app/Contents/MacOS/Ultra-Fighters_osx
 C_FLAGS=-Wall -Werror -pedantic -I../../include/ -DDEBUG=1 -DFULLSCREEN 
 COMPILE_C=gcc -std=c11 $(C_FLAGS) -c $<
 COMPILE_CPP=g++ -std=c++1y $(C_FLAGS) -c $<
 OBJECTS=aabb.o game_node.o game_scene.o hud.o logger.o loop.o main.o miscutils.o myglutils.o physics_body.o player.o projectile.o set_uniform.o sphere.o sphere_node.o triangle.o wavefront_object.o
 RES_SOURCE=../../Resources
-RES_DEST=../../bin/OSX/Ultra-Fighters.app/Contents/Resources/
+RES_DEST=../../bin/Ultra-Fighters.app/Contents/Resources/
 LIB_FLAGS=../../lib/OSX/libGLEW.a ../../lib/OSX/libglfw3.a -framework OpenGL -framework CoreVideo -framework Cocoa -framework IOKit
 
 all: $(TARGET) $(RES_DEST)
