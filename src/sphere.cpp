@@ -1,6 +1,8 @@
 #include "sphere.hpp"
+#include "miscutils.hpp"
 
 #include <cmath>
+#include <glm/geometric.hpp>
 
 // Constructors
 
@@ -22,4 +24,11 @@ float Sphere::getRadius() const {
 
 void Sphere::setRadius(float radius) {
 	this->radius = std::fabs(radius);
+}
+
+bool Sphere::containsPoint(glm::vec3 pt) const {
+    glm::vec3 diff = pt - center;
+    float dist2 = glm::dot(diff, diff);
+
+    return dist2 < SQR(radius);
 }

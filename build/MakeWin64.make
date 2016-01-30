@@ -54,7 +54,7 @@ projectile.o: ../src/projectile.cpp ../src/game_node.hpp ../src/game_scene.hpp .
 set_uniform.o: ../src/set_uniform.cpp ../src/logger.h ../src/myglutils.h ../src/set_uniform.hpp
 	$(COMPILE_CPP)
 
-sphere.o: ../src/sphere.cpp ../src/sphere.hpp
+sphere.o: ../src/sphere.cpp ../src/miscutils.hpp ../src/sphere.hpp ../src/triangle.hpp
 	$(COMPILE_CPP)
 
 sphere_node.o: ../src/sphere_node.cpp ../src/game_node.hpp ../src/game_scene.hpp ../src/logger.h ../src/loop.hpp ../src/miscutils.hpp ../src/myglutils.h ../src/physics_body.hpp ../src/player.hpp ../src/set_uniform.hpp ../src/sphere.hpp ../src/sphere_node.hpp ../src/triangle.hpp

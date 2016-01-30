@@ -63,5 +63,6 @@ void SphereNode::render(float interp) {
 
     glEnable(GL_CULL_FACE);
     glDrawArrays(GL_TRIANGLES, 0, numVertices);
+
     glDisable(GL_CULL_FACE);
 }

@@ -14,6 +14,8 @@ class Sphere {
         float getRadius() const;
         void setRadius(float radius);
 
+        bool containsPoint(glm::vec3 pt) const;
+
     private:
         float radius;
 };

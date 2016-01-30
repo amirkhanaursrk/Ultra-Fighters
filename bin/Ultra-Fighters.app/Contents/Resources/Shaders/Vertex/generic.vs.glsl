@@ -1,6 +1,6 @@
 #version 330
 
-uniform mat4 MVP;
+uniform mat4 MVP = mat4(1.0);
 
 in vec3 vert;
 
