@@ -1,5 +1,4 @@
 #include "logger.h"
-#include "myglutils.h"
 #include "miscutils.hpp"
 #include "game_scene.hpp"
 
