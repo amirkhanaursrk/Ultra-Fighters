@@ -25,14 +25,14 @@ def getDependencies(fileName, depth=0):
     return sorted(set(deps)) # Sorted so that the Makefiles are more consistent
 
 def constructMakefile(makefile, target, res_dest, c_flags, link_flags, copy_cmd, clean_cmd, exclude=['getline.c']):
-    proj_root = '../..'
+    proj_root = '..'
     target = proj_root + target
     res_source = proj_root + '/Resources'
     res_dest = proj_root + res_dest
     sources = [f for f in listdir(proj_root + '/src') if '.h' not in f];
     sources = [s for s in sources if s not in exclude]
     objects = [s.split('.')[0] + '.o' for s in sources]
-    c_flags = '-Wall -Werror -pedantic -I../../include/ -DDEBUG=' + str(int(DEBUG)) + (' -DFULLSCREEN ' if FULLSCREEN else ' ') + c_flags
+    c_flags = '-Wall -Werror -pedantic -I../include/ -DDEBUG=' + str(int(DEBUG)) + (' -DFULLSCREEN ' if FULLSCREEN else ' ') + c_flags
 
     makefile.write('TARGET=' + target + '\n')
     makefile.write('C_FLAGS=' + c_flags + '\n')

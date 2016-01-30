@@ -14,11 +14,11 @@ if __name__ == '__main__':
     if '/' in __file__:
         os.chdir(os.path.dirname(__file__))
 
-    makefile = open('Makefile.make', 'w')
+    makefile = open('MakeWin32.make', 'w')
     target = '/bin/Ultra-Fighters32.exe'
     res_dest = '/bin/Win32/Resources'
     c_flags = '-m32'
-    link_flags = '../../lib/Win32/glew32s.lib ../../lib/Win32/glew32.lib ../../lib/Win32/libglfw3.a -lopengl32 -lglu32 -lgdi32 -m32 -static'
+    link_flags = '../lib/Win32/glew32s.lib ../lib/Win32/glew32.lib ../lib/Win32/libglfw3.a -lopengl32 -lglu32 -lgdi32 -m32 -static'
     copy_cmd = 'robocopy $(RES_SOURCE) $(RES_DEST) /MIR > nul'
     clean_cmd = 'DEL $(OBJECTS) /Q'
 

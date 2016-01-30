@@ -14,7 +14,7 @@ if __name__ == '__main__':
     if '/' in __file__:
         os.chdir(os.path.dirname(__file__))
 
-    makefile = open('Makefile.make', 'w')
+    makefile = open('MakeWin64.make', 'w')
     target = '/bin/Ultra-Fighters32.exe'
     res_dest = '/bin/Win64/Resources'
     c_flags = '-m64'
