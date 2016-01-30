@@ -10,38 +10,20 @@ So far this program doesn't work on Linux (Sorry!). I have a theory that with ju
 compiling side of things that this would work on Linux as well though.
 
 
-(OLD README {UPDATE})
-
-How to Run
+How to Compile
 ----
 
-### OS X
+First Note: I have already compiled the source for Mac OS X. You can find it in the "bin/" folder.
 
+Second Note: These instructions assume that you already have a compiler installed on your system.
 
-Step 1: Click 'Download ZIP'
+Third Note: On step 3, if the "make" command is not on your system, replace "make" with whatever eqivalent command is.
 
-Step 2: Go on over to the "bin/OSX" folder in that downloaded folder and open "Ultra-Fighters.app". Since the app contains the resources, you 
-can move the app around wherever you want and it will still work!
-
-Step 3: Enjoy!
-
-### Windows (32 bit)
-
-Step 1: Click 'Download ZIP'
-
-Step 2: Go on over to the "bin/Win32" folder in that downloaded folder and open "Ultra-Fighters.exe". You can drag the executable around
-wherever you want, but make sure to keep the Resources folder in the same folder as the exe.
-
-Step 3: Enjoy!
-
-### Windows (64 bit)
-
-Step 1: Click 'Download ZIP'
-
-Step 2: Go on over to the "bin/Win64" folder in that downloaded folder and open "Ultra-Fighters.exe". You can drag the executable around
-wherever you want, but make sure to keep the Resources folder in the same folder as the exe. 
-
-Step 3: Enjoy!
+### Steps:
+    1. Open Shell
+    2. "cd" into "bin" folder in the project folder
+    3. Type "make Make<System>.make", and replace <System> with either OSX, Win32, or Win64 depending on your system.
+    4. If there were no problems, the new executable file should be in the "bin" folder
 
 
 Controls
