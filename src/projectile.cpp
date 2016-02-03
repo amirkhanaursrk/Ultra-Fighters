@@ -44,11 +44,11 @@ void Projectile::render(float interp) {
     glBindVertexArray(vao);
     glUseProgram(program);
 
-    glm::vec3 v = glm::vec3(0, -body.Vz, body.Vy);
-    float a = acos(body.Vx / glm::length(body.vel()));
+    glm::vec3 v = glm::vec3(0, -body.vel.z, body.vel.y);
+    float a = acos(body.vel.x / glm::length(body.vel));
     glm::mat4 rotmat = glm::rotate(a, v);
 
-    glm::mat4 trans = glm::translate(body.pos());
+    glm::mat4 trans = glm::translate(body.pos);
     glm::mat4 MVP = scene->getVPM() * trans * rotmat;
 
     GLint MVPID = glGetUniformLocation(program, "MVP");
