@@ -69,9 +69,7 @@ void Player::update(double step) {
     // %%%%%%%%%%
 
     // gravity
-    if (body.pos.y > 1.5) {
-        body.applyForceY(-9.8 * body.mass);
-    }
+    body.applyForceY(-9.8 * body.mass);
     // %%%%%%%%%%
 
     body.update(step);
