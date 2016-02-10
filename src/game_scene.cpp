@@ -96,3 +96,28 @@ void GameScene::update(double step) {
 
     rupdate(this, step);
 }
+
+/*
+static void SSCollision(GNPbody a, GNPbody b);
+
+void collide(GNPbody a, GNPbody b) {
+    const ShapeType typeA = a.shape->getType();
+    const ShapeType typeB = b.shape->getType();
+
+    switch (typeA) {
+    case SPHERE:
+        switch (typeB) {
+        case SPHERE:
+            SSCollision(a, b);
+            break;
+        default:
+            log_msg(LOG_WARNING, "%s-%s collision not supported.", getShapeName(typeA), getShapeName(typeB));
+            break;
+        }
+        break;
+    default:
+        log_msg(LOG_WARNING, "Collisions with %s unsupported.", getShapeName(typeA));
+    }
+}
+
+*/

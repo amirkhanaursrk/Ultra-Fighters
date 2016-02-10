@@ -8,7 +8,7 @@
 
 class Projectile: public GameNode {
     public:
-        Projectile(PBody body);
+        Projectile(GNPbody body);
         
         bool setup() override;
         void render(float interp) override;
@@ -19,5 +19,4 @@ class Projectile: public GameNode {
         static GLuint program;
 
         double timeAlive = 0;
-        PBody body;
 };

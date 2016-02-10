@@ -1,12 +1,15 @@
 #pragma once
 
+#include "shape.hpp"
+#include "aabb.hpp"
+
 #include <glm/vec3.hpp>
 
-class Sphere {
-	public:
-		glm::vec3 center;
+class Sphere: public Shape {
+    public:
+        glm::vec3 center;
 
-		Sphere(glm::vec3 center, float radius);
+        Sphere(glm::vec3 center, float radius);
         Sphere(float radius): Sphere(glm::vec3(0, 0, 0), radius) {}
         Sphere(const Sphere &copy);
         Sphere(): Sphere(glm::vec3(0, 0, 0), 1) {}
@@ -14,7 +17,11 @@ class Sphere {
         float getRadius() const;
         void setRadius(float radius);
 
-        bool containsPoint(glm::vec3 pt) const;
+        // Abstract methods for Shape
+
+        bool containsPoint(glm::vec3 point) const override;
+        AABB getBoundingBox() const override;
+        ShapeType getType() const override;
 
     private:
         float radius;

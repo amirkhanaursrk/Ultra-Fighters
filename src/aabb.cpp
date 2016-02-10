@@ -35,7 +35,7 @@ glm::vec3 AABB::getMin() const {
     return min;
 }
 
-glm::vec3 AABB::getMax() const{
+glm::vec3 AABB::getMax() const {
     return max;
 }
 
@@ -43,4 +43,18 @@ void AABB::centerAt(glm::vec3 center) {
     glm::vec3 halfSize = (max - min) / 2.0f;
     min = center - halfSize;
     max = center + halfSize;
+}
+
+// Shape Methods
+
+bool AABB::containsPoint(glm::vec3 point) const {
+    return min.x < point.x && point.x < max.x && min.y < point.y && point.y < max.y && min.z < point.z && point.z < max.z;
+}
+
+AABB AABB::getBoundingBox() const {
+    return *this;
+}
+
+ShapeType AABB::getType() const {
+    return AABBOX;
 }

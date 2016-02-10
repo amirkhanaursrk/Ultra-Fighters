@@ -1,13 +1,12 @@
 #include "wavefront_object.hpp"
-#include "game_scene.hpp"
-
-#include <glm/mat4x4.hpp>
 
 #include "logger.h"
 #include "myglutils.h"
 
+#include <glm/mat4x4.hpp>
+
 WavefrontObject::WavefrontObject(const char* path) {
-    name = "WavefrontObject";
+    name = "Wavefront Object";
     this->path = path;
 }
 

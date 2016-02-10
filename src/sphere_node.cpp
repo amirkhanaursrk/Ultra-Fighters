@@ -1,7 +1,6 @@
 #include "sphere_node.hpp"
 #include "miscutils.hpp"
 #include "set_uniform.hpp"
-#include "game_scene.hpp"
 #include "logger.h"
 
 #include <glm/gtx/transform.hpp>

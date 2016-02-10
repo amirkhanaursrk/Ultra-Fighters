@@ -1,6 +1,7 @@
 #pragma once
 
 #include "loop.hpp"
+#include "node_pbody.hpp"
 
 #include <vector>
 
@@ -11,6 +12,7 @@ class GameNode: public LoopListener {
         GameNode* parent = NULL;
         GameScene* scene = NULL;
         const char* name = NULL;
+        GNPbody* body = NULL;
 
         std::vector<GameNode*> children;
         std::vector<GameNode*> newChildren;
@@ -22,3 +24,5 @@ class GameNode: public LoopListener {
         void addChild(GameNode* child);
         void removeChild(GameNode* child);
 };
+
+#include "game_scene.hpp"

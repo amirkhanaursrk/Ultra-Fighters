@@ -88,3 +88,13 @@ void subdivide(std::vector<Triangle> &tris) {
 
     tris.swap(newTris);
 }
+
+const char* getShapeName(ShapeType s) {
+    static const char* const typeNames[] = {
+        "Point",
+        "AABB",
+        "Sphere",
+        "Triangle" };
+
+    return typeNames[s];
+}

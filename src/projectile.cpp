@@ -1,5 +1,4 @@
 #include "projectile.hpp"
-#include "game_scene.hpp"
 #include "logger.h"
 
 #define GLM_FORCE_RADIANS
@@ -8,9 +7,10 @@
 GLuint Projectile::vao;
 GLuint Projectile::program = 0;
 
-Projectile::Projectile(PBody body) {
+Projectile::Projectile(GNPbody body) {
     name = "Projectile";
-    this->body = body;
+    this->body = new GNPbody(body);
+    this->body->node = this;
 }
 
 bool Projectile::setup() {
@@ -44,11 +44,11 @@ void Projectile::render(float interp) {
     glBindVertexArray(vao);
     glUseProgram(program);
 
-    glm::vec3 v = glm::vec3(0, -body.Vz, body.Vy);
-    float a = acos(body.Vx / glm::length(body.vel()));
+    glm::vec3 v = glm::vec3(0, -body->vel.z, body->vel.y);
+    float a = acos(body->vel.x / glm::length(body->vel));
     glm::mat4 rotmat = glm::rotate(a, v);
 
-    glm::mat4 trans = glm::translate(body.pos());
+    glm::mat4 trans = glm::translate(body->pos);
     glm::mat4 MVP = scene->getVPM() * trans * rotmat;
 
     GLint MVPID = glGetUniformLocation(program, "MVP");
@@ -65,7 +65,7 @@ void Projectile::render(float interp) {
 }
 
 void Projectile::update(double step) {
-    body.update(step);
+    body->update(step);
 
     timeAlive += step;
     if (timeAlive >= 20) {

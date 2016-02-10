@@ -1,6 +1,5 @@
 #include "hud.hpp"
 #include "logger.h"
-#include "game_scene.hpp"
 
 HUD::HUD() {
     name = "HUD";
