@@ -10,6 +10,8 @@
   <string>Ultra-Fighters</string>
   <key>CFBundleIconFile</key>
   <string>UF.icns</string>
+  <key>LSMinimumSystemVersion</key>
+  <string>10.9.0</string>
   <key>MinimumOSVersion</key>
   <string>10.9.0</string>
 </dict>
