@@ -1,11 +1,11 @@
 #pragma once
 
-#include "aabb.hpp"
+class AABB;
 
 #include <glm/vec3.hpp>
 
 enum ShapeType {
-    POINT,
+    POINT = 0,
     AABBOX,
     SPHERE,
     TRIANGLE,

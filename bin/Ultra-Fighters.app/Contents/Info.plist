@@ -6,23 +6,11 @@
   <string>Ultra-Fighters</string>
   <key>CFBundleExecutable</key>
   <string>Ultra-Fighters_osx</string>
-  <key>CFBundleIdentifier</key>
-  <string>com.your-company-name.www</string>
   <key>CFBundleName</key>
   <string>Ultra-Fighters</string>
   <key>CFBundleIconFile</key>
   <string>UF.icns</string>
-  <key>CFBundleShortVersionString</key>
-  <string>0.01</string>
-  <key>CFBundleInfoDictionaryVersion</key>
-  <string>6.0</string>
-  <key>CFBundlePackageType</key>
-  <string>APPL</string>
-  <key>IFMajorVersion</key>
-  <integer>0</integer>
-  <key>IFMinorVersion</key>
-  <integer>1</integer>
-  <key>LSMinimumSystemVersion</key>
+  <key>MinimumOSVersion</key>
   <string>10.9.0</string>
 </dict>
 </plist>

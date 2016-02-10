@@ -9,7 +9,7 @@ FULLSCREEN = True
 
 def getDependencies(fileName, depth=0):
     if (depth >= 10):
-        print('Too deep, maybe there are circular dependencies?')
+        #print('Too deep, maybe there are circular dependencies?')
         return []
 
     f = open(fileName)

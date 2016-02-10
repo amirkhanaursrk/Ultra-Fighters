@@ -26,9 +26,19 @@ void Sphere::setRadius(float radius) {
 	this->radius = std::fabs(radius);
 }
 
-bool Sphere::containsPoint(glm::vec3 pt) const {
-    glm::vec3 diff = pt - center;
+// Shape Methods
+
+bool Sphere::containsPoint(glm::vec3 point) const {
+    glm::vec3 diff = point - center;
     float dist2 = glm::dot(diff, diff);
 
     return dist2 < SQR(radius);
+}
+
+AABB Sphere::getBoundingBox() const {
+    return AABB(center, radius, radius, radius);
+}
+
+ShapeType Sphere::getType() const {
+    return SPHERE;
 }
