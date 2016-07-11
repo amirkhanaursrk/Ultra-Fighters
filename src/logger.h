@@ -1,0 +1,26 @@
+#pragma once
+
+#include <stdio.h>
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+#define LOG_DEBUG   0
+#define LOG_INFO    1
+#define LOG_WARNING 2
+#define LOG_ERROR   3
+
+void set_log_file(FILE* file);
+void setDebug(int shouldDebug);
+void setBind(int shouldBind);
+
+#ifndef __WIN32__ // Windows doesn't have the __printflike attribute
+void log_msg(const int log_type, const char* message, ...) __printflike(2, 3);
+#else
+void log_msg(const int log_type, const char* message, ...);
+#endif
+
+#ifdef __cplusplus
+}
+#endif
